@@ -24,3 +24,25 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+
+h1, h2, h3, h4, h5, h6, button, p, span{
+    font-family: 'Roboto', sans-serif;
+}
+h6{
+    line-height: 28px;
+    color: var(--main-font-color);
+    font-size: 16px;
+    font-weight: 400;
+}
+p{
+    line-height: 28px;
+    color: var(--main-font-color);
+    font-size: 18px;
+}
+.main-color{
+    color:var(--main-font-color) !important;
+}
+.main-light-color{
+    color:var(--light-font-color) !important;
+}

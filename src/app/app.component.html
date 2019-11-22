@@ -1,3 +1,22 @@
-<ion-app>
+<ion-app [class.dark-theme]='dark'>
   <ion-router-outlet></ion-router-outlet>
+  <!-- <ion-fab horizontal="start" vertical="top" slot="fixed">
+    <ion-fab-button color="secondary">
+      <ion-icon name="arrow-dropright"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="end">
+      <ion-fab-button color="light">
+        <ion-icon name="logo-facebook" (click)="dark = true"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button color="light">
+        <ion-icon name="logo-twitter"  (click)="dark = false"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button color="light">
+        <ion-icon name="logo-vimeo"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button color="light">
+        <ion-icon name="logo-google"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab> -->
 </ion-app>

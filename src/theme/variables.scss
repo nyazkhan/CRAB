@@ -2,7 +2,20 @@
 // http://ionicframework.com/docs/theming/
 
 /** Ionic CSS Variables **/
+
 :root {
+
+
+ /** my variable  **/
+ --main-font-color: #093050;
+ --main-white-font-color:#ffffff;
+ --main-border-color:#9AC3E4;
+ --main-btn-background:#267BFB;
+ --light-font-color: #09305066;
+ --light-black-color: #3C3C3C;
+ --dark-black-color: #000000;
+
+
   /** primary **/
   --ion-color-primary: #3880ff;
   --ion-color-primary-rgb: 56, 128, 255;
@@ -74,4 +87,15 @@
   --ion-color-light-contrast-rgb: 0, 0, 0;
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
+}
+
+.dark-theme {
+  --main-font-color: #f83f3f;
+  --main-white-font-color:#ffffff;
+  --main-border-color:rgb(60, 255, 0);
+  --main-btn-background:rgb(243, 255, 132);
+  --light-font-color: #ffffff;
+  --light-black-color: rgb(255, 250, 250);
+  --dark-black-color: #ffffff;
+
 }
