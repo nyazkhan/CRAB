@@ -9,7 +9,7 @@
 
 
 
-    <!-- Restaurant Name -->
+    <!-- Restaurant Name 4 0-->
     <ion-slide class="ion-padding " style=" vertical-align:top">
 
       <br>
@@ -47,7 +47,7 @@
     </ion-slide>
 
 
-    <!-- Food served in restaurant is -->
+    <!-- Food served in restaurant is 5 1-->
     <ion-slide class="ion-padding " id="vegColor" style=" vertical-align:top">
       <div class="ion-float-left main-color">
         <ion-icon (click)="previous()" name="arrow-back">
@@ -797,7 +797,7 @@
           [ngClass]="(restaurantDetail.foodType ===2)?'item font-active':'item '">Non - Veg
         </ion-col>
         <ion-col (click)="restaurantDetail.foodType =3"
-          [ngClass]="(restaurantDetail.foodType ===3 || restaurantDetail.foodType==null )?'item font-active':'item '">
+          [ngClass]="(restaurantDetail.foodType ===3  )?'item font-active':'item '">
           Both</ion-col>
       </ion-row>
 
@@ -825,7 +825,7 @@
 
 
 
-    <!-- Type of Restaurant -->
+    <!-- Type of Restaurant 6-2 -->
     <ion-slide class="ion-padding " style=" vertical-align:top">
 
       <div class="ion-float-left main-color">
@@ -2276,7 +2276,8 @@
           [ngClass]="(restaurantDetail.restaurantType===2)?'item font-active':'item '">Cafe
         </ion-col>
         <ion-col (click)="restaurantDetail.restaurantType=3"
-          [ngClass]="(restaurantDetail.restaurantType===3 || restaurantDetail.restaurantType==null)?'item font-active':'item '">Both
+          [ngClass]="(restaurantDetail.restaurantType===3)?'item font-active':'item '">
+          Both
         </ion-col>
       </ion-row>
 
@@ -2293,7 +2294,7 @@
     </ion-slide>
 
 
-    <!-- Payment Options -->
+    <!-- Payment Options 7-3 -->
     <ion-slide class="ion-padding " style=" vertical-align:top">
       <div class="ion-float-left main-color">
         <ion-icon (click)="previous()" name="arrow-back">
@@ -2352,7 +2353,7 @@
 
 
 
-    <!-- You are open on -->
+    <!-- You are open on 8-4 -->
     <ion-slide class="ion-padding " style=" vertical-align:top">
       <div class="ion-float-left main-color">
         <ion-icon (click)="previous()" name="arrow-back">
@@ -2389,7 +2390,7 @@
 
 
 
-    <!-- Restaurant timing -->
+    <!-- Restaurant timing 9-5 -->
 
     <ion-slide class="ion-padding " style=" vertical-align:top">
       <div class="ion-float-left main-color">
@@ -2472,7 +2473,7 @@
 
 
 
-    <!-- Parking Area -->
+    <!-- Parking Area 10-6 -->
     <ion-slide class="ion-padding " style=" vertical-align:top">
       <div class="ion-float-left main-color">
         <ion-icon (click)="previous()" name="arrow-back">
@@ -2869,7 +2870,7 @@
 
 
 
-    <!-- Accommodation size -->
+    <!-- Accommodation size  11-7-->
     <ion-slide class="ion-padding " style=" vertical-align:top">
       <div class="ion-float-left main-color">
         <ion-icon (click)="previous()" name="arrow-back">
@@ -2882,7 +2883,8 @@
         <ion-col class="ion-margin-top">
           <div class="round-box table-image" style="margin: auto">
             <!-- <img class="img-logo" src="assets/tables.svg"> -->
-            <img *ngIf="restaurantDetail.accommodationSize == 10" class="img-logo" src="assets/table1.svg">
+            <img *ngIf="(restaurantDetail.accommodationSize <= 10 || restaurantDetail.accommodationSize ==null)"
+              class="img-logo" src="assets/table1.svg">
             <img *ngIf="restaurantDetail.accommodationSize  == 20" class="img-logo" src="assets/table2.svg">
             <img *ngIf="restaurantDetail.accommodationSize >= 30" class="img-logo" src="assets/table3.svg">
           </div>
@@ -2917,7 +2919,7 @@
     </ion-slide>
 
 
-    <!-- Average cost per person -->
+    <!-- Average cost per person  12-8-->
     <ion-slide class="ion-padding " style=" vertical-align:top">
       <div class="ion-float-left main-color">
         <ion-icon (click)="previous()" name="arrow-back">
@@ -2927,7 +2929,8 @@
       <ion-row>
         <ion-col class="ion-margin-top">
           <div class="round-box cost-img">
-            <img *ngIf="(restaurantDetail.avgCost <=100)" class="img-veg" src="assets/jar.svg">
+            <img *ngIf="(restaurantDetail.avgCost <=100 || restaurantDetail.avgCost ==null)" class="img-veg"
+              src="assets/jar.svg">
             <img *ngIf="((restaurantDetail.avgCost >100) && (restaurantDetail.avgCost <=300))" class="img-veg"
               src="assets/wallet.svg">
             <img *ngIf="((restaurantDetail.avgCost >300) && (restaurantDetail.avgCost <=600))" class="img-veg"
@@ -2939,7 +2942,7 @@
       <h6 class="ion-text-center bold main-color  ion-margin-bottom">Average cost per person</h6>
 
       <p>
-        <span style="font-size: 50px !important; font-weight: bold"> {{restaurantDetail.avgCost}}</span><span
+        <span style="font-size: 50px !important; font-weight: bold"> {{restaurantDetail.avgCost|| 0}}</span><span
           *ngIf="(restaurantDetail.avgCost==1000)" style="font-size: 50px !important; font-weight: bold"> +</span>
         <span style="font-size: 12px !important;font-weight: normal;"> / per person</span>
       </p>
@@ -2962,35 +2965,11 @@
 
     </ion-slide>
 
-    <!-- About your restaurant -->
+ 
+
+
+    <!-- images of restaurant 13 -9-->
     <ion-slide class="ion-padding " style=" vertical-align:top">
-      <div class="ion-float-left main-color">
-        <ion-icon (click)="previous()" name="arrow-back">
-        </ion-icon>
-      </div>
-
-
-      <h6 class="ion-text-center bold main-color ">About your restaurant</h6>
-
-      <ion-textarea style="line-height: 26px;" [(ngModel)]="restaurantDetail.description" name="aboutRestaurant"
-        class="main-color ion-text-left" autofocus auto-grow="true"
-        placeholder=" We love restaurants as much as you do."></ion-textarea>
-
-      <ion-row>
-        <ion-col class="ion-padding">
-          <div class="fixed-btn">
-            <ion-button expand="block" color='undefine' (click)="saveAboutRestaurant()" class="full-with-btn  mt-20">
-              NEXT
-            </ion-button>
-          </div>
-        </ion-col>
-      </ion-row>
-    </ion-slide>
-
-
-
-    <!-- images of restaurant -->
-    <!-- <ion-slide class="ion-padding " style=" vertical-align:top">
 
       <div class="ion-float-left main-color">
         <ion-icon (click)="previous()" name="arrow-back">
@@ -2998,70 +2977,88 @@
 
       </div>
       <h4 class="ion-text-center  main-color ">Restaurant & menu image</h4>
-      <ion-grid *ngIf="photoService.photoList" class="fixed" style="height: 75vh; overflow: scroll;">
-     
+      <!-- <ion-grid class="fixed" style="height: 75vh; overflow: scroll;">
+
         <h4 class="ion-text-left  main-color ">Indoor</h4>
 
         <ion-row>
-          <ion-col size="4" class="menu-img" *ngFor="let photo of photoService.photoList.indoorSpace">
-            <button class="rm-btn" (click)="photoService.removePicture('indoorSpace' , photo.data)">
+          <ion-col size="4" class="menu-img" *ngFor="let photo of restaurantDetail.files">
+            <button *ngIf="photo.type == 1" class="rm-btn" (click)="deleteImgByid(photo.id)">
               <span>&#10005;</span>
             </button>
-            <img style="width: 100% !important;" [src]="photo.data" />
+            <img *ngIf="photo.type == 1" style="width: 100% !important;" [src]="photo.storagePath" />
           </ion-col>
           <ion-col size="4" class="menu-img">
 
-            <img (click)="presentActionSheetForCamera('indoorSpace')"  src="assets/addImg.svg" />
-          </ion-col>
+            <img (click)="presentActionSheetForCamera(1)" src="assets/addImg.svg" /> </ion-col>
         </ion-row>
         <h4 class="ion-text-left  main-color ">Outdoor</h4>
 
         <ion-row>
-          <ion-col size="4" class="menu-img" *ngFor="let photo of photoService.photoList.outdoorSpace">
-            <button class="rm-btn" (click)="photoService.removePicture( 'outdoorSpace', photo.data)">
+          <ion-col size="4" class="menu-img" *ngFor="let photo of restaurantDetail.files">
+            <button *ngIf="photo.type == 2" class="rm-btn" (click)="deleteImgByid(photo.id)">
               <span>&#10005;</span>
             </button>
-            <img [src]="photo.data" />
+            <img *ngIf="photo.type == 2" style="width: 100% !important;" [src]="photo.storagePath" />
           </ion-col>
           <ion-col size="4" class="menu-img">
 
-            <img (click)="presentActionSheetForCamera('outdoorSpace')"  src="assets/addImg.svg" />
-          </ion-col>
+            <img (click)="presentActionSheetForCamera(2)" src="assets/addImg.svg" /> </ion-col>
         </ion-row>
         <h4 class="ion-text-left  main-color ">Food</h4>
 
         <ion-row>
-          <ion-col size="4" class="menu-img" *ngFor="let photo of photoService.photoList.food">
-            <button class="rm-btn" (click)="photoService.removePicture('food', photo.data)">
+          <ion-col size="4" class="menu-img" *ngFor="let photo of restaurantDetail.files">
+            <button *ngIf="photo.type == 3" class="rm-btn" (click)="deleteImgByid(photo.id)">
               <span>&#10005;</span>
             </button>
-            <img [src]="photo.data" />
+            <img *ngIf="photo.type == 3" style="width: 100% !important;" [src]="photo.storagePath" />
           </ion-col>
           <ion-col size="4" class="menu-img">
 
-            <img (click)="presentActionSheetForCamera('food')"  src="assets/addImg.svg" />
-          </ion-col>
+            <img (click)="presentActionSheetForCamera(3)" src="assets/addImg.svg" /> </ion-col>
         </ion-row>
         <h4 class="ion-text-left  main-color ">Menu</h4>
 
         <ion-row>
-          <ion-col size="4" class="menu-img" *ngFor="let photo of photoService.photoList.menuPhoto">
-            <button class="rm-btn" (click)="photoService.removePicture('menuPhoto' , photo.data)">
+          <ion-col size="4" class="menu-img" *ngFor="let photo of restaurantDetail.files">
+            <button *ngIf="photo.type == 4" class="rm-btn" (click)="deleteImgByid(photo.id)">
               <span>&#10005;</span>
             </button>
-            <img [src]="photo.data" />
+            <img *ngIf="photo.type == 4" style="width: 100% !important;" [src]="photo.storagePath" />
           </ion-col>
           <ion-col size="4" class="menu-img">
 
-            <img (click)="presentActionSheetForCamera('menuPhoto')"  src="assets/addImg.svg" />
-          </ion-col>
+            <img (click)="presentActionSheetForCamera(4)" src="assets/addImg.svg" /> </ion-col>
         </ion-row>
-      
+
+
+
+      </ion-grid> -->
+      <ion-grid class="fixed" style="height: 75vh; overflow: scroll;">
+        <ng-container *ngFor="let photoslist of restaurantDetail.list; let i=index">
+          <h4 class="ion-text-left  main-color ">{{photoslist.value}}</h4>
+
+          <ion-row>
+            <ion-col size="4" class="menu-img" *ngFor="let photo of photoslist.data;let j=index">
+              <button class="rm-btn" (click)="deleteImgByid(photo.id , i , j)">
+                <span>&#10005;</span>
+              </button>
+              <img style="width: 100% !important;" [src]="photo.storagePath" />
+            </ion-col>
+            <ion-col size="4" class="menu-img">
+
+              <img (click)="presentActionSheetForCamera(photoslist.masterId)" src="assets/addImg.svg" /> </ion-col>
+          </ion-row>
+        </ng-container>
+
+
+
 
 
       </ion-grid>
 
-    
+
       <ion-row>
         <ion-col class="ion-padding">
           <div class="fixed-btn">
@@ -3070,12 +3067,36 @@
           </div>
         </ion-col>
       </ion-row>
-    </ion-slide> -->
+    </ion-slide>
+   <!-- About your restaurant 14-10-->
+   <ion-slide class="ion-padding " style=" vertical-align:top">
+    <div class="ion-float-left main-color">
+      <ion-icon (click)="previous()" name="arrow-back">
+      </ion-icon>
+    </div>
+
+
+    <h6 class="ion-text-center bold main-color ">About your restaurant</h6>
+
+    <ion-textarea style="line-height: 26px;" [(ngModel)]="restaurantDetail.description" name="aboutRestaurant"
+      class="main-color ion-text-left" autofocus auto-grow="true"
+      placeholder=" We love restaurants as much as you do."></ion-textarea>
+
+    <ion-row>
+      <ion-col class="ion-padding">
+        <div class="fixed-btn">
+          <ion-button expand="block" color='undefine' (click)="saveAboutRestaurant()" class="full-with-btn  mt-20">
+            NEXT
+          </ion-button>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-slide>
 
 
 
 
-    <!-- email 11 -->
+    <!-- email 11  15-11-->
 
     <ion-slide class="ion-padding " style=" vertical-align:top">
 
@@ -3126,7 +3147,7 @@
     </ion-slide>
 
 
-    <!-- email varification slide 12-->
+    <!-- email varification slide 16-12-->
     <ion-slide class="ion-padding " style=" vertical-align:top">
 
       <!-- <div class="ion-float-left main-color">
@@ -3135,7 +3156,7 @@
 
       </div> -->
 
-      
+
 
 
       <p class="bold ion-text-left">OTP recived on</p>
@@ -3193,7 +3214,7 @@
 
 
 
-    <!-- thankyou 13 -->
+    <!-- thankyou 17-13 -->
     <ion-slide class="ion-padding thankyou-img " style=" vertical-align:top">
       <ion-row class="letsgodown">
         <ion-col>

@@ -4,6 +4,7 @@ import { AlertService } from 'src/app/service/alert.service';
 import { Geolocation, GeolocationOptions, Geoposition, PositionError } from '@ionic-native/geolocation/ngx';
 import { LoginService } from 'src/app/service/login.service';
 import { Storage } from '@ionic/storage';
+import { StorageService } from 'src/app/service/storage.service';
 
 declare const google: any;
 
@@ -16,13 +17,13 @@ export class MapPage implements OnInit {
   @ViewChild('map', { static: true }) mapElement: ElementRef;
 
   map: any;
-
+  addressForm;
   mapOptions: any;
 
   latLng: any;
   bounds: any;
   address = {
-    id: 2,
+    id: null,
     premisesNo: '',
     locality: '',
     landmark: '',
@@ -30,6 +31,7 @@ export class MapPage implements OnInit {
     city: '',
     // district: '',
     // country: '',
+    gMapFullAddress: '',
     placeId: '',
     longitude: null,
     latitude: null,
@@ -50,15 +52,18 @@ export class MapPage implements OnInit {
   };
   restaurantDetails: any = [];
   input: any;
-
+  userPhoneNo: any;
   constructor(
     @Inject(Geolocation) public geolocation: Geolocation,
     @Inject(Router) private router: Router,
     private loginservice: LoginService,
     @Inject(AlertService) private alertService: AlertService,
-    @Inject(Storage) private storage: Storage
+    @Inject(StorageService) private storageService: StorageService
 
-  ) { }
+  ) {
+    this.userPhoneNo = this.storageService.getData('mobile');
+
+  }
 
   ngOnInit() {
   }
@@ -112,7 +117,7 @@ export class MapPage implements OnInit {
       this.address.latitude = places[0].geometry.location.lat();
       this.address.longitude = places[0].geometry.location.lng();
       this.address.placeId = places[0].place_id;
-
+      this.address.gMapFullAddress = JSON.stringify(places[0].address_components);
 
       console.log(places);
       if (places.length === 0) {
@@ -297,30 +302,27 @@ export class MapPage implements OnInit {
       this.alertService.showErrorAlert('Somthing wents wrong Please search again restaurant on map');
       return;
     }
+
     this.loginservice.updateRestaurantDetails({
-      mobile: 9858888850,
+      mobile: this.userPhoneNo,
       stage: 3,
       name: this.restaurantDetails.name,
-      address: this.address
+      address: this.address,
+      gMapFullDetail: JSON.stringify(this.restaurantDetails)
     }).subscribe((res) => {
       if (res.status === 200) {
-        this.storage.set('userDetails', JSON.stringify(res.data));
-        this.storage.set('placeId', this.address.placeId);
         this.loginservice.updateRestaurantDetails({
-          mobile: 9858888850,
+          mobile: this.userPhoneNo,
           stage: 4,
           name: this.restaurantDetails.name
         }).subscribe((response) => {
 
 
           if (response.status === 200) {
+            this.storageService.storeData('stage', response.data.stage);
             this.router.navigateByUrl('/registration');
-          } else {
-            this.alertService.showErrorAlert(response.message);
           }
         });
-      } else {
-        this.alertService.showErrorAlert(res.message);
       }
 
     });

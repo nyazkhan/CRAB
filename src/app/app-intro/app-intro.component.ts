@@ -32,7 +32,7 @@ export class AppIntroComponent implements OnInit {
 
   async finish() {
     await this.storage.set('tutorialComplete', true);
-    this.router.navigateByUrl('/auth/login');
+    this.router.navigateByUrl('/login');
     // localStorage.setItem(tutorialComplete: true);
   }
 

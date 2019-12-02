@@ -10,7 +10,7 @@ export class CameraService {
 
 
   public photos: Photo[] = [];
-
+  image;
   photoList: any;
 
   constructor(
@@ -27,7 +27,49 @@ export class CameraService {
     console.log(this.photoList);
 
   }
+  takeImage(source) {
+    let options: CameraOptions;
+    if (source === 'camera') {
+      options = {
+        quality: 100,
+        sourceType: this.camera.PictureSourceType.CAMERA,
+        saveToPhotoAlbum: true,
+        correctOrientation: true,
+        destinationType: this.camera.DestinationType.DATA_URL,
+        encodingType: this.camera.EncodingType.JPEG,
+        mediaType: this.camera.MediaType.PICTURE,
+        targetWidth: 400,
+        targetHeight: 400,
+        allowEdit: true
+      };
+    } else {
+      options = {
+        quality: 100,
+        sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
+        saveToPhotoAlbum: true,
+        correctOrientation: true,
+        destinationType: this.camera.DestinationType.DATA_URL,
+        encodingType: this.camera.EncodingType.JPEG,
+        mediaType: this.camera.MediaType.PICTURE,
+        targetWidth: 400,
+        targetHeight: 400,
+        allowEdit: true
+      };
+    }
 
+
+    return this.camera.getPicture(options);
+
+    // .then((imageData) => {
+    //   return imageData;
+    // },
+    //   (err) => {
+    //     // Handle error
+    //     this.alertService.showInfoAlert(err);
+    //     console.log('Camera issue: ' + err);
+    //     return null;
+    //   });
+  }
   takePicture(options, imgTypeName) {
 
     console.log('image type');
@@ -38,14 +80,29 @@ export class CameraService {
     this.camera.getPicture(options).then((imageData) => {
       // Add new photo to gallery
       // console.log(this.photoList.[imgTypeName]);
-      console.log(this.photoList);
+      console.log(imageData);
       // let formData: FormData = new FormData();
-      // formData.append('mobile', );
+      // formData.append('mobile',90176972 );
       // formData.append('type', 1);
+      const phoneNo = this.storage.get('userNo');
+      const images = new FormData(); const images1 = new FormData();
+      const blob = new Blob([imageData], { type: 'image / png' });
+      console.log(blob);
 
-      this.loginservice.uploadSingleImg({
+      images.append('mobile', '9017697290');
+      images.append('file', blob);
+      images.append('type', '1');
 
-      }).subscribe((res) => {
+      images1.append('mobile', '9017697290');
+      images1.append('file', imageData);
+      images1.append('type', '1');
+
+      this.loginservice.uploadSingleImg(images1).subscribe((res) => {
+        console.log(res);
+
+      });
+      this.loginservice.uploadSingleImg(images).subscribe((res) => {
+        // return res;
         if (res.status === 200) {
           console.log(res);
 
@@ -96,6 +153,7 @@ export class CameraService {
       // }
     }, (err) => {
       // Handle error
+      this.alertService.showErrorAlert('Camera issue: ' + err);
       console.log('Camera issue: ' + err);
     });
 
@@ -103,11 +161,13 @@ export class CameraService {
 
   takePictureFromGalry(imgTypeName) {
     const options: CameraOptions = {
-      quality: 60,
+      quality: 100,
       sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
       saveToPhotoAlbum: true,
       correctOrientation: true,
       destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE,
       targetWidth: 400,
       targetHeight: 400,
       allowEdit: true
@@ -118,11 +178,13 @@ export class CameraService {
     console.log(imgTypeName);
 
     const options: CameraOptions = {
-      quality: 60,
+      quality: 100,
       sourceType: this.camera.PictureSourceType.CAMERA,
       saveToPhotoAlbum: true,
       correctOrientation: true,
-      destinationType: this.camera.DestinationType.DATA_URL,
+      destinationType: this.camera.DestinationType.FILE_URI,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE,
       targetWidth: 400,
       targetHeight: 400,
       allowEdit: true

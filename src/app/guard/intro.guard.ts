@@ -12,10 +12,11 @@ export class IntroGuard implements CanActivate {
     state: RouterStateSnapshot
   ): Promise<boolean> {
     const isComplete = await this.storage.get('tutorialComplete');
+    console.log(isComplete);
 
     if (isComplete) {
 
-      this.router.navigateByUrl('/auth/login');
+      this.router.navigateByUrl('/login');
     }
 
     return !isComplete;

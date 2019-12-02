@@ -37,7 +37,7 @@ export class LoginService {
   }
 
   uploadSingleImg(imgDetails) {
-    return this.Http.post('user/getUserDetails', imgDetails);
+    return this.Http.post('file/uploadFile', imgDetails);
 
   }
   deleteImgById(id) {

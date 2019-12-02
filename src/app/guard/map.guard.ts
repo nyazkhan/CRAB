@@ -1,27 +1,30 @@
 import { Injectable, Inject } from '@angular/core';
 import { ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, CanActivate, Router } from '@angular/router';
 import { Storage } from '@ionic/storage';
+import { LoginService } from '../service/login.service';
+import { StorageService } from '../service/storage.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MapGuard implements CanActivate {
   constructor(
-    @Inject(Storage) private storage: Storage,
-    private router: Router) { }
+    @Inject(StorageService) private storageService: StorageService,
+    private router: Router,
+    private loginservice: LoginService) { }
 
   async canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Promise<boolean> {
+    const stage = this.storageService.getData('stage');
 
-    const isPlaceId = await this.storage.get('placeId');
-    if (isPlaceId) {
+    if (stage === 3) {
+      return true;
+    } else {
 
       this.router.navigateByUrl('/registration');
     }
-
-    return true;
 
   }
 }

@@ -5,8 +5,7 @@ import { HttpClient, HttpResponse, HttpHeaders, HttpErrorResponse, HttpParams } 
 import { throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { StorageService } from './storage.service';
-import { BASEURL } from './app.constant';
-import { hasLifecycleHook } from '@angular/compiler/src/lifecycle_reflector';
+// import { BASEURL } from './app.constant';
 
 @Injectable({
   providedIn: 'root'
@@ -19,10 +18,8 @@ export class CustomHTTPService {
 
   getHeaders(optHeaders?: HttpHeaders) {
     let headers = new HttpHeaders();
-    if (this.storage.getData('ngStorage-token')) {
-      headers = headers.set(
-        'Authorization',
-        'Bearer ' + this.storage.getData('ngStorage-token')
+    if (this.storage.getData('accessToken')) {
+      headers = headers.set('crab_at', this.storage.getData('accessToken')
       );
     }
     if (optHeaders) {

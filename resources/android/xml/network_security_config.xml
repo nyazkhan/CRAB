@@ -2,5 +2,10 @@
 <network-security-config>
     <domain-config cleartextTrafficPermitted="true">
         <domain includeSubdomains="true">localhost</domain>
+        <domain includeSubdomains="true">http://139.59.18.149:8282</domain>
+        <domain includeSubdomains="true">139.59.18.149:8282</domain>  
+          <domain includeSubdomains="true">http://localhost:8282</domain>
+        <domain includeSubdomains="true">localhost:8282</domain>
+        <domain includeSubdomains="true">139.59.18.149</domain>
     </domain-config>
 </network-security-config>

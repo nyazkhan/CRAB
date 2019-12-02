@@ -3,14 +3,14 @@ import { AlertService } from 'src/app/service/alert.service';
 import { Router } from '@angular/router';
 import { IonSlides } from '@ionic/angular';
 import { LoginService } from 'src/app/service/login.service';
-import { Storage } from '@ionic/storage';
+import { StorageService } from 'src/app/service/storage.service';
 
 @Component({
   selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
+  templateUrl: './login.page.html',
+  styleUrls: ['./login.page.scss'],
 })
-export class LoginComponent implements OnInit {
+export class LoginPage implements OnInit {
 
   phoneNo = '';
   // public PASSWORD_REGEX = '[789][0-9]{9}';
@@ -23,7 +23,8 @@ export class LoginComponent implements OnInit {
     @Inject(AlertService) private alertService: AlertService,
     @Inject(Router) private router: Router,
     private loginservice: LoginService,
-    private storage: Storage
+    // private storage: Storage,
+    private storageService: StorageService
 
   ) {
   }
@@ -57,7 +58,6 @@ export class LoginComponent implements OnInit {
 
 
   onSignInSubmit() {
-    console.log('its call');
     if (this.phoneNo === '') {
       this.alertService.showErrorAlert('Please Enter Mobile No');
       return;
@@ -69,15 +69,11 @@ export class LoginComponent implements OnInit {
 
     this.alertService.showLoader('OTP sending..');
     this.loginservice.signUp(this.phoneNo).subscribe((res) => {
-      console.log(res);
-      this.alertService.closeLoader();
-      this.next();
       if (res.status === 200) {
+        this.next();
 
-      } else {
-        this.alertService.showErrorAlert(res.message);
       }
-
+      this.alertService.closeLoader();
 
     }, (err) => {
 
@@ -91,11 +87,11 @@ export class LoginComponent implements OnInit {
     this.alertService.showLoader(' Verifying OTP ..');
     this.loginservice.verifyOTP(this.phoneNo, this.otp).subscribe((res) => {
 
-      if (res.status === 200) {
+      if (res.data) {
+        for (const key of Object.keys(res.data)) {
+          this.storageService.storeData(key, res.data[key]);
+        }
         this.next();
-        this.storage.set('userNO', this.phoneNo);
-      } else {
-        this.alertService.showErrorAlert(res.message);
       }
       this.alertService.closeLoader();
 
@@ -107,10 +103,6 @@ export class LoginComponent implements OnInit {
 
   resendOTP() {
     this.loginservice.resendOTP(this.phoneNo).subscribe((res) => {
-      if (res.status === 200) {
-      } else {
-        this.alertService.showErrorAlert(res.message);
-      }
     });
   }
 
@@ -123,5 +115,8 @@ export class LoginComponent implements OnInit {
     this.router.navigateByUrl('/map');
 
   }
+
+
+
 }
 

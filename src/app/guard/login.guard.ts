@@ -15,9 +15,8 @@ export class LoginGuard implements CanActivate {
     state: RouterStateSnapshot
   ): Promise<boolean> {
 
-    const isUserId = await this.storage.get('userNO');
 
-    if (isUserId) {
+    if (localStorage.getItem('accessToken')) {
 
       this.router.navigateByUrl('/map');
     }

@@ -10,12 +10,13 @@ const routes: Routes = [
   { path: '', redirectTo: 'intro', pathMatch: 'full' },
   { path: 'intro', component: AppIntroComponent, canActivate: [IntroGuard] },
   // { path: 'home', loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)},
-  { path: 'auth', loadChildren: './pages/auth/auth.module#AuthPageModule', canActivate: [LoginGuard] },
+  // { path: 'auth', loadChildren: './pages/auth/auth.module#AuthPageModule', canActivate: [LoginGuard] },
   // tslint:disable-next-line: max-line-length
   { path: 'registration', loadChildren: './pages/registration/registration.module#RegistrationPageModule', canActivate: [RegistrationGuard] },
-  { path: 'dashboard', loadChildren: './pages/dashboard/dashboard.module#DashboardPageModule', canActivate: [IntroGuard] },
+  { path: 'dashboard', loadChildren: './pages/dashboard/dashboard.module#DashboardPageModule' },
   { path: 'profile', loadChildren: './pages/profile/profile.module#ProfilePageModule' },
   { path: 'map', loadChildren: './pages/map/map.module#MapPageModule', canActivate: [MapGuard] },
+  { path: 'login', loadChildren: './pages/login/login.module#LoginPageModule', canActivate: [LoginGuard] },
 ];
 
 @NgModule({

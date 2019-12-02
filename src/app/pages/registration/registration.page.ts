@@ -4,6 +4,8 @@ import { AlertService } from 'src/app/service/alert.service';
 import { ActivatedRoute } from '@angular/router';
 import { LoginService } from 'src/app/service/login.service';
 import { Storage } from '@ionic/storage';
+import { CameraService } from 'src/app/service/camera.service';
+import { StorageService } from 'src/app/service/storage.service';
 
 @Component({
   selector: 'app-registration',
@@ -182,22 +184,18 @@ export class RegistrationPage implements OnInit {
     @Inject(AlertService) private alertService: AlertService,
     public actionSheetController: ActionSheetController,
     private loginservice: LoginService,
-    private storage: Storage
+    private storageService: StorageService,
+    public cameraService: CameraService
 
 
   ) {
     this.loginservice.masterApi().subscribe((res) => {
-      if (res.status == 200) {
-        this.updateObject(res.data);
-      } else {
-        this.alertService.showErrorAlert(res.message);
-      }
 
     });
-    this.userPhoneNO = this.storage.get('userNO');
-    this.loginservice.getUserDetails(9858888850).subscribe((res) => {
-      if (res.status === 200) {
-        this.storage.set('userDetails', JSON.stringify(res.data));
+
+    this.userPhoneNO = this.storageService.getData('mobile');
+    this.loginservice.getUserDetails(this.userPhoneNO).subscribe((res) => {
+      if (res.data) {
         this.slides.slideTo(res.data.stage - 4, 10);
         // this.next(res.data.stage);
         this.restaurantDetail = res.data;
@@ -248,10 +246,7 @@ export class RegistrationPage implements OnInit {
             });
           });
         }
-      } else {
-        this.alertService.showErrorAlert(res.message);
       }
-
     });
 
 
@@ -259,6 +254,8 @@ export class RegistrationPage implements OnInit {
   }
   updateObject(newObj) {
     this.restaurantDetail = newObj;
+    console.log(this.restaurantDetail);
+
   }
   ngOnInit() {
     // this.photoService.loadSaved();
@@ -295,7 +292,7 @@ export class RegistrationPage implements OnInit {
       stage: 4,
       name: this.restaurantDetail.name
     }).subscribe((res) => {
-      if (res.status == 200) {
+      if (res.status === 200) {
         this.updateObject(res.data);
         this.next();
       } else {
@@ -314,7 +311,7 @@ export class RegistrationPage implements OnInit {
       foodType: this.restaurantDetail.foodType,
       isJain: this.restaurantDetail.isJain
     }).subscribe((res) => {
-      if(res.data) {
+      if (res.data) {
         this.updateObject(res.data);
         this.next();
       }
@@ -328,7 +325,7 @@ export class RegistrationPage implements OnInit {
       stage: 6,
       restaurantType: this.restaurantDetail.restaurantType,
     }).subscribe((res) => {
-      if (res.status == 200) {
+      if (res.status === 200) {
         this.updateObject(res.data);
         this.next();
       } else {
@@ -368,7 +365,7 @@ export class RegistrationPage implements OnInit {
       stage: 7,
       paymentOptions: this.restaurantDetail.paymentOptions,
     }).subscribe((res) => {
-      if (res.status == 200) {
+      if (res.status === 200) {
         this.next();
         this.updateObject(res.data);
       } else {
@@ -387,7 +384,7 @@ export class RegistrationPage implements OnInit {
       stage: 10,
       isParking: this.restaurantDetail.isParking
     }).subscribe((res) => {
-      if (res.status == 200) {
+      if (res.status === 200) {
         this.updateObject(res.data);
         this.next();
       } else {
@@ -409,7 +406,7 @@ export class RegistrationPage implements OnInit {
       stage: 14,
       description: this.restaurantDetail.description
     }).subscribe((res) => {
-      if (res.status == 200) {
+      if (res.status === 200) {
         this.updateObject(res.data);
         this.next();
       } else {
@@ -428,7 +425,7 @@ export class RegistrationPage implements OnInit {
       stage: 11,
       accommodationSize: this.restaurantDetail.accommodationSize
     }).subscribe((res) => {
-      if (res.status == 200) {
+      if (res.status === 200) {
         this.updateObject(res.data);
         this.next();
       } else {
@@ -446,7 +443,7 @@ export class RegistrationPage implements OnInit {
       stage: 12,
       avgCost: this.restaurantDetail.avgCost
     }).subscribe((res) => {
-      if (res.status == 200) {
+      if (res.status === 200) {
         this.updateObject(res.data);
         this.next();
       } else {
@@ -462,7 +459,7 @@ export class RegistrationPage implements OnInit {
       stage: 15,
       email: this.restaurantDetail.email
     }).subscribe((res) => {
-      if (res.status == 200) {
+      if (res.status === 200) {
         this.updateObject(res.data);
         this.next();
       } else {
@@ -480,7 +477,7 @@ export class RegistrationPage implements OnInit {
       email: this.restaurantDetail.email,
       code: this.restaurantDetail.code
     }).subscribe((res) => {
-      if (res.status == 200) {
+      if (res.status === 200) {
         this.updateObject(res.data);
         this.next();
       } else {
@@ -508,7 +505,7 @@ export class RegistrationPage implements OnInit {
       stage: 8,
       weekOpenDays: this.restaurantDetail.weekOpenDays
     }).subscribe((res) => {
-      if (res.status == 200) {
+      if (res.status === 200) {
         this.updateObject(res.data);
         this.selectedDayTime = days[0];
         this.next();
@@ -564,7 +561,7 @@ export class RegistrationPage implements OnInit {
       openTiming: this.restaurantDetail.openTiming
 
     }).subscribe((res) => {
-      if (res.status == 200) {
+      if (res.status === 200) {
         this.updateObject(res.data);
         this.next();
       } else {
@@ -606,65 +603,27 @@ export class RegistrationPage implements OnInit {
 
   }
 
-  showDetails() {
-    this.alertService.showLoader('Please Wait Uploading Data ..');
+  saveImg() {
+    if (this.restaurantDetail.list[0].data.length < 1) {
+      this.alertService.showErrorAlert('Please Upload indoor Image');
+      return;
+    }
 
-    // this.SetUserData().then(() => {
-    //   // if (this.email.length > 2) {
-    //   //   if (this.userDetails.emailVerified) {
-    //   //     this.slides.slideTo(13, 10);
-    //   //   } else {
-    //   //     this.slides.slideTo(12, 10);
-
-    //   //   }
-    //   // } else {
-
-    //   //   this.slides.slideTo(11, 10);
-    //   // }
-    //   this.next();
-    //   console.log('goto thanks page');
-    //   this.alertService.closeLoader();
-    // }, (error) => {
-    //   this.alertService.closeLoader();
-
-    // });
-
+    if (this.restaurantDetail.list[1].data.length < 1) {
+      this.alertService.showErrorAlert('Please Upload Outdoor Image');
+      return;
+    }
+    if (this.restaurantDetail.list[2].data.length < 1) {
+      this.alertService.showErrorAlert('Please Upload Food Image');
+      return;
+    }
+    if (this.restaurantDetail.list[3].data.length < 1) {
+      this.alertService.showErrorAlert('Please Upload Menu Image');
+      return;
+    }
+    this.next();
   }
-  // saveImg() {
-  //   if (this.photoService.photoList.indoorSpace.length < 1) {
-  //     this.alertService.showErrorAlert('Please Upload indoor Image');
-  //     return;
-  //   }
 
-  //   if (this.photoService.photoList.outdoorSpace.length < 1) {
-  //     this.alertService.showErrorAlert('Please Upload Outdoor Image');
-  //     return;
-  //   }
-  //   if (this.photoService.photoList.food.length < 1) {
-  //     this.alertService.showErrorAlert('Please Upload Food Image');
-  //     return;
-  //   }
-  //   if (this.photoService.photoList.menuPhoto.length < 1) {
-  //     this.alertService.showErrorAlert('Please Upload Menu Image');
-  //     return;
-  //   }
-  //   console.log(this.photoService.photoList);
-
-  //   // tslint:disable-next-line: no-string-literal
-  //   this.restaurantDetail['restImg'] = this.photoService.photoList;
-  //   this.showDetails();
-  // }
-
-  // SetUserData() {
-
-  //   // const userDetails = JSON.parse(localStorage.getItem('user'));
-  //   this.userDetails.Restaurant = this.restaurantDetail;
-  //   const userRef: AngularFirestoreDocument<any> = this.firestore.doc(`users/${this.userDetails.uid}`);
-
-  //   return userRef.set(JSON.parse(JSON.stringify(this.userDetails)), {
-  //     merge: true
-  //   });
-  // }
 
 
   isValidEmail() {
@@ -682,8 +641,6 @@ export class RegistrationPage implements OnInit {
 
 
   async presentActionSheetForCamera(val) {
-    console.log(val);
-
     const actionSheet = await this.actionSheetController.create({
       header: 'Albums',
       buttons: [{
@@ -692,7 +649,8 @@ export class RegistrationPage implements OnInit {
         icon: 'camera',
         handler: () => {
 
-          // this.photoService.takePictureFromCamera(val);
+          this.saveImage('camera', val);
+
         }
       }, {
         text: 'Gallery',
@@ -700,7 +658,7 @@ export class RegistrationPage implements OnInit {
         icon: 'images',
         handler: () => {
 
-          // this.photoService.takePictureFromGalry(val);
+          this.saveImage('gallery', val);
         }
       }, {
         text: 'Cancel',
@@ -714,4 +672,28 @@ export class RegistrationPage implements OnInit {
     await actionSheet.present();
   }
 
+  saveImage(from, type) {
+    this.cameraService.takeImage(from).then((imgData) => {
+      this.alertService.showLoader('Uploading Image');
+      const images = new FormData();
+
+      images.append('mobile', this.restaurantDetail.mobile);
+      images.append('file', imgData);
+      images.append('type', type);
+      this.loginservice.uploadSingleImg(images).subscribe((res) => {
+        this.updateObject(res.data);
+        this.alertService.closeLoader();
+      });
+    });
+  }
+  deleteImgByid(id, i, j) {
+    this.alertService.showLoader('Deleting Image ..');
+    this.loginservice.deleteImgById(id).subscribe((res) => {
+      if (res.status === 200) {
+        this.restaurantDetail.list[i].data.splice(j, 1);
+        this.alertService.closeLoader();
+
+      }
+    });
+  }
 }
