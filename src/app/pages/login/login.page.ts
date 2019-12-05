@@ -15,8 +15,9 @@ export class LoginPage implements OnInit {
   phoneNo = '';
   // public PASSWORD_REGEX = '[789][0-9]{9}';
 
+  seconds = 60;
   otp: string;
-
+  timer: any;
   @ViewChild(IonSlides, { static: false }) slides: IonSlides;
 
   constructor(
@@ -71,7 +72,7 @@ export class LoginPage implements OnInit {
     this.loginservice.signUp(this.phoneNo).subscribe((res) => {
       if (res.status === 200) {
         this.next();
-
+        this.resendOtp();
       }
       this.alertService.closeLoader();
 
@@ -103,6 +104,11 @@ export class LoginPage implements OnInit {
 
   resendOTP() {
     this.loginservice.resendOTP(this.phoneNo).subscribe((res) => {
+      this.seconds = 60;
+      this.timer = null;
+      this.resendOtp();
+      this.alertService.presentToast('OTP SEND');
+
     });
   }
 
@@ -116,6 +122,26 @@ export class LoginPage implements OnInit {
 
   }
 
+
+  changeSeconds() {
+    if ((this.seconds < 60) && (this.seconds > 0)) {
+      document.getElementById('timer').innerHTML = 'OTP will expire in ' + this.seconds.toString() + 'seconds';
+    }
+    if (this.seconds > 0) {
+      this.seconds--;
+    } else {
+      clearInterval(this.timer);
+
+    }
+  }
+
+  resendOtp() {
+    if (!this.timer) {
+      this.timer = window.setInterval(() => {
+        this.changeSeconds();
+      }, 1000);
+    }
+  }
 
 
 }

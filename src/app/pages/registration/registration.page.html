@@ -50,15 +50,13 @@
     <!-- Food served in restaurant is 5 1-->
     <ion-slide class="ion-padding " id="vegColor" style=" vertical-align:top">
       <div class="ion-float-left main-color">
-        <ion-icon (click)="previous()" name="arrow-back">
-        </ion-icon>
+        <!-- <ion-icon (click)="previous()" name="arrow-back">
+        </ion-icon> -->
       </div>
 
       <ion-row class="img-animation">
         <ion-col class="ion-margin-top">
           <div class="round-box" style="margin: auto">
-            <!-- <img *ngIf="((foodType.veg)||(foodType.both))" class="img-veg" src="assets/veg.svg">
-            <img *ngIf="((foodType.nonVeg)||(foodType.both))" class="img-veg" src="assets/nonveg.svg"> -->
 
 
             <svg
@@ -829,8 +827,8 @@
     <ion-slide class="ion-padding " style=" vertical-align:top">
 
       <div class="ion-float-left main-color">
-        <ion-icon (click)="previous()" name="arrow-back">
-        </ion-icon>
+        <!-- <ion-icon (click)="previous()" name="arrow-back">
+        </ion-icon> -->
 
       </div>
 
@@ -839,8 +837,6 @@
       <ion-row class="img-animation">
         <ion-col class="ion-margin-top">
           <div class="round-box" style="margin: auto">
-            <!-- <img *ngIf="((restType.cafe)||(restType.both))" class="img-logo" src="assets/cafe.svg">
-            <img *ngIf="((restType.restaurant)||(restType.both))" class="img-logo" src="assets/restaurant.svg"> -->
 
 
             <svg
@@ -2297,8 +2293,8 @@
     <!-- Payment Options 7-3 -->
     <ion-slide class="ion-padding " style=" vertical-align:top">
       <div class="ion-float-left main-color">
-        <ion-icon (click)="previous()" name="arrow-back">
-        </ion-icon>
+        <!-- <ion-icon (click)="previous()" name="arrow-back">
+        </ion-icon> -->
 
       </div>
 
@@ -2356,8 +2352,8 @@
     <!-- You are open on 8-4 -->
     <ion-slide class="ion-padding " style=" vertical-align:top">
       <div class="ion-float-left main-color">
-        <ion-icon (click)="previous()" name="arrow-back">
-        </ion-icon>
+        <!-- <ion-icon (click)="previous()" name="arrow-back">
+        </ion-icon> -->
       </div>
 
       <br>
@@ -2394,8 +2390,8 @@
 
     <ion-slide class="ion-padding " style=" vertical-align:top">
       <div class="ion-float-left main-color">
-        <ion-icon (click)="previous()" name="arrow-back">
-        </ion-icon>
+        <!-- <ion-icon (click)="previous()" name="arrow-back">
+        </ion-icon> -->
 
       </div>
 
@@ -2476,15 +2472,14 @@
     <!-- Parking Area 10-6 -->
     <ion-slide class="ion-padding " style=" vertical-align:top">
       <div class="ion-float-left main-color">
-        <ion-icon (click)="previous()" name="arrow-back">
-        </ion-icon>
+        <!-- <ion-icon (click)="previous()" name="arrow-back">
+        </ion-icon> -->
 
       </div>
       <ion-row>
         <ion-col class="ion-margin-top">
           <div class="round-box" style="margin: auto">
-            <!-- <img *ngIf="parking" class="img-veg" src="assets/parking-dark.svg"> -->
-            <!-- <img *ngIf="!parking" class="img-veg" src="assets/parking.svg"> -->
+
 
             <svg [ngClass]="(restaurantDetail.isParking)?'parking-on': ''" width="100%" height="274"
               viewBox="0 0 361 274" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -2873,8 +2868,8 @@
     <!-- Accommodation size  11-7-->
     <ion-slide class="ion-padding " style=" vertical-align:top">
       <div class="ion-float-left main-color">
-        <ion-icon (click)="previous()" name="arrow-back">
-        </ion-icon>
+        <!-- <ion-icon (click)="previous()" name="arrow-back">
+        </ion-icon> -->
 
       </div>
 
@@ -2883,7 +2878,7 @@
         <ion-col class="ion-margin-top">
           <div class="round-box table-image" style="margin: auto">
             <!-- <img class="img-logo" src="assets/tables.svg"> -->
-            <img *ngIf="(restaurantDetail.accommodationSize <= 10 || restaurantDetail.accommodationSize ==null)"
+            <img *ngIf="(restaurantDetail.accommodationSize <= 10 || !restaurantDetail.accommodationSize)"
               class="img-logo" src="assets/table1.svg">
             <img *ngIf="restaurantDetail.accommodationSize  == 20" class="img-logo" src="assets/table2.svg">
             <img *ngIf="restaurantDetail.accommodationSize >= 30" class="img-logo" src="assets/table3.svg">
@@ -2922,8 +2917,8 @@
     <!-- Average cost per person  12-8-->
     <ion-slide class="ion-padding " style=" vertical-align:top">
       <div class="ion-float-left main-color">
-        <ion-icon (click)="previous()" name="arrow-back">
-        </ion-icon>
+        <!-- <ion-icon (click)="previous()" name="arrow-back">
+        </ion-icon> -->
       </div>
 
       <ion-row>
@@ -2965,76 +2960,18 @@
 
     </ion-slide>
 
- 
+
 
 
     <!-- images of restaurant 13 -9-->
     <ion-slide class="ion-padding " style=" vertical-align:top">
 
       <div class="ion-float-left main-color">
-        <ion-icon (click)="previous()" name="arrow-back">
-        </ion-icon>
+        <!-- <ion-icon (click)="previous()" name="arrow-back">
+        </ion-icon> -->
 
       </div>
       <h4 class="ion-text-center  main-color ">Restaurant & menu image</h4>
-      <!-- <ion-grid class="fixed" style="height: 75vh; overflow: scroll;">
-
-        <h4 class="ion-text-left  main-color ">Indoor</h4>
-
-        <ion-row>
-          <ion-col size="4" class="menu-img" *ngFor="let photo of restaurantDetail.files">
-            <button *ngIf="photo.type == 1" class="rm-btn" (click)="deleteImgByid(photo.id)">
-              <span>&#10005;</span>
-            </button>
-            <img *ngIf="photo.type == 1" style="width: 100% !important;" [src]="photo.storagePath" />
-          </ion-col>
-          <ion-col size="4" class="menu-img">
-
-            <img (click)="presentActionSheetForCamera(1)" src="assets/addImg.svg" /> </ion-col>
-        </ion-row>
-        <h4 class="ion-text-left  main-color ">Outdoor</h4>
-
-        <ion-row>
-          <ion-col size="4" class="menu-img" *ngFor="let photo of restaurantDetail.files">
-            <button *ngIf="photo.type == 2" class="rm-btn" (click)="deleteImgByid(photo.id)">
-              <span>&#10005;</span>
-            </button>
-            <img *ngIf="photo.type == 2" style="width: 100% !important;" [src]="photo.storagePath" />
-          </ion-col>
-          <ion-col size="4" class="menu-img">
-
-            <img (click)="presentActionSheetForCamera(2)" src="assets/addImg.svg" /> </ion-col>
-        </ion-row>
-        <h4 class="ion-text-left  main-color ">Food</h4>
-
-        <ion-row>
-          <ion-col size="4" class="menu-img" *ngFor="let photo of restaurantDetail.files">
-            <button *ngIf="photo.type == 3" class="rm-btn" (click)="deleteImgByid(photo.id)">
-              <span>&#10005;</span>
-            </button>
-            <img *ngIf="photo.type == 3" style="width: 100% !important;" [src]="photo.storagePath" />
-          </ion-col>
-          <ion-col size="4" class="menu-img">
-
-            <img (click)="presentActionSheetForCamera(3)" src="assets/addImg.svg" /> </ion-col>
-        </ion-row>
-        <h4 class="ion-text-left  main-color ">Menu</h4>
-
-        <ion-row>
-          <ion-col size="4" class="menu-img" *ngFor="let photo of restaurantDetail.files">
-            <button *ngIf="photo.type == 4" class="rm-btn" (click)="deleteImgByid(photo.id)">
-              <span>&#10005;</span>
-            </button>
-            <img *ngIf="photo.type == 4" style="width: 100% !important;" [src]="photo.storagePath" />
-          </ion-col>
-          <ion-col size="4" class="menu-img">
-
-            <img (click)="presentActionSheetForCamera(4)" src="assets/addImg.svg" /> </ion-col>
-        </ion-row>
-
-
-
-      </ion-grid> -->
       <ion-grid class="fixed" style="height: 75vh; overflow: scroll;">
         <ng-container *ngFor="let photoslist of restaurantDetail.list; let i=index">
           <h4 class="ion-text-left  main-color ">{{photoslist.value}}</h4>
@@ -3068,37 +3005,41 @@
         </ion-col>
       </ion-row>
     </ion-slide>
-   <!-- About your restaurant 14-10-->
-   <ion-slide class="ion-padding " style=" vertical-align:top">
-    <div class="ion-float-left main-color">
-      <ion-icon (click)="previous()" name="arrow-back">
-      </ion-icon>
-    </div>
 
 
-    <h6 class="ion-text-center bold main-color ">About your restaurant</h6>
+    <!-- About your restaurant 14-10-->
+    <ion-slide class="ion-padding " style=" vertical-align:top">
+      <div class="ion-float-left main-color">
+        <!-- <ion-icon (click)="previous()" name="arrow-back">
+      </ion-icon> -->
+      </div>
 
-    <ion-textarea style="line-height: 26px;" [(ngModel)]="restaurantDetail.description" name="aboutRestaurant"
-      class="main-color ion-text-left" autofocus auto-grow="true"
-      placeholder=" We love restaurants as much as you do."></ion-textarea>
 
-    <ion-row>
-      <ion-col class="ion-padding">
-        <div class="fixed-btn">
-          <ion-button expand="block" color='undefine' (click)="saveAboutRestaurant()" class="full-with-btn  mt-20">
-            NEXT
-          </ion-button>
-        </div>
-      </ion-col>
-    </ion-row>
-  </ion-slide>
+      <h6 class="ion-text-center bold main-color ">About your restaurant</h6>
+      <div class="ion-padding" style="max-height: 80%; overflow: scroll;">
+
+        <ion-textarea style="line-height: 26px;" [(ngModel)]="restaurantDetail.description" name="aboutRestaurant"
+          class="main-color ion-text-left" autofocus auto-grow="true"
+          placeholder=" We love restaurants as much as you do."></ion-textarea>
+      </div>
+
+      <ion-row>
+        <ion-col class="ion-padding">
+          <div class="fixed-btn">
+            <ion-button expand="block" color='undefine' (click)="saveAboutRestaurant()" class="full-with-btn  mt-20">
+              NEXT
+            </ion-button>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-slide>
 
 
 
 
     <!-- email 11  15-11-->
 
-    <ion-slide class="ion-padding " style=" vertical-align:top">
+    <ion-slide class="ion-padding " style=" vertical-align:top; overflow: scroll;">
 
       <!-- <div class="ion-float-left main-color">
         <ion-icon (click)="previous()" name="arrow-back">
@@ -3106,7 +3047,7 @@
 
       </div> -->
 
-      <h1 style="font-size: xx-large" class="main-color btn-color ion-no-margin ion-text-center ion-margin-vertical"
+      <h1 style="font-size: xx-large " class="main-color btn-color ion-no-margin ion-text-center ion-margin-vertical"
         style="margin: 0 !important;">
         One Last Step </h1>
 
@@ -3131,13 +3072,14 @@
             </ion-input>
           </ion-item>
         </ion-col>
+
       </ion-row>
 
       <ion-row>
-        <ion-col class="ion-padding">
+        <ion-col>
           <div class="fixed-btn">
             <ion-button expand="block" color='undefine' (click)="sendEmailVerifycatioLink()"
-              [disabled]="!isValidEmail()" class="full-with-btn  mt-20"> Verify
+              [disabled]="!isValidEmail()" class="full-with-btn-3  mt-20"> Verify
               Email
             </ion-button>
 
@@ -3160,10 +3102,11 @@
 
 
       <p class="bold ion-text-left">OTP recived on</p>
+      <ion-grid>
       <ion-row>
         <ion-col>
           <ion-text class="block btn-color"><span class="ion-float-left"> {{restaurantDetail.email}}</span>
-            <span style="float: right;" class="link-btn" (click)="previous()">Change</span></ion-text>
+            <span style="float: right;" class="link-btn" (click)="editDetails(11)">Change</span></ion-text>
         </ion-col>
       </ion-row>
       <br>
@@ -3178,29 +3121,35 @@
 
         </ion-col>
       </ion-row>
+</ion-grid>
+<ion-grid  class="letsgodown">
 
-      <ion-row class="letsgodown">
+    <ion-row >
         <ion-col>
 
 
 
           <p class="ion-text-center bold">Please Verify Your Email ID</p>
-          <!-- <h6 class="mail-light-color ion-text-center ">We have sent you a link on</h6>
-          <h6 class=" ion-text-center bold">{{email}}</h6>
-          <h6 class=" mail-light-color ion-text-center ">please click on that link to verify your email
-            id then open the app again</h6> -->
 
         </ion-col>
       </ion-row>
       <ion-row>
         <ion-col>
           <ion-item class="stylist-input" lines="none" color="undefine">
-            <ion-label slot="end" style="font-size: 12px;">Code</ion-label>
+            <ion-label *ngIf="seconds !=0" slot="end"  class="main-light-color">OTP</ion-label>
+            <h6 *ngIf="seconds ==0" slot="end" style="line-height: inherit;
+            margin: 0px;" (click)="resendEmailOTP()" class="main-light-color">Resend OTP</h6>
+            
+            <!-- <ion-label slot="end" style="font-size: 12px;">Code</ion-label> -->
             <ion-input class="opacity-1" type="text" name="email" [(ngModel)]="restaurantDetail.code">
             </ion-input>
           </ion-item>
         </ion-col>
+        
       </ion-row>
+      <h6 *ngIf="seconds !=0" id="timer" class=" ion-text-start ">Resend OTP in 1:00 seconds</h6>
+
+    </ion-grid>
       <ion-row>
         <ion-col class="ion-padding">
           <div class="fixed-btn">
@@ -3214,7 +3163,209 @@
 
 
 
-    <!-- thankyou 17-13 -->
+    <!-- edit profile page 17-13  -->
+    <ion-slide *ngIf="restaurantDetail.list" style=" vertical-align:top; overflow: scroll; padding-top: 0 !important;">
+      <div *ngIf="restaurantDetail.list[0].data.length > 0" class="img-top-part"
+        [style.background-image]="'url(' + restaurantDetail.list[0].data[0].storagePath + ')'">
+        <h5 style="    text-align: right;
+        color: white;" class="page-heading">
+          <ion-icon class="white" name="create" (click)="editDetails(9)"></ion-icon>&nbsp;
+        </h5>
+      </div>
+
+      <div class="panel-card back-white">
+        <ion-item color="none" lines="none">
+          <ion-label>
+            <h5 class="panel-heading dark">{{restaurantDetail.name}} </h5>
+          </ion-label>
+          <ion-icon name="create" size="small" (click)="editDetails(0)" slot="end"></ion-icon>
+
+        </ion-item>
+        <h6 class="small-content ion-text-left" *ngIf="restaurantDetail.address">{{restaurantDetail.address.premisesNo}}
+
+          {{restaurantDetail.address.locality}} {{restaurantDetail.address.landmark}}
+          {{restaurantDetail.address.city}} {{restaurantDetail.address.district}} {{restaurantDetail.address.state}}
+          {{restaurantDetail.address.pincode}}</h6>
+      </div>
+
+      <div class="panel-card back-orange">
+        <h5 class="panel-heading dark">About Restaurent</h5>
+
+        <ion-item color="none" lines="full">
+          <ion-avatar slot="start">
+            <img src="assets/veg-nonveg.svg">
+          </ion-avatar>
+          <ion-label>
+            <ng-container *ngIf="restaurantDetail.foodType==1">
+              Veg
+            </ng-container>
+            <ng-container *ngIf="restaurantDetail.foodType==2">
+              Nonveg
+            </ng-container>
+            <ng-container *ngIf="restaurantDetail.foodType==3">
+
+              Veg & Nonveg
+            </ng-container>
+          </ion-label>
+          <ion-icon name="create" size="small" (click)="editDetails(1)" slot="end"></ion-icon>
+        </ion-item>
+
+        <ion-item color="none" lines="full">
+
+          <ion-avatar slot="start">
+            <img src="assets/knief.svg">
+          </ion-avatar>
+          <ion-label>
+
+            <ng-container *ngIf="restaurantDetail.restaurantType==1">
+              Cafe
+            </ng-container>
+            <ng-container *ngIf="restaurantDetail.restaurantType==2">
+              Restaurent
+            </ng-container>
+            <ng-container *ngIf="restaurantDetail.restaurantType==3">
+
+              Cafe & Restaurent
+            </ng-container>
+
+          </ion-label>
+          <ion-icon name="create" size="small" (click)="editDetails(2)" slot="end"></ion-icon>
+
+        </ion-item>
+
+        <ion-item color="none" lines="full">
+          <ion-avatar slot="start">
+            <img src="assets/dollar_gray.svg">
+          </ion-avatar>
+          <ion-label>
+            {{restaurantDetail.avgCost}} per person
+
+
+          </ion-label>
+          <ion-icon name="create" size="small" (click)="editDetails(8)" slot="end"></ion-icon>
+
+        </ion-item>
+
+        <ion-item color="none" lines="full">
+          <ion-avatar slot="start">
+            <img src="assets/card2.svg">
+          </ion-avatar>
+          <ion-label>
+            <ng-container *ngIf="paymentOption.cash">
+              Cash
+            </ng-container>
+            <ng-container *ngIf="paymentOption.credit">
+              Card
+            </ng-container>
+            <ng-container *ngIf="paymentOption.upi">
+
+              UPI
+            </ng-container>
+            <ng-container *ngIf="paymentOption.paytm">
+
+              Paytm
+            </ng-container>
+          </ion-label>
+          <ion-icon name="create" size="small" (click)="editDetails(3)" slot="end"></ion-icon>
+
+        </ion-item>
+
+        <ion-item color="none" lines="full">
+          <ion-avatar slot="start">
+            <img src="assets/watch.svg">
+          </ion-avatar>
+          <ion-label>
+            Mon-Fri 08:30AM - 09:30 PM
+
+
+          </ion-label>
+          <ion-icon name="create" size="small" (click)="editDetails(4)" slot="end"></ion-icon>
+
+        </ion-item>
+
+        <ion-item color="none" lines="full">
+          <ion-avatar slot="start">
+            <img src="assets/p.svg">
+          </ion-avatar>
+          <ion-label *ngIf="restaurantDetail.isParking">
+            Parking Avaliable
+
+
+          </ion-label>
+          <ion-label *ngIf="!restaurantDetail.isParking">
+            Parking Not Avaliable
+
+
+          </ion-label>
+          <ion-icon name="create" size="small" (click)="editDetails(6)" slot="end"></ion-icon>
+
+        </ion-item>
+
+        <ion-item color="none" lines="full">
+          <ion-avatar slot="start">
+            <img src="assets/accomodation.svg">
+          </ion-avatar>
+          <ion-label>
+            {{restaurantDetail.accommodationSize}} people’s accomodation
+
+
+          </ion-label>
+          <ion-icon name="create" size="small" (click)="editDetails(7)" slot="end"></ion-icon>
+
+        </ion-item>
+
+        <ion-item color="none" lines="full">
+          <ion-avatar slot="start">
+            <img src="assets/envelope.svg">
+          </ion-avatar>
+          <ion-label>
+            {{restaurantDetail.email}}
+
+
+          </ion-label>
+          <ion-icon name="create" size="small" (click)="editDetails(11)" slot="end"></ion-icon>
+
+        </ion-item>
+
+        <ion-item color="none" lines="none">
+          <ion-avatar slot="start">
+            <img src="assets/call_gray.svg">
+          </ion-avatar>
+          <ion-label>
+            +91 {{restaurantDetail.mobile}}
+
+
+          </ion-label>
+
+        </ion-item>
+      </div>
+
+      <div class="panel-card light-green">
+        <!-- <h5 class="panel-heading dark">About</h5> -->
+        <ion-item color="none" lines="none">
+
+          <ion-label class="panel-heading dark">
+            About
+
+          </ion-label>
+          <ion-icon name="create" size="small" (click)="editDetails(10)" slot="end"></ion-icon>
+
+        </ion-item>
+        <div class="review-part">
+          <h6 class="dark-text ion-text-start">{{restaurantDetail.description}}</h6>
+        </div>
+      </div>
+      <div class="panel-card fixed-back-white">
+        <ion-button size="large" class="proceed-button ion-margin-top" (click)="next()" expand="block">PROCEED
+        </ion-button>
+
+      </div>
+
+
+    </ion-slide>
+
+
+    <!-- thankyou 18-14 -->
     <ion-slide class="ion-padding thankyou-img " style=" vertical-align:top">
       <ion-row class="letsgodown">
         <ion-col>

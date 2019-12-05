@@ -109,6 +109,12 @@ export class RegistrationPage implements OnInit {
       }
     }
   };
+
+
+
+  seconds = 60;
+  timer: any;
+
   restaurantDetail: any = {};
 
   paymentOption = {
@@ -178,7 +184,7 @@ export class RegistrationPage implements OnInit {
   userPhoneNO = null;
   // openOn: any;
   selectedDayTime: any = {};
-
+  nxtStage: any;
   constructor(
     @Inject(ActivatedRoute) private activatedRoute: ActivatedRoute,
     @Inject(AlertService) private alertService: AlertService,
@@ -196,7 +202,8 @@ export class RegistrationPage implements OnInit {
     this.userPhoneNO = this.storageService.getData('mobile');
     this.loginservice.getUserDetails(this.userPhoneNO).subscribe((res) => {
       if (res.data) {
-        this.slides.slideTo(res.data.stage - 4, 10);
+        this.nxtStage = res.data.stage - 4;
+        this.editDetails(res.data.stage - 4);
         // this.next(res.data.stage);
         this.restaurantDetail = res.data;
         if (res.data.paymentOptions.length > 0) {
@@ -255,14 +262,22 @@ export class RegistrationPage implements OnInit {
   updateObject(newObj) {
     this.restaurantDetail = newObj;
     console.log(this.restaurantDetail);
-
+    this.nxtStage = this.restaurantDetail.stage - 4;
+    this.editDetails(this.nxtStage);
   }
   ngOnInit() {
     // this.photoService.loadSaved();
 
     // this.slides.lockSwipes(true);
   }
+  editDetails(id) {
+    console.log(id);
+    if (id === 12) {
+      this.resendOtp();
+    }
+    this.slides.slideTo(id, 10);
 
+  }
   next() {
     this.slides.lockSwipes(false);
     this.slides.slideNext();
@@ -294,7 +309,7 @@ export class RegistrationPage implements OnInit {
     }).subscribe((res) => {
       if (res.status === 200) {
         this.updateObject(res.data);
-        this.next();
+        // this.next();
       } else {
         this.alertService.showErrorAlert(res.message);
       }
@@ -313,7 +328,7 @@ export class RegistrationPage implements OnInit {
     }).subscribe((res) => {
       if (res.data) {
         this.updateObject(res.data);
-        this.next();
+        // this.next();
       }
 
     });
@@ -327,7 +342,7 @@ export class RegistrationPage implements OnInit {
     }).subscribe((res) => {
       if (res.status === 200) {
         this.updateObject(res.data);
-        this.next();
+        // this.next();
       } else {
         this.alertService.showErrorAlert(res.message);
       }
@@ -366,7 +381,7 @@ export class RegistrationPage implements OnInit {
       paymentOptions: this.restaurantDetail.paymentOptions,
     }).subscribe((res) => {
       if (res.status === 200) {
-        this.next();
+        // this.next();
         this.updateObject(res.data);
       } else {
         this.alertService.showErrorAlert(res.message);
@@ -386,7 +401,7 @@ export class RegistrationPage implements OnInit {
     }).subscribe((res) => {
       if (res.status === 200) {
         this.updateObject(res.data);
-        this.next();
+        // this.next();
       } else {
         this.alertService.showErrorAlert(res.message);
       }
@@ -408,7 +423,7 @@ export class RegistrationPage implements OnInit {
     }).subscribe((res) => {
       if (res.status === 200) {
         this.updateObject(res.data);
-        this.next();
+        // this.next();
       } else {
         this.alertService.showErrorAlert(res.message);
       }
@@ -427,7 +442,7 @@ export class RegistrationPage implements OnInit {
     }).subscribe((res) => {
       if (res.status === 200) {
         this.updateObject(res.data);
-        this.next();
+        // this.next();
       } else {
         this.alertService.showErrorAlert(res.message);
       }
@@ -445,7 +460,7 @@ export class RegistrationPage implements OnInit {
     }).subscribe((res) => {
       if (res.status === 200) {
         this.updateObject(res.data);
-        this.next();
+        // this.next();
       } else {
         this.alertService.showErrorAlert(res.message);
       }
@@ -461,13 +476,54 @@ export class RegistrationPage implements OnInit {
     }).subscribe((res) => {
       if (res.status === 200) {
         this.updateObject(res.data);
-        this.next();
+        this.resendOtp();
+        // this.next();
       } else {
         this.alertService.showErrorAlert(res.message);
       }
 
     });
   }
+  resendEmailOTP() {
+    this.loginservice.updateRestaurantDetails({
+      mobile: this.restaurantDetail.mobile,
+      stage: 15,
+      email: this.restaurantDetail.email
+    }).subscribe((res) => {
+      if (res.status === 200) {
+        // this.updateObject(res.data);
+        // this.next();
+        this.seconds = 60;
+        this.timer = null;
+        this.resendOtp();
+        this.alertService.presentToast('OTP SEND');
+      } else {
+        this.alertService.showErrorAlert(res.message);
+      }
+
+    });
+  }
+
+  changeSeconds() {
+    if ((this.seconds < 60) && (this.seconds > 0)) {
+      document.getElementById('timer').innerHTML = 'Resend OTP in ' + this.seconds.toString() + 'seconds';
+    }
+    if (this.seconds > 0) {
+      this.seconds--;
+    } else {
+      clearInterval(this.timer);
+
+    }
+  }
+
+  resendOtp() {
+    if (!this.timer) {
+      this.timer = window.setInterval(() => {
+        this.changeSeconds();
+      }, 1000);
+    }
+  }
+
 
 
   verifyEmailCode() {
@@ -479,7 +535,7 @@ export class RegistrationPage implements OnInit {
     }).subscribe((res) => {
       if (res.status === 200) {
         this.updateObject(res.data);
-        this.next();
+        // this.next();
       } else {
         this.alertService.showErrorAlert(res.message);
       }
@@ -508,7 +564,7 @@ export class RegistrationPage implements OnInit {
       if (res.status === 200) {
         this.updateObject(res.data);
         this.selectedDayTime = days[0];
-        this.next();
+        // this.next();
       } else {
         this.alertService.showErrorAlert(res.message);
       }
@@ -563,7 +619,7 @@ export class RegistrationPage implements OnInit {
     }).subscribe((res) => {
       if (res.status === 200) {
         this.updateObject(res.data);
-        this.next();
+        // this.next();
       } else {
         this.alertService.showErrorAlert(res.message);
       }
