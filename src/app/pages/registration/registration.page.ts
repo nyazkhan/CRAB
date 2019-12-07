@@ -677,7 +677,7 @@ export class RegistrationPage implements OnInit {
       this.alertService.showErrorAlert('Please Upload Menu Image');
       return;
     }
-    this.next();
+    this.editDetails(10);
   }
 
 

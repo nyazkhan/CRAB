@@ -51,24 +51,24 @@ export class CustomHTTPService {
 
 
 
-  postLogin(endpoint: string, body: any) {
-    // const header = this.getHeaders(optHeaders);
-    let Headers = new HttpHeaders();
-    Headers = Headers.set(
-      'fb_at',
-      '6abbe313-8f13-42b2-993f-8f50b210b8fc-y7oPDwXZOewcdzG2IJ+35u1wy6OZxQp9AguwKJhnU38='
-    );
-    Headers = Headers.set(
-      'Content-Type', 'application/json');
+  // postLogin(endpoint: string, body: any) {
+  //   // const header = this.getHeaders(optHeaders);
+  //   let Headers = new HttpHeaders();
+  //   Headers = Headers.set(
+  //     'fb_at',
+  //     '6abbe313-8f13-42b2-993f-8f50b210b8fc-y7oPDwXZOewcdzG2IJ+35u1wy6OZxQp9AguwKJhnU38='
+  //   );
+  //   Headers = Headers.set(
+  //     'Content-Type', 'application/json');
 
-    return this.http
-      .post(this.url + '/' + endpoint, body, {
-        headers: Headers,
-        observe: 'response',
-      })
-      .pipe(map(this.extractData), catchError(this.handleError));
+  //   return this.http
+  //     .post(this.url + '/' + endpoint, body, {
+  //       headers: Headers,
+  //       observe: 'response',
+  //     })
+  //     .pipe(map(this.extractData), catchError(this.handleError));
 
-  }
+  // }
 
   put(endpoint: string, body: any, optHeaders?: HttpHeaders) {
     const header = this.getHeaders(optHeaders);

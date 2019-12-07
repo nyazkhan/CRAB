@@ -9,7 +9,7 @@ export class LoginService {
   constructor(@Inject(CustomHTTPService) private Http: CustomHTTPService) { }
 
   signUp(phoneNo) {
-    return this.Http.postLogin('user/save', { mobile: phoneNo, type: 1, name: 'nyaz khan' });
+    return this.Http.post('user/save', { mobile: phoneNo, type: 1, appId: 1 });
   }
   verifyOTP(phoneNo, OTP) {
     return this.Http.post('notification/verify/otp', { mobile: phoneNo, otp: OTP, });
@@ -32,7 +32,7 @@ export class LoginService {
 
 
   masterApi() {
-    return this.Http.postLogin('master/data/get', [1, 2, 3, 4]);
+    return this.Http.post('master/data/get', [1, 2, 3, 4]);
 
   }
 
