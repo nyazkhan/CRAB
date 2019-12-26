@@ -45,4 +45,10 @@ export class LoginService {
 
   }
 
+
+  getBloggerList() {
+    return this.Http.post('search/restaurant', {});
+
+  }
+
 }

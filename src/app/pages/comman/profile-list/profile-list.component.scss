@@ -1,0 +1,68 @@
+// profile view orange part
+.top-orange-bar{
+    background-color: #FFD369;
+    padding: 30px 20px 60px 20px;
+    position: relative;
+    overflow: hidden;
+}
+.view-profile-text{
+    font-weight: normal;
+font-size: 12px;
+line-height: 14px;
+color: #000000;
+margin-top: 15px;
+}
+.profile-rest-img{
+    position: absolute;
+    top: -25px;
+    right: 0;
+}
+.rest-charactor{
+    border:1px solid red;
+}
+.curve{
+    background: url(/assets/Subtract.svg);
+    position: absolute;
+    bottom: -25px;
+    width: 100%;
+    height: 70px;
+    left: 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.section-pedding{
+    padding: 12px;
+}
+.arrow-forword{
+    font-size: 10px;
+    color: rgba(0, 0, 0, 0.3);
+}
+.ico-small{
+    height: 12px;
+}
+
+.fixed-bottom-button {
+    position: fixed;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    padding: 10px;
+}
+.danger {
+    color: #FF4949 !important;
+}
+.blue-round{
+    padding: 4px 8px;
+    background-color: #1966FB;
+    border-radius: 50%;
+    color: #ffffff;
+}
+.crab-bootm-vector {
+        display: -webkit-box;
+        display: flex;
+        -webkit-box-pack: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        align-items: center;
+        margin-top: 20px;
+    }

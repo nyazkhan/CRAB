@@ -17,6 +17,8 @@ const routes: Routes = [
   { path: 'profile', loadChildren: './pages/profile/profile.module#ProfilePageModule' },
   { path: 'map', loadChildren: './pages/map/map.module#MapPageModule', canActivate: [MapGuard] },
   { path: 'login', loadChildren: './pages/login/login.module#LoginPageModule', canActivate: [LoginGuard] },
+  { path: 'invitation', loadChildren: './pages/invitation/invitation.module#InvitationPageModule' },
+  { path: 'book', loadChildren: './pages/book/book.module#BookPageModule' },
 ];
 
 @NgModule({

@@ -1,0 +1,84 @@
+// booking, invitations and appointment page css
+.section-pedding{
+    padding: 12px;
+}
+.backbar .page-heading{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    justify-content: start;
+    display: flex;
+    font-size: 16px;
+    font-weight: bold;
+    color: #0F2F54;
+}
+.backbar ion-icon{
+    font-size: 18px;
+    margin-right: 0;
+    color: #0F2F54;
+}
+.small-content {
+    font-size: 14px !important;
+    line-height: 20px !important;
+    font-weight: 500 !important;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    color: rgba(0, 0, 0, 0.4) !important;
+    margin-top: 5px !important;
+}
+.invi-date {
+    font-weight: 500 !important;
+}
+.danger{
+    color:#FF4949 !important;
+}
+.primary{
+    color: #1966FB;
+}
+.right-table-part {
+    -webkit-box-pack: start;
+    justify-content: start;
+    display: -webkit-box;
+    display: flex;
+    font-size: 11px;
+    float: right;
+    position: relative;
+    top: -18px;
+    color: rgba(0, 0, 0, 0.4);
+}
+.btn-list{
+    display: flex;
+}
+.btn-list h6{
+    border: 1px solid rgba(60, 60, 60, 0.1);
+    box-sizing: border-box;
+    border-radius: 7px;
+    padding: 8px 20px;
+    font-size: 15px;
+    color: rgba(0, 0, 0, 0.4);
+    margin-right: 10px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-weight: 400;
+}
+.btn-list .active{
+    border: 1px solid #1966FB;
+    color: #1966FB;
+}
+
+.crab-bootm-vector {
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    margin-top: 20px;
+}
+.fixed-bottom-button {
+    position: fixed;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    padding: 10px;
+}

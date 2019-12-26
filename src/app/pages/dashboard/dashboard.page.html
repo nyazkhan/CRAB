@@ -1,9 +1,89 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>dashboard</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content class="padding-0">
+  <div class="top-orange-bar">
+    <ion-item lines="none" color="undefine">
+      <ion-avatar slot="start">
+        <img src="./avatar-han.png">
+      </ion-avatar>
+      <ion-label>
+        <h3>{{restaurantDetails.name}}</h3>
+        <p *ngIf="restaurantDetails.address" class="small-content">{{restaurantDetails.address?.locality}}, {{restaurantDetails.address?.city}}</p>
+      </ion-label>
+    </ion-item>
+    <ion-row>
+      <ion-col size="6">
+          <p class="view-profile-text" (click)="presentProfileModal()">View Profile <ion-icon slot="start" name="arrow-forward"></ion-icon>
+          </p>
+      </ion-col>
+      <ion-col size="6">
+        <div class="profile-rest-img">
+          <img src="assets/Dashboard_Cafe.png">
+        </div>
+      </ion-col>
+      <div class="curve"></div>
+    </ion-row>
+  </div>
 
-<ion-content>
-<img src="assets/Subtractsds.svg" alt="">
+  <ion-grid class="slider-part-padding top-set">
+    <ion-row>
+      <ion-col>
+        <h5 class="title-heading">Upcoming Appointments</h5>
+        <div class="slider-appointment">
+
+          <div (click)="goToAppointment('invitaion')" class="colorfull-card ion-margin-bottom card-blue">
+            <h6 class="ion-text-start sllide-box-heading white">Today</h6>
+            <p class="small-content white mb-30">04:00 pm</p>
+            <p class="ico-with-title white"><img src="assets/pass-white.svg">&nbsp; Invitation </p>
+            <p class="ico-with-title white"><img src="assets/user-white.svg">&nbsp; Alisha Malhotra </p>
+          </div>
+
+          <div (click)="goToAppointment('booked')" class="colorfull-card ion-margin-bottom card-pink">
+            <h6 class="ion-text-start sllide-box-heading white">02 Dec</h6>
+            <p class="small-content white mb-30">02:30 pm</p>
+            <p class="ico-with-title white"><img src="assets/white-calendar.svg">&nbsp; Booking </p>
+            <p class="ico-with-title white"><img src="assets/user-white.svg">&nbsp; 6 people </p>
+          </div>
+
+          <div (click)="goToAppointment('invitaion')" class="colorfull-card ion-margin-bottom card-blue">
+            <h6 class="ion-text-start sllide-box-heading white">Today</h6>
+            <p class="small-content white mb-30">04:00 pm</p>
+            <p class="ico-with-title white"><img src="assets/pass-white.svg">&nbsp; Invitation </p>
+            <p class="ico-with-title white"><img src="assets/user-white.svg">&nbsp; Alisha Malhotra </p>
+          </div>
+
+          <div class="colorfull-card-view-more ion-margin-bottom"  routerLink="/book">
+            <h6 class="ion-text-center primary">View All  ></h6>
+          </div>
+
+          </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid class="section-pedding">
+    <ion-toolbar>
+      <ion-searchbar (click)="presentBloggerDetailsModal()" placeholder="Search Restaurent"></ion-searchbar>
+      <ion-buttons slot="end">
+          <ion-button class="filter-btn" color="none"><img src="assets/filter.svg">&nbsp; Filter</ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+    <ion-row>
+      <ion-col>
+          <h5 class="title-heading" style="margin-top: 0;">Bloggers</h5>
+
+        <ion-item (click)="presentBloggerDetailsModal(blogger.mobile)" lines="none" *ngFor="let blogger of listOfBlogger" class="rest_address_item mb-15">
+          <div slot="start" class="blo-img">
+            <img *ngIf="blogger.profilePic" [src]="blogger.profilePic">
+            <img *ngIf="!blogger.profilePic" src="assets/b1.svg">
+          </div>
+          <ion-label>
+            <h4 class="rest-heading">{{blogger.name}}</h4>
+           <p> {{blogger.address.locality}}, {{blogger.address.city}}</p>
+          </ion-label>
+        </ion-item>
+
+       
+      </ion-col>
+    </ion-row>
+    
+  </ion-grid>
 </ion-content>

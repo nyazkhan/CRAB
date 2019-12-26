@@ -1,0 +1,111 @@
+.padding-0{
+    --padding-top: 0px !important;
+    --padding-bottom: 0px !important;
+    --padding-start: 0px !important;
+    --padding-end: 0px !important;
+    margin: 0 !important;
+}
+.pb-30{
+    padding-bottom:30px;
+}
+.ico-small{
+    height: 14px;
+}
+ion-item {
+    --padding-start: 0px !important;
+    --inner-padding-end: 0px !important;
+    --border-color: rgba(101, 96, 96, 0.1);
+    --background: transparent;
+}
+.back_top_part{
+    height: 130px;
+    background-repeat: no-repeat;
+    padding: 20px 15px;
+}
+.fixed-back-white{
+    background: #FFFFFF;
+    padding-top: 40px;
+}
+.back-white{
+    background: #FFFFFF;
+}
+.back-orange{
+    background: #FFCE4F;
+}
+.light-green{
+    background: #B8FF72;
+}
+.panel-card{
+    border-radius: 21px 21px 0px 0px;
+    padding:30px 20px 20px 20px;
+    box-shadow: 0px -5px 33px rgba(0, 0, 0, 0.1);
+    border-radius: 21px 21px 0px 0px;
+    margin-top: -15px;
+}
+.panel-heading{
+    font-weight: bold;
+    font-size: 15px;
+    line-height: 21px;
+    display: flex;
+    align-items: center;
+    color: #000000;
+    margin: 0;
+}
+.blogger-review{
+    height: 40px !important;
+    width: 40px !important;
+    margin-right: 10px;
+}
+.blogger-review img{
+    border-radius: 50%;
+}
+.profile-part .profimg{
+   margin-left: auto;
+   border:1px solid transparent;
+   border-radius: 50%;
+   height: 90px;
+   width: 90px;
+   background-size: cover;
+   background-repeat: no-repeat;
+}
+.profile-part{
+    text-align: center;
+    margin-top: -80px;
+}
+.socia-part{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.socia-part p{
+    margin: 25px;
+    font-size: 14px;
+    line-height: 25px;
+    text-align: center;
+    color: #000000;
+    font-weight: 500;
+}
+.socia-part p img{
+    height:25px;
+    width: auto;
+}
+.dark-text {
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 24px;
+    color: #000000;
+}
+.crab-bootm-vector {
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    margin-top: 20px;
+}
+.proceed-button {
+    --border-radius: 5px;
+    height: 7vh;
+    font-size: 14px;
+}

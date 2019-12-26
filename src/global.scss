@@ -46,3 +46,18 @@ p{
 .main-light-color{
     color:var(--light-font-color) !important;
 }
+
+ion-item{
+    --padding-start: 0px !important;
+    --inner-padding-end: 0px !important;
+    --border-color:rgba(0, 0, 0, 0.1);
+    --background: transparent;
+}
+ion-input{
+    --placeholder-color: #000000 !important;
+    --placeholder-font-weight: 500 !important;
+    --placeholder-opacity: 1 !important;
+}
+ion-label{
+    margin: 0;
+}

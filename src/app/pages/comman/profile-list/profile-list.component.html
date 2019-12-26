@@ -1,0 +1,73 @@
+<ion-content>
+  <div class="top-orange-bar">
+    <ion-item lines="none">
+      <ion-avatar slot="start">
+        <img src="./avatar-han.png">
+      </ion-avatar>
+      <ion-label>
+
+        <h3>{{userDetailsCopy.name}}</h3>
+        <p *ngIf="userDetailsCopy.address" class="small-content">{{userDetailsCopy.address?.locality}},
+          {{userDetailsCopy.address?.city}}</p>
+      </ion-label>
+    </ion-item>
+    <ion-row>
+      <ion-col size="6">
+        <p class="view-profile-text">View Profile <ion-icon slot="start" name="arrow-forward"></ion-icon>
+        </p>
+      </ion-col>
+      <ion-col size="6">
+        <div class="profile-rest-img">
+          <img src="assets/Dashboard_Cafe.png">
+        </div>
+      </ion-col>
+      <div class="curve"></div>
+    </ion-row>
+  </div>
+
+  <ion-grid class="section-pedding">
+    <ion-row>
+      <ion-col>
+        <ion-item (click)="navigateTo('/profile')" class="rest_address_item" >
+          <ion-label class="ion-padding-top ion-padding-bottom">
+            <h5><img class="ico-small" src="assets/profile.svg">&nbsp; Profile <span class="ion-float-right">
+                <ion-icon class="arrow-forword" name="arrow-forward"></ion-icon>
+              </span></h5>
+          </ion-label>
+        </ion-item>
+
+        <ion-item (click)="navigateTo('/book')" class="rest_address_item">
+          <ion-label class="ion-padding-top ion-padding-bottom">
+            <h5><img class="ico-small" src="assets/booking.svg">&nbsp; Bookings <span class="ion-float-right"><span
+                  class="blue-round">2</span> &nbsp; <ion-icon class="arrow-forword" name="arrow-forward"></ion-icon>
+                </span></h5>
+          </ion-label>
+        </ion-item>
+
+        <ion-item (click)="navigateTo('/invitaion')" class="rest_address_item">
+          <ion-label class="ion-padding-top ion-padding-bottom">
+            <h5><img class="ico-small" src="assets/invitation.svg">&nbsp; Invitations<span class="ion-float-right">
+                <ion-icon class="arrow-forword" name="arrow-forward"></ion-icon>
+              </span></h5>
+          </ion-label>
+        </ion-item>
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid class="fixed-bottom-button">
+    <ion-row>
+      <ion-col>
+        <ion-item class="rest_address_item" style="border-top: .5px solid rgba(0, 0, 0, 0.1);">
+          <ion-label class="ion-padding-top ion-padding-bottom">
+            <h5 class="danger"><img class="ico-small" src="assets/logout.svg">&nbsp; Logout</h5>
+          </ion-label>
+        </ion-item>
+        <div class="crab-bootm-vector">
+          <img src="assets/CRAB_Vector.svg">
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
