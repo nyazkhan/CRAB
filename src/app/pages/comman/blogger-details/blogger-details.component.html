@@ -7,92 +7,131 @@
 
   <div class="panel-card back-white">
     <div class="profile-part">
-     <img class="profimg" src="assets/b1.svg">
-     <h5>Nyaz Pathan</h5>
-     <p class="text ion-text-center" style="margin:0;">Navrangpura, Ahmedabad</p>
+      <img class="profimg" src="assets/b1.svg">
+      <h5 *ngIf="bloggerDetails.name">{{bloggerDetails.name}}</h5>
+      <p *ngIf="bloggerDetails.address" class="text ion-text-center" style="margin:0;">
+        {{bloggerDetails.address?.locality}},
+        {{bloggerDetails.address?.city}}</p>
 
-     <div class="socia-part ion-margin-top">
+      <div class="socia-part ion-margin-top">
         <p><img src="assets/facebook.svg"><br> 40.2k </p>
         <p><img src="assets/instagram.svg"><br> 20.1k </p>
         <p><img src="assets/Twitter.svg"><br> 1200 </p>
         <p><img src="assets/tripadvertising.svg"><br> 203 </p>
-     </div>
+      </div>
     </div>
   </div>
 
   <div class="panel-card back-orange pb-30">
     <h5 class="panel-heading dark ion-margin-bottom">About You</h5>
 
-    <p class="dark-text ion-text-start">I started Deliciously Ella back in 2012 whilst I was still at university. In
-      2011, I had been diagnosed with a condition called Postural Tachycardia Syndrome, as well as Ehlers-Danlos and
-      Mast Cell Activation Disorder, following four months in and out of hospital. The condition</p>
-    
-    <ion-item>
-        <ion-label class="ion-padding-top ion-padding-bottom">
-          <h5><img class="ico-small" src="assets/call_gray.svg">&nbsp; 150 Km Radius</h5>
-        </ion-label>
-      </ion-item>
+    <p class="dark-text ion-text-start"> {{bloggerDetails.description}} </p>
 
     <ion-item>
       <ion-label class="ion-padding-top ion-padding-bottom">
-        <h5><img class="ico-small" src="assets/veg-nonveg.svg">&nbsp; Veg. And Non-Veg</h5>
+        <h5><img class="ico-small" src="assets/call_gray.svg">&nbsp; {{bloggerDetails.maxDistance}} Km Radius</h5>
       </ion-label>
     </ion-item>
 
     <ion-item>
       <ion-label class="ion-padding-top ion-padding-bottom">
-        <h5><img class="ico-small" src="assets/pass.svg">&nbsp; Prefer Both Single And Table Invitation</h5>
+        <h5><img class="ico-small" src="assets/veg-nonveg.svg">&nbsp;
+          <ng-container *ngIf="bloggerDetails.foodType==1">
+            Veg
+          </ng-container>
+          <ng-container *ngIf="bloggerDetails.foodType==2">
+            Nonveg
+          </ng-container>
+          <ng-container *ngIf="bloggerDetails.foodType==3">
+
+            Veg & Nonveg
+          </ng-container>
+        </h5>
       </ion-label>
     </ion-item>
 
     <ion-item>
       <ion-label class="ion-padding-top ion-padding-bottom">
-        <h5><img class="ico-small" src="assets/star.svg">&nbsp; Paid Review Only</h5>
+        <h5><img class="ico-small" src="assets/pass.svg">&nbsp;
+
+          <ng-container *ngIf="bloggerDetails.invitationType==1">
+            Prefer Single Invitation
+          </ng-container>
+          <ng-container *ngIf="bloggerDetails.invitationType==2">
+            Prefer Table Invitation
+          </ng-container>
+          <ng-container *ngIf="bloggerDetails.invitationType==3">
+
+            Prefer Both Single And Table Invitation
+          </ng-container>
+
+        </h5>
       </ion-label>
     </ion-item>
 
     <ion-item>
       <ion-label class="ion-padding-top ion-padding-bottom">
-        <h5><img class="ico-small" src="assets/dollar_gray.svg">&nbsp; 2000 INR Per Review</h5>
+        <h5><img class="ico-small" src="assets/star.svg">&nbsp;
+        
+          <ng-container *ngIf="bloggerDetails.reviewType==1">
+            Prefer Paid Review
+          </ng-container>
+          <ng-container *ngIf="bloggerDetails.reviewType==2">
+            Prefer Unpaid Review
+          </ng-container>
+          <ng-container *ngIf="bloggerDetails.reviewType==3">
+
+            Prefer Both  Paid & Unpaid Review
+          </ng-container>
+
+
+        </h5>
+      </ion-label>
+    </ion-item>
+
+    <ion-item *ngIf="!(bloggerDetails.reviewType ==2)">
+      <ion-label class="ion-padding-top ion-padding-bottom">
+        <h5><img class="ico-small" src="assets/dollar_gray.svg">&nbsp; {{bloggerDetails.reviewAmount}} INR Per Review</h5>
       </ion-label>
     </ion-item>
 
     <ion-item>
       <ion-label class="ion-padding-top ion-padding-bottom">
-        <h5><img class="ico-small" src="assets/call_gray.svg">&nbsp; +91 8920462354</h5>
+        <h5><img class="ico-small" src="assets/call_gray.svg">&nbsp; +91 {{bloggerDetails.mobile}}</h5>
       </ion-label>
     </ion-item>
 
     <ion-item>
-        <ion-label class="ion-padding-top ion-padding-bottom">
-          <h5><img class="ico-small" src="assets/envelope.svg">&nbsp; alishamalhotra@gmail.com</h5>
-        </ion-label>
-      </ion-item>
+      <ion-label class="ion-padding-top ion-padding-bottom">
+        <h5><img class="ico-small" src="assets/envelope.svg">&nbsp; {{bloggerDetails.email}}</h5>
+      </ion-label>
+    </ion-item>
 
   </div>
 
   <div class="panel-card light-green">
-      <h5 class="panel-heading dark ion-margin-bottom">Reviews</h5>
+    <h5 class="panel-heading dark ion-margin-bottom">Reviews</h5>
 
-      <ion-item (click)="presentReviewgModal()" lines="none" class="ion-margin-top">
-        <ion-thumbnail class="blogger-review" slot="start">
-          <img src="assets/b2.svg">
-        </ion-thumbnail>
-        <ion-label>
-          <h3 style="font-weight: 500;">Nyaz Khan</h3>
-          <p>2 Days Ago @ Kovallam</p>
-        </ion-label>
-      </ion-item>
-        <p class="dark-text ion-text-start">I started Deliciously Ella back in 2012 whilst I was still at university. In
-          2011, I had been diagnosed with a condition called Postural Tachycardia Syndrome, as well as Ehlers-Danlos and
-          Mast Cell Activation Disorder, following four months in and out of hospital. The condition</p>
-          
+    <ion-item (click)="presentReviewgModal()" lines="none" class="ion-margin-top">
+      <ion-thumbnail class="blogger-review" slot="start">
+        <img src="assets/b2.svg">
+      </ion-thumbnail>
+      <ion-label>
+        <h3 style="font-weight: 500;">Nyaz Khan</h3>
+        <p>2 Days Ago @ Kovallam</p>
+      </ion-label>
+    </ion-item>
+    <p class="dark-text ion-text-start">I started Deliciously Ella back in 2012 whilst I was still at university. In
+      2011, I had been diagnosed with a condition called Postural Tachycardia Syndrome, as well as Ehlers-Danlos and
+      Mast Cell Activation Disorder, following four months in and out of hospital. The condition</p>
+
   </div>
 
   <div class="panel-card fixed-back-white">
-      <ion-button size="large" class="proceed-button ion-margin-top" (click)="sendInvitationModel()" expand="block">INVITE </ion-button>
-          <div class="crab-bootm-vector">
-              <img src="assets/CRAB_Vector.svg">
-            </div>
+    <ion-button size="large" class="proceed-button ion-margin-top" (click)="sendInvitationModel()" expand="block">INVITE
+    </ion-button>
+    <div class="crab-bootm-vector">
+      <img src="assets/CRAB_Vector.svg">
     </div>
+  </div>
 </ion-content>

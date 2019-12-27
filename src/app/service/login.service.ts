@@ -31,6 +31,11 @@ export class LoginService {
 
   }
 
+  getBlogerDetails(phoneNo) {
+    return this.Http.post('user/getUserDetails', { mobile: phoneNo, type: 2 });
+
+
+  }
 
   masterApi() {
     return this.Http.post('master/data/get', [1, 2, 3, 4]);
@@ -53,31 +58,31 @@ export class LoginService {
   }
 
 
-// list of invitation
-listOfInvitation(obj) {
-  return this.Http.post('search/all', obj);
+  // list of invitation
+  listOfInvitation(obj) {
+    return this.Http.post('search/all', obj);
 
-}
-
-
-// Invitation
-
-getInvitaionDetails(obj) {
-  return this.Http.post('search/all', obj);
-
-}
+  }
 
 
-// list of booking
-listOfBooking(obj) {
-  return this.Http.post('search/all', obj);
+  // Invitation
 
-}
-// bokking
-getBookingDetails(obj) {
-  return this.Http.post('search/all', obj);
+  getInvitaionDetails(obj) {
+    return this.Http.post('search/all', obj);
 
-}
+  }
+
+
+  // list of booking
+  listOfBooking(obj) {
+    return this.Http.post('search/all', obj);
+
+  }
+  // bokking
+  getBookingDetails(obj) {
+    return this.Http.post('search/all', obj);
+
+  }
 
 
 

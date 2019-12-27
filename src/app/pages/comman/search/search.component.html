@@ -9,47 +9,15 @@
       </ion-buttons>
     </ion-toolbar>
 
-    <!-- <ion-item (click)="gotToRestaurantDetailsPage(restaurant.mobile)"  *ngFor="let restaurant of restaurantListCopy" lines="none">
-      <div slot="start" class="rest-img">
-        <img src="assets/restaurent.png">
+   
+    <ion-item (click)="presentBloggerDetailsModal(blogger.mobile)" lines="none" *ngFor="let blogger of bloggerListCopy" class="rest_address_item mb-15">
+      <div slot="start" class="blo-img">
+        <img *ngIf="blogger.profilePic" [src]="blogger.profilePic">
+        <img *ngIf="!blogger.profilePic" src="assets/b1.svg">
       </div>
       <ion-label>
-        <h4 class="rest-heading">{{restaurant.name}}</h4>
-        <p class="small-content">Veg, Cafe & restaurent <br>
-          {{restaurant.address.locality}}, {{restaurant.address.city}}</p>
-        <span class="km-part"> 3.2km &nbsp; <img src="assets/km-arrorw.svg"> </span>
-      </ion-label>
-    </ion-item> -->
-    <ion-item (click)="gotToRestaurantDetailsPage(restaurant.mobile)"  *ngFor="let restaurant of restaurantListCopy" lines="none">
-      <div slot="start" class="rest-img">
-        <img *ngIf="restaurant.profilePic" [src]="restaurant.profilePic">
-        <img *ngIf="!restaurant.profilePic" src="assets/restaurent.png">
-      </div>
-      <ion-label>
-        <h4 class="rest-heading">{{restaurant.name}}</h4>
-        <p class="small-content">
-           <ng-container *ngIf="restaurant.foodType==1">
-          Veg
-        </ng-container>
-        <ng-container *ngIf="restaurant.foodType==2">
-          Nonveg
-        </ng-container>
-        <ng-container *ngIf="restaurant.foodType==3">
-
-          Veg & Nonveg
-        </ng-container>
-        <ng-container *ngIf="restaurant.restaurantType==1">
-          Cafe
-        </ng-container>
-        <ng-container *ngIf="restaurant.restaurantType==2">
-          Restaurent
-        </ng-container>
-        <ng-container *ngIf="restaurant.restaurantType==3">
-
-          Cafe & Restaurent
-        </ng-container> <br>
-          {{restaurant.address.locality}}, {{restaurant.address.city}}</p>
-        <span class="km-part"> {{restaurant.distanceFromBlogger | number:'2.1-2'}}km &nbsp; <img src="assets/km-arrorw.svg"> </span>
+        <h4 class="rest-heading">{{blogger.name}}</h4>
+       <p> {{blogger.address.locality}}, {{blogger.address.city}}</p>
       </ion-label>
     </ion-item>
   </ion-list>

@@ -9,50 +9,21 @@
         </div>
 
 
-        <ion-searchbar class="mb-20" placeholder="Search By Name"></ion-searchbar>
+        <ion-searchbar class="mb-20" name="searchInput" (ionInput)="test($event)" placeholder="Search By Name">
+        </ion-searchbar>
 
-
-        <ion-item lines="none" class="ion-margin-bottom">
+        <ion-buttons slot="end">
+          <ion-button (click)="dismiss()">Close</ion-button>
+        </ion-buttons>
+        <ion-item (click)="AddBlogger(blogger)" lines="none" *ngFor="let blogger of bloggerListCopy; let i= index"
+          class="rest_address_item mb-15">
           <div slot="start" class="blo-img">
-            <img src="assets/b2.svg">
+            <img *ngIf="blogger.profilePic" [src]="blogger.profilePic">
+            <img *ngIf="!blogger.profilePic" src="assets/b1.svg">
           </div>
           <ion-label>
-            <h4 class="blo-name">Alisha Malhotra</h4>
-            <p class="small-content">Navrangpura, Ahmedabad<br>
-              40.2+ Followers</p>
-          </ion-label>
-        </ion-item>
-
-        <ion-item lines="none" class="ion-margin-bottom">
-          <div slot="start" class="blo-img">
-            <img src="assets/b1.svg">
-          </div>
-          <ion-label>
-            <h4 class="blo-name">Alisha Malhotra</h4>
-            <p class="small-content">Navrangpura, Ahmedabad<br>
-              40.2+ Followers</p>
-          </ion-label>
-        </ion-item>
-
-        <ion-item lines="none" class="ion-margin-bottom">
-          <div slot="start" class="blo-img">
-            <img src="assets/b3.svg">
-          </div>
-          <ion-label>
-            <h4 class="blo-name">Alisha Malhotra</h4>
-            <p class="small-content">Navrangpura, Ahmedabad<br>
-              40.2+ Followers</p>
-          </ion-label>
-        </ion-item>
-
-        <ion-item lines="none" class="ion-margin-bottom">
-          <div slot="start" class="blo-img">
-            <img src="assets/b2.svg">
-          </div>
-          <ion-label>
-            <h4 class="blo-name">Alisha Malhotra</h4>
-            <p class="small-content">Navrangpura, Ahmedabad<br>
-              40.2+ Followers</p>
+            <h4 class="rest-heading">{{blogger.name}}</h4>
+            <p> {{blogger.address.locality}}, {{blogger.address.city}}</p>
           </ion-label>
         </ion-item>
 

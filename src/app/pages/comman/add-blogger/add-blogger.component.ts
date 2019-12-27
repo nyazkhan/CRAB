@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ModalController, NavParams } from '@ionic/angular';
 import { LoginService } from 'src/app/service/login.service';
 
@@ -8,15 +8,54 @@ import { LoginService } from 'src/app/service/login.service';
   styleUrls: ['./add-blogger.component.scss'],
 })
 export class AddBloggerComponent implements OnInit {
+  @Input() bloggerList: object;
 
+  bloggerListCopy: any;
+  bloggerAdded: any = [];
+  searchBy = {
+
+    name: '',
+    searchType: 2
+
+  };
   constructor(
-    public modalController: ModalController,
     navParams: NavParams,
+    public modalController: ModalController,
     private loginservice: LoginService,
+
+
   ) {
 
+    this.bloggerListCopy = navParams.get('bloggerList');
+    this.getListOfBlogger();
 
   }
+
+
+  AddBlogger(blogger) {
+
+    this.bloggerAdded.push(blogger);
+  }
+
+  getListOfBlogger() {
+    this.loginservice.getBloggerList(this.searchBy).subscribe((res) => {
+      if (res.status === 200) {
+        this.bloggerListCopy = res.data;
+        console.log(res);
+
+      }
+    });
+  }
+
+
+  test(event) {
+    console.log(event.target.value);
+    this.searchBy.name = event.target.value;
+
+    this.getListOfBlogger();
+  }
+
+
 
   ngOnInit() { }
 

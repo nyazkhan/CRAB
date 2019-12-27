@@ -24,7 +24,7 @@ export class BloggerDetailsComponent implements OnInit {
 
 
 
-  restaurantDetail: any = {};
+  bloggerDetails: any = {};
   restauratMoblieNo: any;
   paymentOption = {
     cash: false,
@@ -46,7 +46,7 @@ export class BloggerDetailsComponent implements OnInit {
   ) {
     this.restauratMoblieNo = navParams.get('mobileNo');
 
-
+    this.getBloggerDetails();
 
 
   }
@@ -54,13 +54,20 @@ export class BloggerDetailsComponent implements OnInit {
 
   goBack() {
 
-    // using the injected ModalController this page
-    // can "dismiss" itself and optionally pass back data
     this.modalCtrl.dismiss({
       dismissed: true
     });
 
   }
+
+  getBloggerDetails() {
+    this.loginservice.getBlogerDetails(this.restauratMoblieNo).subscribe((res) => {
+      if (res.status === 200) {
+        this.bloggerDetails = res.data;
+      }
+    });
+  }
+
   ngOnInit() {
 
   }
@@ -85,7 +92,7 @@ export class BloggerDetailsComponent implements OnInit {
       component: SendInvitationComponent,
       componentProps: {
 
-        restaurantDetail: this.restaurantDetail,
+        bloggerDetails: this.bloggerDetails,
       }
     });
     return await modal.present();

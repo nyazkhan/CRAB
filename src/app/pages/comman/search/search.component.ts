@@ -13,9 +13,15 @@ export class SearchComponent implements OnInit {
 
   // Data passed in by componentProps
   @Input() bloggerList: object;
-  @Input() position: object;
 
-  restaurantListCopy: any;
+  bloggerListCopy: any;
+
+  searchBy = {
+
+    name: '',
+    searchType: 2
+
+  };
   constructor(
     navParams: NavParams,
     public modalCtrl: ModalController,
@@ -26,15 +32,12 @@ export class SearchComponent implements OnInit {
   ) {
     // componentProps can also be accessed at construction time using NavParams
     console.log(navParams.get('bloggerList'));
-    this.restaurantListCopy = navParams.get('bloggerList');
+    this.bloggerListCopy = navParams.get('bloggerList');
   }
   getListOfBlogger() {
-    this.loginservice.getBloggerList({
-      name: '',
-      searchType: 2
-    }).subscribe((res) => {
+    this.loginservice.getBloggerList(this.searchBy).subscribe((res) => {
       if (res.status === 200) {
-        this.restaurantListCopy = JSON.parse(JSON.stringify(res.data));
+        this.bloggerListCopy = JSON.parse(JSON.stringify(res.data));
         console.log(res);
 
       }
@@ -42,6 +45,8 @@ export class SearchComponent implements OnInit {
   }
   test(event) {
     console.log(event.target.value);
+    this.searchBy.name = event.target.value;
+
     this.getListOfBlogger();
   }
   gotToRestaurantDetailsPage(mobile) {

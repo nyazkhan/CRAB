@@ -11,8 +11,8 @@ import { InviteddetailsComponent } from '../inviteddetails/inviteddetails.compon
   styleUrls: ['./sendInvitation.component.scss'],
 })
 export class SendInvitationComponent implements OnInit {
-  @Input() restaurantDetail: object;
-  restaurantListCopy: any = {};
+  @Input() bloggerDetails: object;
+  bloggerDetailsCopy: any = {};
 
 
 
@@ -22,7 +22,7 @@ export class SendInvitationComponent implements OnInit {
     private loginservice: LoginService,
   ) {
 
-    this.restaurantListCopy = navParams.get('restaurantDetail');
+    this.bloggerDetailsCopy = navParams.get('bloggerDetails');
 
   }
 
@@ -39,7 +39,7 @@ export class SendInvitationComponent implements OnInit {
     const modal = await this.modalController.create({
       component: AddBloggerComponent,
       componentProps: {
-
+        bloggerList: [this.bloggerDetailsCopy]
       }
     });
     return await modal.present();
