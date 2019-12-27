@@ -1,17 +1,18 @@
 <ion-content class="padding-0">
   <div class="top-orange-bar">
     <ion-item lines="none" color="undefine">
-      <ion-avatar slot="start">
+      <!-- <ion-avatar slot="start">
         <img src="./avatar-han.png">
-      </ion-avatar>
+      </ion-avatar> -->
+      <span class="profile-icon">A</span>
       <ion-label>
-        <h3>{{restaurantDetails.name}}</h3>
-        <p *ngIf="restaurantDetails.address" class="small-content">{{restaurantDetails.address?.locality}}, {{restaurantDetails.address?.city}}</p>
+        <!-- <h2>{{restaurantDetails.name}}</h2>
+        <p *ngIf="restaurantDetails.address" class="blo-address">{{restaurantDetails.address?.locality}}, {{restaurantDetails.address?.city}}</p> -->
       </ion-label>
     </ion-item>
     <ion-row>
-      <ion-col size="6">
-          <p class="view-profile-text" (click)="presentProfileModal()">View Profile <ion-icon slot="start" name="arrow-forward"></ion-icon>
+      <ion-col size="6" style="margin-top: 10px;">
+          <p class="view-profile-text" (click)="presentProfileModal()">View Profile &nbsp; <ion-icon slot="start" name="arrow-forward"></ion-icon>
           </p>
       </ion-col>
       <ion-col size="6">
@@ -59,7 +60,7 @@
     </ion-row>
   </ion-grid>
 
-  <ion-grid class="section-pedding">
+  <ion-grid class="section-pedding" style="padding-top: 0;">
     <ion-toolbar>
       <ion-searchbar (click)="presentBloggerDetailsModal()" placeholder="Search Restaurent"></ion-searchbar>
       <ion-buttons slot="end">
@@ -68,7 +69,7 @@
     </ion-toolbar>
     <ion-row>
       <ion-col>
-          <h5 class="title-heading" style="margin-top: 0;">Bloggers</h5>
+          <h5 class="title-heading">Bloggers</h5>
 
         <ion-item (click)="presentBloggerDetailsModal(blogger.mobile)" lines="none" *ngFor="let blogger of listOfBlogger" class="rest_address_item mb-15">
           <div slot="start" class="blo-img">

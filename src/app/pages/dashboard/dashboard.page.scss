@@ -23,10 +23,10 @@ ion-toolbar {
 }
 .view-profile-text{
     font-weight: normal;
-font-size: 12px;
-line-height: 14px;
-color: #000000;
-margin-top: 15px;
+    font-size: 14px;
+    line-height: 14px;
+    display: flex;
+    color: #000000;
 }
 .profile-rest-img{
     position: absolute;
@@ -129,8 +129,26 @@ margin-top: 15px;
     font-weight: 300;
     margin-bottom: -5px;
 }
+.blo-address{
+    -webkit-box-pack: start;
+    justify-content: start;
+    display: -webkit-box;
+    display: flex;
+    font-size: 14px;
+    line-height: 20px;
+    color: rgba(0, 0, 0, 0.5) !important;
+    position: inherit;
+    font-weight: 400;
+}
+.filter-btn {
+    background: #ffffff;
+    height: 42px !important;
+    text-transform: none;
+    color: rgba(0, 0, 0, 0.4);
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
+}
 .mb-30{
-    margin-top: 30px;
+    margin-bottom: 30px;
 }
 .mb-15 {
     margin-bottom: 15px;
@@ -145,7 +163,18 @@ margin-top: 15px;
 .section-pedding{
     padding: 12px;
 }
-
+.profile-icon{
+    height: 38px;
+    width: 38px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 8px;
+    background: #FBB040;
+    color: white;
+    font-size: 20px;
+    border-radius: 10px;
+}
 .crab-bootm-vector {
     display: -webkit-box;
     display: flex;
@@ -164,7 +193,7 @@ margin-top: 15px;
     font-weight: 500 !important;
 }
 .small-content {
-    font-family: Roboto;
+    // font-family: Roboto;
     font-style: normal;
     font-weight: normal !important;
     font-size: 12px !important;

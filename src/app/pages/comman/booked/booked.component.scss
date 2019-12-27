@@ -17,6 +17,88 @@
     margin-right: 0;
     color: #0F2F54;
 }
+.blo-img {
+    -webkit-margin-end: 15px;
+    margin-inline-end: 15px;
+}
+.blo-img img {
+    height: 65px;
+    border-radius: 10px;
+}
+.blo-name {
+    font-weight: 500 !important;
+}
+.small-content {
+    // font-family: Roboto;
+    font-style: normal;
+    font-size: 12px !important;
+    line-height: 20px !important;
+    font-weight: 400 !important;
+    display: flex;
+    align-items: center;
+    color: rgba(0, 0, 0, 0.4) !important;
+    margin-top: 5px !important;
+}
+.time-heading {
+    font-weight: bold;
+    font-size: 20px !important;
+    line-height: 28px;
+}
+.ico-list {
+    justify-content: start;
+    display: flex;
+    font-size: 14px;
+    line-height: 14px;
+    color: rgba(0, 0, 0, 0.4);
+    position: inherit;
+    font-weight: 400;
+    margin-bottom: 18px;
+}
+.mb-25{
+    margin-bottom: 25px;
+}
+.ico-small{
+    height: 14px;
+}
+.orange{
+    color: #EA7119 !important;
+}
+.back-orange{
+    background: #FFCE4F;
+}
+.success{
+    color: #0F9D58;;
+}
+.panel-heading{
+    font-weight: bold;
+    font-size: 15px;
+    line-height: 26px;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    color: #000000;
+    margin: 0;
+}
+.panel-card{
+    border-radius: 21px 21px 0px 0px;
+    padding: 30px 20px 40px 20px;
+    box-shadow: 0px -5px 33px rgba(0, 0, 0, 0.1);
+    border-radius: 21px 21px 0px 0px;
+    margin-top: -15px;
+}
+.fixed-back-white{
+    background: #FFFFFF;
+}
+.section-pedding{
+    padding: 12px;
+}
+.add-btn{
+    color: #1966FB;
+    display: flex;
+    --box-shadow: none !important;
+    text-transform: none;
+}
 .crab-bootm-vector {
     display: -webkit-box;
     display: flex;
@@ -26,10 +108,21 @@
     align-items: center;
     margin-top: 20px;
 }
-.fixed-bottom-button {
+.proceed-button {
+    --border-radius: 5px;
+    height: 7vh;
+    font-size: 14px;
+}
+.fixed-bottom-button{
     position: fixed;
     bottom: 10px;
     left: 0;
     right: 0;
     padding: 10px;
 }
+.cancel-button{
+    --background: #FFEDED;
+    color: #FF4949;
+}
+
+
