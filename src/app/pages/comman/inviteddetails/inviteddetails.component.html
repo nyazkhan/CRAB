@@ -4,7 +4,7 @@
       <ion-col>
         <div class="backbar ion-margin-bottom">
           <h5 class="page-heading">
-            <ion-icon name="arrow-back"></ion-icon> &nbsp; New Invitation
+            <ion-icon name="arrow-back" (click)="back()"></ion-icon> &nbsp; New Invitation
           </h5>
         </div>
 
@@ -61,7 +61,7 @@
       <h5 class="panel-heading ion-margin-bottom">Cancel Invitation</h5>
       <p class="small-content ion-margin-bottom">Are you sure you want to cancel the invitation</p>
       <ion-button color="light" size="large" class="cancel-button ion-margin-top" expand="block">No, Please Don’t Cancel </ion-button>
-    <ion-button color="danger" size="large" class="cancel-button ion-margin-top" expand="block">Yes, Cancel My Appointment </ion-button>
+    <ion-button color="danger" size="large" class="cancel-button ion-margin-top" expand="block" (click)="cancelInvitaion()">Yes, Cancel My Appointment </ion-button>
 
   </div>
 </ion-content>

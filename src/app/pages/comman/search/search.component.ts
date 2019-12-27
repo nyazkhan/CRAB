@@ -29,7 +29,10 @@ export class SearchComponent implements OnInit {
     this.restaurantListCopy = navParams.get('bloggerList');
   }
   getListOfBlogger() {
-    this.loginservice.getBloggerList().subscribe((res) => {
+    this.loginservice.getBloggerList({
+      name: '',
+      searchType: 2
+    }).subscribe((res) => {
       if (res.status === 200) {
         this.restaurantListCopy = JSON.parse(JSON.stringify(res.data));
         console.log(res);

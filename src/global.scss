@@ -61,3 +61,23 @@ ion-input{
 ion-label{
     margin: 0;
 }
+
+
+.km-part{
+    justify-content: start;
+    display: flex;
+    font-size: 11px;
+    float: right;
+    position: relative;
+    top: -18px;
+    color: rgba(0, 0, 0, 0.4);
+}
+.km-part ion-icon{
+    font-size: 10px;
+    line-height: 12px;
+    color: rgba(0, 0, 0, 0.4);
+}
+.km-part img{
+    height: 14px;
+    width: auto;
+}

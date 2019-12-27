@@ -43,7 +43,7 @@ export class DashboardPage implements OnInit {
     });
 
   }
-  async presentRestaurantModal() {
+  async presentBloggerSearchModal() {
     const modal = await this.modalController.create({
       component: SearchComponent,
       componentProps: {
@@ -98,20 +98,26 @@ export class DashboardPage implements OnInit {
 
   async presentInvitationDetailModal() {
     const modal = await this.modalController.create({
-      component: SendInvitationComponent,
+      component: InviteddetailsComponent,
       componentProps: {
 
-        // restaurantDetails: this.restaurantDetails,
+        // invitation: this.restaurantDetails,
       }
     });
     return await modal.present();
   }
 
   ngOnInit() {
+    this.getListOfBloggers();
   }
 
   getListOfBloggers() {
-    this.loginservice.getBloggerList().subscribe((res) => {
+    this.loginservice.getBloggerList(
+      {
+        name: '',
+        searchType: 2
+      }
+    ).subscribe((res) => {
       if (res.status === 200) {
         this.listOfBlogger = res.data;
         console.log(res);

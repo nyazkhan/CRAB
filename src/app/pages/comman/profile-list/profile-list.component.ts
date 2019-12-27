@@ -8,14 +8,14 @@ import { NavParams, ModalController } from '@ionic/angular';
   styleUrls: ['./profile-list.component.scss'],
 })
 export class ProfileListComponent implements OnInit {
-  @Input() userDetails: object;
+  @Input() restaurantDetails: object;
   userDetailsCopy: any;
   constructor(
     @Inject(Router) private router: Router,
     navParams: NavParams,
     public modalController: ModalController,
   ) {
-    this.userDetailsCopy = navParams.get('userDetails');
+    this.userDetailsCopy = navParams.get('restaurantDetails');
 
   }
 
@@ -32,6 +32,8 @@ export class ProfileListComponent implements OnInit {
       dismissed: true
     });
   }
+  LogOut() {
 
+  }
   // openParofileModel
 }

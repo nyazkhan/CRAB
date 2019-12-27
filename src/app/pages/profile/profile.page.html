@@ -1,0 +1,259 @@
+<ion-content *ngIf="restaurantDetail.list" class="padding-0">
+  <!-- <div *ngIf="restaurantDetail.list[0].data.length > 0" class="img-top-part"
+      [style.background-image]="'url(' + restaurantDetail.list[1].data[0].storagePath + ')'">
+      <h5 style="    text-align: left;
+          color: white;" class="page-heading">
+        <ion-icon class="white" name="arrow-back" (click)="goBack()"></ion-icon>&nbsp;
+      </h5>
+    </div> -->
+  <ion-slides [options]="slideOptsOne" #slideWithNav (ionSlideDidChange)="SlideDidChange(sliderOne,slideWithNav)">
+    <ng-container *ngFor="let s of sliderOne.slidesItems">
+
+
+      <ion-slide style="display: block;" class="img-top-part" [style.background-image]="'url(' + s + ')'">
+        <h5 style="    text-align: left;
+        color: white;">
+          <ion-icon class="white" name="arrow-back" (click)="goBack()"></ion-icon>
+        </h5>
+      </ion-slide>
+    </ng-container>
+  </ion-slides>
+  <div class="panel-card back-white">
+    <ion-item color="none" lines="none">
+      <ion-label>
+        <h5 class="panel-heading dark">{{restaurantDetail.name}}<span class="ion-float-right right-review"
+            color="dark">23
+            Reviews</span> </h5>
+        <p *ngIf="restaurantDetail.address" class="small-content">
+          {{restaurantDetail.address.premisesNo}}
+
+          {{restaurantDetail.address.locality}} <br>
+          {{restaurantDetail.address.city}} {{restaurantDetail.address.district}}
+          {{restaurantDetail.address.pincode}}</p>
+
+      </ion-label>
+    </ion-item>
+
+
+  </div>
+
+  <div class="panel-card back-orange">
+    <h5 class="panel-heading dark">About Restaurent</h5>
+
+    <ion-item>
+
+      <ion-label class="ion-padding-top ion-padding-bottom">
+        <h5>
+          <img class="ico-small" src="assets/veg-nonveg.svg">&nbsp;
+
+          <ng-container *ngIf="restaurantDetail.foodType==1">
+            Veg
+          </ng-container>
+          <ng-container *ngIf="restaurantDetail.foodType==2">
+            Nonveg
+          </ng-container>
+          <ng-container *ngIf="restaurantDetail.foodType==3">
+
+            Veg & Nonveg
+          </ng-container>
+        </h5>
+      </ion-label>
+
+    </ion-item>
+
+    <ion-item>
+
+      <ion-label class="ion-padding-top ion-padding-bottom">
+        <h5>
+          <img class="ico-small" src="assets/knief.svg">&nbsp;
+
+
+
+
+          <ng-container *ngIf="restaurantDetail.restaurantType==1">
+            Cafe
+          </ng-container>
+          <ng-container *ngIf="restaurantDetail.restaurantType==2">
+            Restaurent
+          </ng-container>
+          <ng-container *ngIf="restaurantDetail.restaurantType==3">
+
+            Cafe & Restaurent
+          </ng-container>
+        </h5>
+
+      </ion-label>
+
+
+    </ion-item>
+
+    <ion-item>
+
+      <ion-label class="ion-padding-top ion-padding-bottom">
+        <h5>
+          <img class="ico-small" src="assets/dollar_gray.svg">&nbsp;
+          {{restaurantDetail.avgCost}} per person
+        </h5>
+
+
+
+      </ion-label>
+
+
+    </ion-item>
+
+    <ion-item>
+
+      <ion-label class="ion-padding-top ion-padding-bottom">
+        <h5>
+          <img class="ico-small" src="assets/card2.svg">&nbsp;
+
+
+          <ng-container *ngIf="paymentOption.cash">
+            Cash
+          </ng-container>
+          <ng-container *ngIf="paymentOption.credit">
+            Card
+          </ng-container>
+          <ng-container *ngIf="paymentOption.upi">
+
+            UPI
+          </ng-container>
+          <ng-container *ngIf="paymentOption.paytm">
+
+            Paytm
+          </ng-container>
+        </h5>
+      </ion-label>
+
+
+    </ion-item>
+
+
+    <ion-item>
+
+      <ion-label class="ion-padding-top ion-padding-bottom">
+        <h5>
+          <img class="ico-small" src="assets/watch.svg">&nbsp;
+
+
+          Mon-Fri 08:30AM - 09:30 PM
+        </h5>
+
+      </ion-label>
+
+
+    </ion-item>
+
+    <ion-item>
+
+      <ion-label class="ion-padding-top ion-padding-bottom">
+        <h5>
+          <img class="ico-small" src="assets/p.svg">&nbsp;
+
+          <ng-container *ngIf="restaurantDetail.isParking">
+            Parking Avaliable
+
+
+          </ng-container>
+          <ng-container *ngIf="!restaurantDetail.isParking">
+            Parking Not Avaliable
+
+
+          </ng-container>
+
+        </h5>
+
+      </ion-label>
+
+
+    </ion-item>
+
+    <ion-item>
+
+      <ion-label class="ion-padding-top ion-padding-bottom">
+        <h5>
+          <img class="ico-small" src="assets/accomodation.svg">&nbsp;
+
+
+
+          {{restaurantDetail.accommodationSize}} people’s accomodation
+
+        </h5>
+      </ion-label>
+
+
+    </ion-item>
+
+    <ion-item>
+
+      <ion-label class="ion-padding-top ion-padding-bottom">
+        <h5>
+          <img class="ico-small" src="assets/envelope.svg">&nbsp;
+
+
+
+          {{restaurantDetail.email}}
+
+        </h5>
+      </ion-label>
+
+
+    </ion-item>
+    <ion-item>
+
+      <ion-label class="ion-padding-top ion-padding-bottom">
+        <h5>
+          <img class="ico-small" src="assets/call_gray.svg">&nbsp;
+
+    
+        +91 {{restaurantDetail.mobile}}
+
+</h5>
+      </ion-label>
+
+    </ion-item>
+  </div>
+
+  <div class="panel-card light-green">
+    <!-- <h5 class="panel-heading dark">About</h5> -->
+    <ion-item color="none" lines="none">
+
+      <ion-label class="panel-heading dark">
+        About
+
+      </ion-label>
+
+
+    </ion-item>
+    <div class="review-part">
+      <h6 class="dark-text ion-text-start">{{restaurantDetail.description}}</h6>
+    </div>
+  </div>
+  <div class="panel-card light-grey">
+    <h5 class="panel-heading dark">reviews</h5>
+
+    <div class="review-part">
+      <ion-item lines="none" >
+        <ion-thumbnail class="ion-thumbnail-2" slot="start">
+          <img src="assets/reviewer.svg">
+        </ion-thumbnail>
+        <ion-label>
+          <h3>Nyaz Khan</h3>
+          <p>2 Days Ago</p>
+        </ion-label>
+      </ion-item>
+
+      <p class="dark-text ion-text-start">I started Deliciously Ella back in 2012 whilst I was still at university. In
+        2011, I had been diagnosed with a condition called Postural Tachycardia Syndrome, as well as Ehlers-Danlos and
+        Mast Cell Activation Disorder, following four months in and out of hospital. The condition</p>
+    </div>
+  </div>
+
+  <div class="panel-card fixed-back-white">
+    <!-- <ion-button size="large" class="proceed-button ion-margin-top" expand="block">REQUEST A TABLE </ion-button> -->
+    <div class="crab-bootm-vector">
+      <img src="assets/CRAB_Vector.svg">
+    </div>
+  </div>
+</ion-content>

@@ -61,14 +61,14 @@
 
   <ion-grid class="section-pedding">
     <ion-toolbar>
-      <ion-searchbar (click)="presentBloggerDetailsModal()" placeholder="Search Restaurent"></ion-searchbar>
+      <ion-searchbar (click)="presentBloggerSearchModal()" placeholder="Search Restaurent"></ion-searchbar>
       <ion-buttons slot="end">
           <ion-button class="filter-btn" color="none"><img src="assets/filter.svg">&nbsp; Filter</ion-button>
       </ion-buttons>
     </ion-toolbar>
     <ion-row>
       <ion-col>
-          <h5 class="title-heading" style="margin-top: 0;">Bloggers</h5>
+          <h5 class="title-heading" (click)="presentBloggerDetailsModal()" style="margin-top: 0;">Bloggers</h5>
 
         <ion-item (click)="presentBloggerDetailsModal(blogger.mobile)" lines="none" *ngFor="let blogger of listOfBlogger" class="rest_address_item mb-15">
           <div slot="start" class="blo-img">

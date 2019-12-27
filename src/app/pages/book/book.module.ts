@@ -6,6 +6,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { BookPage } from './book.page';
+import { CommanModule } from '../comman/comman.module';
+import { BookedComponent } from '../comman/booked/booked.component';
 
 const routes: Routes = [
   {
@@ -18,9 +20,12 @@ const routes: Routes = [
   imports: [
     CommonModule,
     FormsModule,
+    CommanModule,
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [BookPage]
+  declarations: [BookPage],
+  entryComponents: [ BookedComponent],
+
 })
 export class BookPageModule {}

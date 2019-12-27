@@ -4,17 +4,17 @@
       <ion-col>
         <div class="backbar ion-margin-bottom">
           <h5 class="page-heading">
-            <ion-icon name="arrow-back"></ion-icon> &nbsp; Bookings
+            <ion-icon name="arrow-back" (click)="goToDashboard()"></ion-icon> &nbsp; Bookings
           </h5>
         </div>
 
         <div class="btn-list">
-          <h6>All</h6>
-          <h6 class="active">Upcoming</h6>
-          <h6>Past</h6>
+          <h6 [ngClass]="{'active': (filterBy ==='all')}" (click)="filterResponse('all')">All</h6>
+          <h6 [ngClass]="{'active': (filterBy ==='next')}" (click)="filterResponse('next')" class="active">Upcoming</h6>
+          <h6 [ngClass]="{'active': (filterBy ==='past')}" (click)="filterResponse('past')">Past</h6>
         </div>
 
-        <ion-item class="ion-margin-bottom">
+        <ion-item class="ion-margin-bottom" (click)="presentBookingModal()">
           <ion-label>
             <h5 class="invi-date danger">Today, 04:30 PM</h5>
             <p class="small-content">Invitation | Alisha Malhotra</p>
@@ -31,28 +31,28 @@
         </ion-item>
 
         <ion-item class="ion-margin-bottom">
-            <ion-label>
-              <h5 class="invi-date primary">02 Dec, 02:30 PM</h5>
-              <p class="small-content">Invitation | Alisha Malhotra</p>
-              <span class="right-table-part"> Table for 6 </span>
-            </ion-label>
-          </ion-item>
+          <ion-label>
+            <h5 class="invi-date primary">02 Dec, 02:30 PM</h5>
+            <p class="small-content">Invitation | Alisha Malhotra</p>
+            <span class="right-table-part"> Table for 6 </span>
+          </ion-label>
+        </ion-item>
 
-          <ion-item class="ion-margin-bottom">
-              <ion-label>
-                <h5 class="invi-date primary">02 Dec, 02:30 PM</h5>
-                <p class="small-content">Invitation | Alisha Malhotra</p>
-                <span class="right-table-part"> Table for 6 </span>
-              </ion-label>
-            </ion-item>
+        <ion-item class="ion-margin-bottom">
+          <ion-label>
+            <h5 class="invi-date primary">02 Dec, 02:30 PM</h5>
+            <p class="small-content">Invitation | Alisha Malhotra</p>
+            <span class="right-table-part"> Table for 6 </span>
+          </ion-label>
+        </ion-item>
 
-            <ion-item class="ion-margin-bottom">
-                <ion-label>
-                  <h5 class="invi-date primary">02 Dec, 02:30 PM</h5>
-                  <p class="small-content">Invitation | Alisha Malhotra</p>
-                  <span class="right-table-part"> Table for 6 </span>
-                </ion-label>
-              </ion-item>
+        <ion-item class="ion-margin-bottom">
+          <ion-label>
+            <h5 class="invi-date primary">02 Dec, 02:30 PM</h5>
+            <p class="small-content">Invitation | Alisha Malhotra</p>
+            <span class="right-table-part"> Table for 6 </span>
+          </ion-label>
+        </ion-item>
 
       </ion-col>
     </ion-row>

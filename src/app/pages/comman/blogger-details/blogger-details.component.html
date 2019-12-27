@@ -1,7 +1,7 @@
 <ion-content class="padding-0">
   <div class="back_top_part">
     <h5 class="page-heading" routerLink="/dashboard">
-      <ion-icon  routerLink="/profile-dashboard" name="arrow-back"></ion-icon>&nbsp;
+      <ion-icon (click)="goBack()" name="arrow-back"></ion-icon>&nbsp;
     </h5>
   </div>
 
@@ -74,7 +74,7 @@
   <div class="panel-card light-green">
       <h5 class="panel-heading dark ion-margin-bottom">Reviews</h5>
 
-      <ion-item lines="none" class="ion-margin-top">
+      <ion-item (click)="presentReviewgModal()" lines="none" class="ion-margin-top">
         <ion-thumbnail class="blogger-review" slot="start">
           <img src="assets/b2.svg">
         </ion-thumbnail>
@@ -90,7 +90,7 @@
   </div>
 
   <div class="panel-card fixed-back-white">
-      <ion-button size="large" class="proceed-button ion-margin-top" expand="block">INVITE </ion-button>
+      <ion-button size="large" class="proceed-button ion-margin-top" (click)="sendInvitationModel()" expand="block">INVITE </ion-button>
           <div class="crab-bootm-vector">
               <img src="assets/CRAB_Vector.svg">
             </div>

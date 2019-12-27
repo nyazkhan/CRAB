@@ -1,5 +1,6 @@
 import { Injectable, Inject } from '@angular/core';
 import { CustomHTTPService } from './custom-http.service';
+import { InvitationPage } from '../pages/invitation/invitation.page';
 
 @Injectable({
   providedIn: 'root'
@@ -46,9 +47,41 @@ export class LoginService {
   }
 
 
-  getBloggerList() {
-    return this.Http.post('search/restaurant', {});
+  getBloggerList(obj) {
+    return this.Http.post('search/all', obj);
 
   }
+
+
+// list of invitation
+listOfInvitation(obj) {
+  return this.Http.post('search/all', obj);
+
+}
+
+
+// Invitation
+
+getInvitaionDetails(obj) {
+  return this.Http.post('search/all', obj);
+
+}
+
+
+// list of booking
+listOfBooking(obj) {
+  return this.Http.post('search/all', obj);
+
+}
+// bokking
+getBookingDetails(obj) {
+  return this.Http.post('search/all', obj);
+
+}
+
+
+
+
+
 
 }
