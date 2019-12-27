@@ -7,13 +7,15 @@
       <span *ngIf="restaurantDetails.name" class="profile-icon">{{restaurantDetails.name.slice(0,1) | uppercase}}</span>
       <ion-label>
         <h2>{{restaurantDetails.name}}</h2>
-        <p *ngIf="restaurantDetails.address" class="blo-address">{{restaurantDetails.address?.locality}}, {{restaurantDetails.address?.city}}</p>
+        <p *ngIf="restaurantDetails.address" class="blo-address">{{restaurantDetails.address?.locality}},
+          {{restaurantDetails.address?.city}}</p>
       </ion-label>
     </ion-item>
     <ion-row>
       <ion-col size="6" style="margin-top: 10px;">
-          <p class="view-profile-text" (click)="presentProfileModal()">View Profile &nbsp; <ion-icon slot="start" name="arrow-forward"></ion-icon>
-          </p>
+        <p class="view-profile-text" (click)="presentProfileModal()">View Profile &nbsp; <ion-icon slot="start"
+            name="arrow-forward"></ion-icon>
+        </p>
       </ion-col>
       <ion-col size="6">
         <div class="profile-rest-img">
@@ -51,11 +53,11 @@
             <p class="ico-with-title white"><img src="assets/user-white.svg">&nbsp; Alisha Malhotra </p>
           </div>
 
-          <div class="colorfull-card-view-more ion-margin-bottom"  routerLink="/book">
-            <h6 class="ion-text-center primary">View All  ></h6>
+          <div class="colorfull-card-view-more ion-margin-bottom" routerLink="/book">
+            <h6 class="ion-text-center primary">View All ></h6>
           </div>
 
-          </div>
+        </div>
       </ion-col>
     </ion-row>
   </ion-grid>
@@ -63,28 +65,30 @@
   <ion-grid class="section-pedding" style="padding-top: 0;">
     <ion-toolbar>
       <ion-searchbar (click)="presentBloggerSearchModal()" placeholder="Search Restaurent"></ion-searchbar>
+    
       <ion-buttons slot="end">
-          <ion-button class="filter-btn" color="none"><img src="assets/filter.svg">&nbsp; Filter</ion-button>
+        <ion-button class="filter-btn" color="none"><img src="assets/filter.svg">&nbsp; Filter</ion-button>
       </ion-buttons>
     </ion-toolbar>
     <ion-row>
       <ion-col>
-          <h5 class="title-heading" (click)="presentBloggerDetailsModal()" >Bloggers</h5>
+        <h5 class="title-heading" (click)="presentBloggerDetailsModal()">Bloggers</h5>
 
-        <ion-item (click)="presentBloggerDetailsModal(blogger.mobile)" lines="none" *ngFor="let blogger of listOfBlogger" class="rest_address_item mb-15">
+        <ion-item (click)="presentBloggerDetailsModal(blogger.mobile)" lines="none"
+          *ngFor="let blogger of listOfBlogger" class="rest_address_item mb-15">
           <div slot="start" class="blo-img">
             <img *ngIf="blogger.profilePic" [src]="blogger.profilePic">
             <img *ngIf="!blogger.profilePic" src="assets/b1.svg">
           </div>
           <ion-label>
             <h4 class="rest-heading">{{blogger.name}}</h4>
-           <p> {{blogger.address.locality}}, {{blogger.address.city}}</p>
+            <p> {{blogger.address.locality}}, {{blogger.address.city}}</p>
           </ion-label>
         </ion-item>
 
-       
+
       </ion-col>
     </ion-row>
-    
+
   </ion-grid>
 </ion-content>
