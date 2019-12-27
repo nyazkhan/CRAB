@@ -26,7 +26,7 @@
     font-weight: 500 !important;
 }
 .small-content {
-    font-family: Roboto;
+    // font-family: Roboto;
     font-style: normal;
     font-size: 12px !important;
     line-height: 20px !important;
@@ -60,14 +60,11 @@
 .orange{
     color: #EA7119 !important;
 }
-.success{
-    color: #0F9D58;
-}
-.danger{
-    color:#FF4949 !important;
-}
 .back-orange{
     background: #FFCE4F;
+}
+.success{
+    color: #0F9D58;;
 }
 .panel-heading{
     font-weight: bold;
@@ -108,9 +105,21 @@
     align-items: center;
     margin-top: 20px;
 }
-.cancel-button {
+.proceed-button {
     --border-radius: 5px;
     height: 7vh;
     font-size: 14px;
-    letter-spacing: 0.2px;
 }
+.fixed-bottom-button{
+    position: fixed;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    padding: 10px;
+}
+.cancel-button{
+    --background: #FFEDED;
+    color: #FF4949;
+}
+
+

@@ -46,6 +46,9 @@ p{
 .main-light-color{
     color:var(--light-font-color) !important;
 }
+ion-content {
+    --background: #FBFBFD;
+}
 
 ion-item{
     --padding-start: 0px !important;

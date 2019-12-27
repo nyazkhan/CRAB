@@ -7,10 +7,46 @@
 }
 .view-profile-text{
     font-weight: normal;
-font-size: 12px;
-line-height: 14px;
+    font-size: 14px;
+    line-height: 14px;
+    display: flex;
+    color: #000000;
+}
+.review-list h4{
+    font-weight: bold;
+    font-size: 16px;
+    color: #000000;
+    margin: 0;
+}
+.review-list span{
+    font-weight: normal;
+font-size: 11px;
+line-height: 12px;
 color: #000000;
-margin-top: 15px;
+}
+
+.profile-icon{
+    height: 38px;
+    width: 38px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 8px;
+    background: #FBB040;
+    color: white;
+    font-size: 20px;
+    border-radius: 10px;
+}
+.blo-address{
+    -webkit-box-pack: start;
+    justify-content: start;
+    display: -webkit-box;
+    display: flex;
+    font-size: 14px;
+    line-height: 20px;
+    color: rgba(0, 0, 0, 0.5) !important;
+    position: inherit;
+    font-weight: 400;
 }
 .profile-rest-img{
     position: absolute;
