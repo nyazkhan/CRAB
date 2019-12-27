@@ -57,11 +57,21 @@
   </ion-grid>
 
 
-  <div class="panel-card fixed-back-white">
+  <div *ngIf="x!==2" (click)="x=2" class="panel-card cancel-transition fixed-back-white">
       <h5 class="panel-heading ion-margin-bottom">Cancel Invitation</h5>
       <p class="small-content ion-margin-bottom">Are you sure you want to cancel the invitation</p>
       <ion-button color="light" size="large" class="cancel-button ion-margin-top" expand="block">No, Please Don’t Cancel </ion-button>
     <ion-button color="danger" size="large" class="cancel-button ion-margin-top" expand="block" (click)="cancelInvitaion()">Yes, Cancel My Appointment </ion-button>
 
   </div>
+  <ion-grid  *ngIf="x==2"  class="fixed-bottom-button">
+    <ion-row>
+      <ion-col>
+        <ion-button (click)="x=1"  size="large" color="undefine" class="proceed-button cancel-button ion-margin-top" expand="block">CANCEL</ion-button>
+        <div class="crab-bootm-vector">
+          <img src="assets/CRAB_Vector.svg">
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

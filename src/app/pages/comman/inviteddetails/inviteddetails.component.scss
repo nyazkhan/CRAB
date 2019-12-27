@@ -113,4 +113,20 @@
     height: 7vh;
     font-size: 14px;
     letter-spacing: 0.2px;
+    background-color: #FFEDED;
+    color: #FF4949;
+
+}
+
+.fixed-bottom-button{
+    position: fixed;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    padding: 10px;
+}
+
+
+.cancel-transition{
+    transition: 1s ease;
 }
