@@ -109,6 +109,8 @@
     --border-radius: 5px;
     height: 7vh;
     font-size: 14px;
+    letter-spacing: 0.2px;
+
 }
 .fixed-bottom-button{
     position: fixed;
@@ -122,4 +124,11 @@
     color: #FF4949;
 }
 
+
+.fixed-bottom-Cancel-div {
+    position: fixed;
+    bottom: 0px;
+    left: 0;
+    right: 0;
+}
 

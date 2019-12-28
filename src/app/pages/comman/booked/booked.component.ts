@@ -23,13 +23,28 @@ export class BookedComponent implements OnInit {
     // this.bookingDetails = navParams.get('booking');
   }
 
-  cancelInvitaion() {
+  cancelInvitaion(id) {
+
+  }
+  acceptInvitaion(id) {
 
   }
   ngOnInit() { }
   back() {
     this.modalController.dismiss({
       dismissed: true
+    });
+  }
+
+
+  updateBookingStatus(ID, STATUS) {
+    this.loginservice.updateBookingStatus({
+      id: ID,
+      status: STATUS,
+    }).subscribe((res) => {
+      if (res.status === 200) {
+
+      }
     });
   }
 

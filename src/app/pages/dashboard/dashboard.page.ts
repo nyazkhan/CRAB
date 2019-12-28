@@ -41,7 +41,9 @@ export class DashboardPage implements OnInit {
         this.restaurantDetails = res.data;
       }
     });
+    this.loginservice.getAllBooking().subscribe((res) => {
 
+    });
   }
   async presentBloggerSearchModal() {
     const modal = await this.modalController.create({

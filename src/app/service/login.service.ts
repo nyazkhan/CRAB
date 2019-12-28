@@ -58,12 +58,27 @@ export class LoginService {
   }
 
 
-  // list of invitation
-  listOfInvitation(obj) {
-    return this.Http.post('search/all', obj);
+  getAllBooking() {
+    return this.Http.get('connect/booking/get');
+  }
+
+  getAllBookingByStatus(statusId) {
+    return this.Http.get('connect/booking/get/' + statusId);
+
 
   }
 
+  getAllInvitaion() {
+    return this.Http.get('connect/invitation/get');
+
+
+  }
+
+  getAllInvitaionByStatus(statusId) {
+    return this.Http.get('connect/invitation/get/' + statusId);
+
+
+  }
 
   // Invitation
 
@@ -73,18 +88,20 @@ export class LoginService {
   }
 
 
-  // list of booking
-  listOfBooking(obj) {
-    return this.Http.post('search/all', obj);
-
-  }
   // bokking
   getBookingDetails(obj) {
     return this.Http.post('search/all', obj);
 
   }
 
+  updateBookingStatus(statusObject) {
+    return this.Http.post('connect/booking/updateStatus', statusObject);
 
+  }
+  updateInvitationStatus(statusObject) {
+    return this.Http.post('connect/booking/updateStatus', statusObject);
+
+  }
 
 
 

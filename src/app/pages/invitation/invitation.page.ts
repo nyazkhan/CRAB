@@ -14,7 +14,11 @@ export class InvitationPage implements OnInit {
 
   invitaionList: any = [];
   filterBy = 'all';
+  invitaionListCopy: any = [];
 
+
+  pastInvitation: any = [];
+  upcomingInvitation: any = [];
   constructor(
     private loginservice: LoginService,
     private storageService: StorageService,
@@ -25,10 +29,19 @@ export class InvitationPage implements OnInit {
   ngOnInit() {
   }
 
-  getListOfInvitaion() {
-    this.loginservice.listOfInvitation({}).subscribe((res) => {
+  getInvitationList() {
+    this.loginservice.getAllInvitaion().subscribe((res) => {
       if (res.status === 200) {
         this.invitaionList = res.data;
+      }
+    });
+  }
+
+  getInvitationListBystatus(statusId) {
+    this.loginservice.getAllInvitaionByStatus(statusId).subscribe((res) => {
+      if (res.status === 200) {
+        this.invitaionList = res.data;
+
       }
     });
   }
@@ -43,7 +56,7 @@ export class InvitationPage implements OnInit {
       component: InviteddetailsComponent,
       componentProps: {
 
-        // invitation: this.invitaionList[i],
+        // invitation: this.invitaionListCopy[i],
       }
     });
     return await modal.present();
@@ -54,14 +67,33 @@ export class InvitationPage implements OnInit {
     this.filterBy = val;
     if (this.filterBy === 'all') {
 
+      this.invitaionListCopy = this.invitaionList;
 
     }
     if (this.filterBy === 'next') {
 
-
+      this.filterInvitationByCurrentDate('next');
     }
     if (this.filterBy === 'past') {
 
+      this.filterInvitationByCurrentDate('past');
+
+    }
+  }
+
+
+  filterInvitationByCurrentDate(val) {
+    this.invitaionListCopy = this.invitaionList;
+    if (val === 'past') {
+      this.pastInvitation = this.invitaionListCopy.filter((el) => {
+        return el.date < new Date();
+      });
+
+    }
+    if (val === 'next') {
+      this.upcomingInvitation = this.invitaionListCopy.filter((el) => {
+        return el.date >= new Date();
+      });
 
     }
   }

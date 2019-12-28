@@ -12,12 +12,18 @@ import { BookedComponent } from '../comman/booked/booked.component';
 })
 export class BookPage implements OnInit {
   filterBy = 'all';
+
   bookingList: any = [];
+  bookingListCopy: any = [];
+
+
+  pastBooking: any = [];
+  upcomingBooking: any = [];
   constructor(
-    private loginservice: LoginService,
-    private storageService: StorageService,
-    @Inject(Router) private router: Router,
     public modalController: ModalController,
+    // navParams: NavParams,
+    @Inject(Router) private router: Router,
+    private loginservice: LoginService,
   ) { }
 
   ngOnInit() {
@@ -25,12 +31,40 @@ export class BookPage implements OnInit {
 
 
 
-  getListOfBooking() {
-    this.loginservice.listOfBooking({}).subscribe((res) => {
+  getBookingList() {
+    this.loginservice.getAllBooking().subscribe((res) => {
       if (res.status === 200) {
         this.bookingList = res.data;
       }
     });
+  }
+
+  getBookingListBystatus(statusId) {
+    this.loginservice.getAllBookingByStatus(statusId).subscribe((res) => {
+      if (res.status === 200) {
+        this.bookingList = res.data;
+
+      }
+    });
+  }
+
+
+
+
+  filterBookingByCurrentDate(val) {
+    this.bookingListCopy = this.bookingList;
+    if (val === 'past') {
+      this.pastBooking = this.bookingListCopy.filter((el) => {
+        return el.date < new Date();
+      });
+
+    }
+    if (val === 'next') {
+      this.upcomingBooking = this.bookingListCopy.filter((el) => {
+        return el.date >= new Date();
+      });
+
+    }
   }
 
   goToDashboard() {
@@ -52,15 +86,15 @@ export class BookPage implements OnInit {
   filterResponse(val) {
     this.filterBy = val;
     if (this.filterBy === 'all') {
-
+      this.bookingListCopy = this.bookingList;
 
     }
     if (this.filterBy === 'next') {
 
-
+      this.filterBookingByCurrentDate('next');
     }
     if (this.filterBy === 'past') {
-
+      this.filterBookingByCurrentDate('past');
 
     }
   }

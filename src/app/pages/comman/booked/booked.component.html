@@ -1,4 +1,3 @@
-
 <ion-content>
   <ion-grid class="section-pedding">
     <ion-row>
@@ -34,12 +33,26 @@
     </ion-row>
   </ion-grid>
 
-  
 
-  <ion-grid class="fixed-bottom-button">
+
+  <div *ngIf="x!==2" (click)="x=2" class="panel-card fixed-bottom-Cancel-div cancel-transition fixed-back-white">
+    <h5 class="panel-heading ion-margin-bottom">Cancel Invitation</h5>
+    <p class="small-content ion-margin-bottom">Are you sure you want to cancel the invitation</p>
+    <ion-button color="light" size="large" (click)="x=2"  class="cancel-button proceed-button ion-margin-top" expand="block">No, Please
+      Don’t Cancel </ion-button>
+    <ion-button color="danger" (click)="cancelInvitaion(2)" size="large" class="cancel-button proceed-button ion-margin-top" expand="block"
+      (click)="cancelInvitaion()">Yes, Cancel My Appointment </ion-button>
+
+  </div>
+  <ion-grid *ngIf="x==2"  class="fixed-bottom-button">
     <ion-row>
       <ion-col>
-        <ion-button size="large" class="proceed-button cancel-button ion-margin-top" expand="block">CANCEL</ion-button>
+        <ion-button (click)="x=1" size="large" color="undefine"  class="proceed-button cancel-button ion-margin-top"
+          expand="block">CANCEL</ion-button>  
+          <ion-button (click)="x=1" size="large" color="primary"  class="proceed-button  ion-margin-top"
+          expand="block">ACCEPT BOOKING</ion-button>
+          <ion-button (click)="x=1" size="large" color="danger"  class="proceed-button  ion-margin-top"
+          expand="block">REJECT BOOKING</ion-button>
         <div class="crab-bootm-vector">
           <img src="assets/CRAB_Vector.svg">
         </div>

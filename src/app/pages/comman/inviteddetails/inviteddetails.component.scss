@@ -130,3 +130,10 @@
 .cancel-transition{
     transition: 1s ease;
 }
+
+.fixed-bottom-Cancel-div {
+    position: fixed;
+    bottom: 0px;
+    left: 0;
+    right: 0;
+}
