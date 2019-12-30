@@ -46,7 +46,15 @@ export class SendInvitationComponent implements OnInit {
   }
 
   sendInvitation() {
+    this.loginservice.sendInvitaionToBlogger({
+      toDate : '2020-01-01',
+      onTime : '13:32',
+      to : 56
+    }).subscribe((res) => {
+      if (res.status === 200) {
 
+      }
+    });
   }
   async invitationDetailModel() {
     const modal = await this.modalController.create({

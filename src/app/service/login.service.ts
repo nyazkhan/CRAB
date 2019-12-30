@@ -104,6 +104,9 @@ export class LoginService {
   }
 
 
+  sendInvitaionToBlogger(invitaionDetails) {
+    return this.Http.post('connect/invitation/save', invitaionDetails);
 
+  }
 
 }

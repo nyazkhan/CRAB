@@ -43,7 +43,7 @@
           <ion-row>
             <ion-col>
               <ion-text class="block btn-color"><span class="ion-float-left">+91 {{phoneNo}}</span>
-                <span style="float: right;" class="link-btn" (click)="previous()">Change</span></ion-text>
+                <span style="float: right;" class="link-btn" (click)="previous(); seconds = 60 ">Change</span></ion-text>
             </ion-col>
           </ion-row>
 
@@ -73,7 +73,7 @@
             <ion-input class="opacity-1" [(ngModel)]="otp" name="otp" placeholder="- - - - - -"></ion-input>
           </ion-item>
 
-          <h6 *ngIf="seconds !=0" id="timer" class=" text1 ion-text-start ">OTP will expire in 1:00 seconds</h6>
+          <h6 *ngIf="seconds !=0" id="timer" class=" text1 ion-text-start ">OTP will expire in {{seconds.toString()}} seconds</h6>
           <!-- <h6 *ngIf="seconds ==0" (click)="resendOTP()" class=" ion-text-start ">Resend OTP</h6> -->
 
           <ion-row>
