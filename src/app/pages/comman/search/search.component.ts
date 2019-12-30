@@ -60,7 +60,9 @@ export class SearchComponent implements OnInit {
       component: BloggerDetailsComponent,
       componentProps: {
 
-        mobileNo: mobile,
+        userDetails: {
+          isData: false, data: {}, mobileNo: mobile,
+        },
       }
     });
     return await modal.present();

@@ -8,7 +8,7 @@
           </h5>
         </div>
 
-  
+
 
         <ion-list class="set-height">
           <ion-item color="none" lines="none" class="ion-margin-bottom">
@@ -17,30 +17,52 @@
             </div>
             <ion-label>
               <h4 class="blo-name" *ngIf="bloggerDetailsCopy.name">{{bloggerDetailsCopy.name}}</h4>
-  
+
               <p class="small-content" *ngIf="bloggerDetailsCopy.address">{{bloggerDetailsCopy.address?.locality}},
                 {{bloggerDetailsCopy.address?.city}}<br>
                 40.2+ Followers</p>
             </ion-label>
           </ion-item>
 
-         
+
         </ion-list>
 
-    
 
-        <ion-button (click)="addBloggerModel()" class="ion-text-center add-btn" color="none">+ Add more</ion-button>
+
+        <!-- <ion-button (click)="addBloggerModel()" class="ion-text-center add-btn" color="none">+ Add more</ion-button> -->
       </ion-col>
     </ion-row>
   </ion-grid>
 
   <div class="panel-card back-fixed-orange">
-    <h5 class="panel-heading dark ion-margin-bottom">Mon 09 Dec, 2019</h5>
-    <h5 class="panel-heading dark ion-margin-bottom">04:30 PM</h5>
+
+
+    <ion-item line="none">
+      <ion-label class="panel-heading dark" position="floating">DATE</ion-label>
+      <ion-datetime [min]="currentDate" [max]="maxDate" displayFormat="DD MMM YYYY"
+        [(ngModel)]="invitaionDetails.toDate"></ion-datetime>
+    </ion-item>
+
+    <ion-item line="none">
+      <ion-label class="panel-heading dark" position="floating">TIME</ion-label>
+      <ion-datetime displayFormat="h:mm A" [(ngModel)]="invitaionDetails.onTime" minuteValues="0,30"></ion-datetime>
+
+    </ion-item>
+
+
+    <!-- <h5 class="panel-heading dark ion-margin-bottom">
+      <ion-datetime [min]="currentDate" [max]="maxDate" displayFormat="DD MMM YYYY"
+        [(ngModel)]="invitaionDetails.toDate">
+      </ion-datetime>
+    </h5> -->
+    <!-- <h5 class="panel-heading dark ion-margin-bottom">
+      <ion-datetime displayFormat="h:mm A" [(ngModel)]="currentTime" minuteValues="0,30"></ion-datetime>
+    </h5> -->
   </div>
 
   <div class="panel-card fixed-back-white">
-    <ion-button size="large" class="proceed-button ion-margin-top" (click)="sendInvitation()" expand="block">SEND INVITATION </ion-button>
+    <ion-button size="large" class="proceed-button ion-margin-top" (click)="sendInvitation()" expand="block">SEND
+      INVITATION </ion-button>
     <div class="crab-bootm-vector">
       <img src="assets/CRAB_Vector.svg">
     </div>

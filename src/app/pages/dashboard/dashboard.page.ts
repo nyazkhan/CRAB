@@ -9,6 +9,7 @@ import { BloggerDetailsComponent } from '../comman/blogger-details/blogger-detai
 import { BookedComponent } from '../comman/booked/booked.component';
 import { InviteddetailsComponent } from '../comman/inviteddetails/inviteddetails.component';
 import { SendInvitationComponent } from '../comman/sendInvitation/sendInvitation.component';
+import { AlertService } from 'src/app/service/alert.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -31,6 +32,7 @@ export class DashboardPage implements OnInit {
     private storageService: StorageService,
     @Inject(Router) private router: Router,
     public modalController: ModalController,
+    @Inject(AlertService) private alertService: AlertService,
 
   ) {
 
@@ -70,7 +72,9 @@ export class DashboardPage implements OnInit {
       component: BloggerDetailsComponent,
       componentProps: {
 
-        mobileNo: mobile,
+        userDetails: {
+          isData: false, data: {}, mobileNo: mobile,
+        },
       }
     });
     return await modal.present();
@@ -78,7 +82,7 @@ export class DashboardPage implements OnInit {
 
 
   goToAppointment(val) {
-    if (val === 'invitaion') {
+    if (val === 'invitation') {
       this.presentInvitationDetailModal();
     }
 

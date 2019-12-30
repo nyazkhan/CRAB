@@ -31,22 +31,22 @@
       <ion-col>
         <h5 class="title-heading">Upcoming Appointments</h5>
         <div class="slider-appointment">
-
-          <div (click)="goToAppointment('invitaion')" class="colorfull-card ion-margin-bottom card-blue">
+          <!-- (click)="goToAppointment('invitation')"  -->
+          <div routerLink="/invitation" class="colorfull-card ion-margin-bottom card-blue">
             <h6 class="ion-text-start sllide-box-heading white">Today</h6>
             <p class="small-content white mb-30">04:00 pm</p>
             <p class="ico-with-title white"><img src="assets/pass-white.svg">&nbsp; Invitation </p>
             <p class="ico-with-title white"><img src="assets/user-white.svg">&nbsp; Alisha Malhotra </p>
           </div>
-
-          <div (click)="goToAppointment('booked')" class="colorfull-card ion-margin-bottom card-pink">
+          <!-- (click)="goToAppointment('booked')" -->
+          <div routerLink="/book" class="colorfull-card ion-margin-bottom card-pink">
             <h6 class="ion-text-start sllide-box-heading white">02 Dec</h6>
             <p class="small-content white mb-30">02:30 pm</p>
             <p class="ico-with-title white"><img src="assets/white-calendar.svg">&nbsp; Booking </p>
             <p class="ico-with-title white"><img src="assets/user-white.svg">&nbsp; 6 people </p>
           </div>
-
-          <div (click)="goToAppointment('invitaion')" class="colorfull-card ion-margin-bottom card-blue">
+          <!-- (click)="goToAppointment('invitation')" -->
+          <div  routerLink="/invitation" class="colorfull-card ion-margin-bottom card-blue">
             <h6 class="ion-text-start sllide-box-heading white">Today</h6>
             <p class="small-content white mb-30">04:00 pm</p>
             <p class="ico-with-title white"><img src="assets/pass-white.svg">&nbsp; Invitation </p>

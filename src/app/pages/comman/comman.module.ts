@@ -38,7 +38,7 @@ import { AddBloggerComponent } from './add-blogger/add-blogger.component';
     ProfileListComponent,
     BookedComponent,
     InviteddetailsComponent],
-  entryComponents: [ReviewDetailsComponent, AddBloggerComponent, SendInvitationComponent],
+  entryComponents: [ReviewDetailsComponent, BloggerDetailsComponent, AddBloggerComponent, SendInvitationComponent],
 
 })
 export class CommanModule { }

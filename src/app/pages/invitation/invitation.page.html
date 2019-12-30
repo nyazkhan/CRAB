@@ -15,15 +15,15 @@
        
         </div>
 
-        <ion-item class="ion-margin-bottom" (click)="presentInvitationModal(i)">
+        <ion-item class="ion-margin-bottom" *ngFor=" let invite of invitaionList; let i =index" (click)="presentInvitationModal(i)">
           <ion-label>
-            <h5 class="invi-date danger">Today, 04:30 PM</h5>
-            <p class="small-content">Invitation | Alisha Malhotra</p>
-            <span class="right-table-part"> Table for 2 </span>
+            <h5   [ngClass]="((invite.status ==3)|| (invite.status ==2))?'invi-date danger':'invi-date primary'">{{invite.toDate | date:'EEE,  d MMM ,  y'}} </h5>
+            <p class="small-content">Invitation | {{invite.userDetails.name}}</p>
+            <span class="right-table-part"> Table for 1 </span>
           </ion-label>
         </ion-item>
 
-        <ion-item class="ion-margin-bottom">
+        <!-- <ion-item class="ion-margin-bottom">
           <ion-label>
             <h5 class="invi-date primary">02 Dec, 02:30 PM</h5>
             <p class="small-content">Invitation | Shubham Yadav + 5 more</p>
@@ -53,7 +53,7 @@
                   <p class="small-content">Invitation | Alisha Malhotra</p>
                   <span class="right-table-part"> Table for 6 </span>
                 </ion-label>
-              </ion-item>
+              </ion-item> -->
 
       </ion-col>
     </ion-row>

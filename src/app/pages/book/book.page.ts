@@ -27,6 +27,7 @@ export class BookPage implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.getBookingList();
   }
 
 
@@ -35,6 +36,9 @@ export class BookPage implements OnInit {
     this.loginservice.getAllBooking().subscribe((res) => {
       if (res.status === 200) {
         this.bookingList = res.data;
+        this.bookingList[0].toDate = new Date(this.bookingList[0].toDate);
+        // this.bookingList[0].onTime = this.bookingList[0].onTime.getTime();
+
       }
     });
   }
@@ -76,7 +80,7 @@ export class BookPage implements OnInit {
       component: BookedComponent,
       componentProps: {
 
-        // restaurantDetails: this.bookingList,
+        booking: this.bookingList[i],
       }
     });
     return await modal.present();

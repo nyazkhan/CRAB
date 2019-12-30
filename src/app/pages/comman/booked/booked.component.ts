@@ -1,6 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Inject } from '@angular/core';
 import { ModalController, NavParams } from '@ionic/angular';
 import { LoginService } from 'src/app/service/login.service';
+import { AlertService } from 'src/app/service/alert.service';
+import { BloggerDetailsComponent } from '../blogger-details/blogger-details.component';
 
 @Component({
   selector: 'app-booked',
@@ -12,22 +14,49 @@ export class BookedComponent implements OnInit {
   // Data passed in by componentProps
   @Input() booking: object;
   bookingDetails: any = {};
+  cancelButtonClick = false;
   constructor(
     navParams: NavParams,
     public modalController: ModalController,
     private loginservice: LoginService,
+    @Inject(AlertService) private alertService: AlertService,
 
 
   ) {
 
-    // this.bookingDetails = navParams.get('booking');
+    this.bookingDetails = navParams.get('booking');
   }
 
-  cancelInvitaion(id) {
-
+  // PENDING(1, "Pending"),
+  // HOLD(2, "Hold"),
+  // REJECTED(3, "Reject"),
+  // REVERTED(4, "Reverted"),
+  // APPROVED(5, "Approved");
+  cancelBooking() {
+    this.cancelButtonClick = false;
+    this.loginservice.updateBookingStatus({
+      id: this.bookingDetails.id,
+      status: 3
+    }).subscribe((res) => {
+      if (res.status === 200) {
+        this.alertService.presentToast('Reject Booking Request Successfuly' , '#ff0000');
+        console.log(res.data);
+        this.bookingDetails.status = 3;
+      }
+    });
   }
-  acceptInvitaion(id) {
+  acceptBooking() {
+    this.loginservice.updateBookingStatus({
+      id: this.bookingDetails.id,
+      status: 5
+    }).subscribe((res) => {
+      if (res.status === 200) {
+        console.log(res.data);
+        this.bookingDetails.status = 3;
+        this.alertService.presentToast('Accept Booking Request Successfuly');
 
+      }
+    });
   }
   ngOnInit() { }
   back() {
@@ -35,17 +64,21 @@ export class BookedComponent implements OnInit {
       dismissed: true
     });
   }
+  async openBloggerDetailsModel() {
+    const modal = await this.modalController.create({
+      component: BloggerDetailsComponent,
+      componentProps: {
 
+        userDetails: {
+          isData: true, data: this.bookingDetails.userDetails, mobileNo: null,
+        },
 
-  updateBookingStatus(ID, STATUS) {
-    this.loginservice.updateBookingStatus({
-      id: ID,
-      status: STATUS,
-    }).subscribe((res) => {
-      if (res.status === 200) {
-
+        // bloggerDetails: this.bloggerDetails,
       }
     });
+    return await modal.present();
   }
+
+
 
 }

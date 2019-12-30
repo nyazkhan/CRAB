@@ -25,11 +25,12 @@ export class AlertService {
   }
 
 
-  async presentToast(msg) {
+  async presentToast(msg , colour?) {
     const toast = await this.toastController.create({
       message: msg,
       duration: 2000,
       position: 'top',
+      color: colour || '#28e070'
 
     });
     toast.present();

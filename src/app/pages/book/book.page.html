@@ -14,15 +14,16 @@
           <h6 [ngClass]="{'active': (filterBy ==='past')}" (click)="filterResponse('past')">Past</h6>
         </div>
 
-        <ion-item class="ion-margin-bottom" (click)="presentBookingModal()">
+        <ion-item *ngFor="let book of bookingList; let i = index" class="ion-margin-bottom"
+          (click)="presentBookingModal(i)">
           <ion-label>
-            <h5 class="invi-date danger">Today, 04:30 PM</h5>
-            <p class="small-content">Invitation | Alisha Malhotra</p>
-            <span class="right-table-part"> Table for 2 </span>
+            <h5   [ngClass]="((book.status ==3)|| (book.status ==2))?'invi-date danger':'invi-date primary'">{{book.toDate | date:'EEE,  d MMM ,  y'}}</h5>
+            <p class="small-content">Booking | {{book.userDetails.name}} </p>
+            <span class="right-table-part"> Table for {{book.persons}} </span>
           </ion-label>
         </ion-item>
 
-        <ion-item class="ion-margin-bottom">
+        <!-- <ion-item class="ion-margin-bottom">
           <ion-label>
             <h5 class="invi-date primary">02 Dec, 02:30 PM</h5>
             <p class="small-content">Invitation | Shubham Yadav + 5 more</p>
@@ -52,7 +53,7 @@
             <p class="small-content">Invitation | Alisha Malhotra</p>
             <span class="right-table-part"> Table for 6 </span>
           </ion-label>
-        </ion-item>
+        </ion-item> -->
 
       </ion-col>
     </ion-row>

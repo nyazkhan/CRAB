@@ -99,7 +99,7 @@ export class LoginService {
 
   }
   updateInvitationStatus(statusObject) {
-    return this.Http.post('connect/booking/updateStatus', statusObject);
+    return this.Http.post('connect/invitation/updateStatus', statusObject);
 
   }
 

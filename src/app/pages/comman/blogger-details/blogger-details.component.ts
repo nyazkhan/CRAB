@@ -11,7 +11,7 @@ import { SendInvitationComponent } from '../sendInvitation/sendInvitation.compon
   styleUrls: ['./blogger-details.component.scss'],
 })
 export class BloggerDetailsComponent implements OnInit {
-  @Input() mobileNo: object;
+  @Input() userDetails: object;
   @ViewChild('slideWithNav', { static: false }) slideWithNav: IonSlides;
   sliderOne: any;
   slideOptsOne = {
@@ -21,7 +21,7 @@ export class BloggerDetailsComponent implements OnInit {
   };
 
 
-
+  inputDetails: any = {};
 
 
   bloggerDetails: any = {};
@@ -44,9 +44,21 @@ export class BloggerDetailsComponent implements OnInit {
 
 
   ) {
-    this.restauratMoblieNo = navParams.get('mobileNo');
+    this.inputDetails = navParams.get('userDetails');
 
-    this.getBloggerDetails();
+    if (this.inputDetails.isData) {
+      this.bloggerDetails = this.inputDetails.data;
+
+    } else {
+      // if (this.inputDetails.mobileNo) {
+
+        this.restauratMoblieNo = this.inputDetails.mobileNo;
+        this.getBloggerDetails();
+
+      // }
+
+
+    }
 
 
   }
@@ -64,6 +76,9 @@ export class BloggerDetailsComponent implements OnInit {
     this.loginservice.getBlogerDetails(this.restauratMoblieNo).subscribe((res) => {
       if (res.status === 200) {
         this.bloggerDetails = res.data;
+      } else {
+        this.goBack();
+
       }
     });
   }

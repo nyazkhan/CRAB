@@ -27,12 +27,14 @@ export class InvitationPage implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.getInvitationList();
   }
 
   getInvitationList() {
     this.loginservice.getAllInvitaion().subscribe((res) => {
       if (res.status === 200) {
         this.invitaionList = res.data;
+        this.invitaionList[0].toDate = new Date(this.invitaionList[0].toDate);
       }
     });
   }
@@ -56,7 +58,7 @@ export class InvitationPage implements OnInit {
       component: InviteddetailsComponent,
       componentProps: {
 
-        // invitation: this.invitaionListCopy[i],
+        invitation: this.invitaionList[i],
       }
     });
     return await modal.present();
