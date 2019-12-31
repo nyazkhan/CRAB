@@ -10,8 +10,11 @@
 
         <div class="btn-list">
           <h6 [ngClass]="{'active': (filterBy ==='all')}" (click)="filterResponse('all')">All</h6>
-          <h6 [ngClass]="{'active': (filterBy ==='next')}" (click)="filterResponse('next')" class="active">Upcoming</h6>
-          <h6 [ngClass]="{'active': (filterBy ==='past')}" (click)="filterResponse('past')">Past</h6>
+          <h6 [ngClass]="{'active': (filterBy ==='next')}" (click)="filterResponse('next')" >Upcoming</h6>
+          <h6 [ngClass]="{'active': (filterBy ==='opend')}" (click)="filterResponse('opend')">Open</h6>
+          <!-- <h6 [ngClass]="{'active': (filterBy ==='past')}" (click)="filterResponse('past')">Closed</h6> -->
+          <h6 [ngClass]="{'active': (filterBy ==='cancel')}" (click)="filterResponse('cancel')">Cancel</h6>
+          <!-- <h6 [ngClass]="{'active': (filterBy ==='past')}" (click)="filterResponse('past')">Past</h6> -->
        
         </div>
 

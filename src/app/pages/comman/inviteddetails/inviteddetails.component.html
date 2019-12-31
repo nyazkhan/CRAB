@@ -16,12 +16,12 @@
           <img class="ico-small" src="assets/toy-orange.svg">&nbsp; Waiting for confirmation
         </p>
 
-        <p *ngIf="invitationDetails.status == 2" class="ico-list success">
+        <p *ngIf="invitationDetails.status == 2" class="ico-list danger">
 
           <img class="ico-small" src="assets/cross.svg">&nbsp; Invitation Canceled
         </p>
 
-        <p *ngIf="invitationDetails.status == 4" class="ico-list success">
+        <p *ngIf="invitationDetails.status == 4" class="ico-list danger">
 
           <img class="ico-small" src="assets/cross.svg">&nbsp; Invitation Cancel By Blogger
         </p>
@@ -44,7 +44,7 @@
             <h4 class="blo-name">{{invitationDetails.userDetails.name}} <span *ngIf="invitationDetails.status == 4"
                 class="ion-float-right danger">Rejected</span>
                 <span *ngIf="invitationDetails.status == 5"
-                class="ion-float-right danger">Accepted</span>
+                class="ion-float-right success">Accepted</span>
               </h4>
             <p class="small-content">{{invitationDetails.userDetails.address?.locality}},
               {{invitationDetails.userDetails.address?.city}}<br>
@@ -92,7 +92,7 @@
   <ion-grid *ngIf="!cancelButtonClick" class="fixed-bottom-button">
     <ion-row>
       <ion-col>
-        <ion-button *ngIf="invitationDetails.status==1" (click)="cancelButtonClick = true" size="large" color="undefine"
+        <ion-button *ngIf="((invitationDetails.status==1)||(invitationDetails.status==5))" (click)="cancelButtonClick = true" size="large" color="undefine"
           class="proceed-button cancel-button ion-margin-top" expand="block">CANCEL</ion-button>
 
         <div class="crab-bootm-vector">

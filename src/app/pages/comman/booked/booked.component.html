@@ -18,12 +18,12 @@
 
         <p *ngIf="bookingDetails.status == 2" class="ico-list success">
 
-          <img class="ico-small" src="assets/cross.svg">&nbsp; Booking Canceled
+          <img class="ico-small" src="assets/cross.svg">&nbsp; Booking Canceled By Blogger
         </p>
 
-        <p *ngIf="bookingDetails.status == 4" class="ico-list success">
+        <p *ngIf="bookingDetails.status == 4" class="ico-list danger">
 
-          <img class="ico-small" src="assets/cross.svg">&nbsp; Booking Cancel By Restaurant
+          <img class="ico-small" src="assets/cross.svg">&nbsp; Booking Cancel 
         </p>
         <p *ngIf="bookingDetails.status==5" class="ico-list success">
           <img class="ico-small" src="assets/tik.svg">&nbsp; Booking confirmed
@@ -65,7 +65,7 @@
   <ion-grid *ngIf="!cancelButtonClick" class="fixed-bottom-button">
     <ion-row>
       <ion-col>
-        <ion-button *ngIf="bookingDetails.status==1" (click)="cancelButtonClick = true" size="large" color="undefine"
+        <ion-button *ngIf="bookingDetails.status==5" (click)="cancelButtonClick = true" size="large" color="undefine"
           class="proceed-button cancel-button ion-margin-top" expand="block">CANCEL</ion-button>
         <ion-button *ngIf="bookingDetails.status==1" (click)="acceptBooking()" size="large" color="primary"
           class="proceed-button  ion-margin-top" expand="block">ACCEPT BOOKING</ion-button>

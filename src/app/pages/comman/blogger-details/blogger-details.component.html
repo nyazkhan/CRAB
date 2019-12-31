@@ -14,7 +14,12 @@
         {{bloggerDetails.address?.city}}</p>
 
       <div class="socia-part ion-margin-top">
-        <p><img src="assets/facebook.svg"><br> 40.2k </p>
+        <p><a href="https://www.facebook.com/skuyadav">
+
+            <img src="assets/facebook.svg">
+          </a>
+
+          <br> 40.2k </p>
         <p><img src="assets/instagram.svg"><br> 20.1k </p>
         <p><img src="assets/Twitter.svg"><br> 1200 </p>
         <p><img src="assets/tripadvertising.svg"><br> 203 </p>
@@ -30,7 +35,7 @@
     <ion-item>
       <ion-label class="ion-padding-top ion-padding-bottom">
         <h5><img class="ico-small" src="assets/call_gray.svg">&nbsp;
-           {{bloggerDetails.maxDistance}} Km Radius</h5>
+          {{bloggerDetails.maxDistance}} Km Radius</h5>
       </ion-label>
     </ion-item>
 
@@ -73,7 +78,7 @@
     <ion-item>
       <ion-label class="ion-padding-top ion-padding-bottom">
         <h5><img class="ico-small" src="assets/star.svg">&nbsp;
-        
+
           <ng-container *ngIf="bloggerDetails.reviewType==1">
             Prefer Paid Review
           </ng-container>
@@ -82,7 +87,7 @@
           </ng-container>
           <ng-container *ngIf="bloggerDetails.reviewType==3">
 
-            Prefer Both  Paid & Unpaid Review
+            Prefer Both Paid & Unpaid Review
           </ng-container>
 
 
@@ -92,7 +97,8 @@
 
     <ion-item *ngIf="!(bloggerDetails.reviewType ==2)">
       <ion-label class="ion-padding-top ion-padding-bottom">
-        <h5><img class="ico-small" src="assets/dollar_gray.svg">&nbsp; {{bloggerDetails.reviewAmount}} INR Per Review</h5>
+        <h5><img class="ico-small" src="assets/dollar_gray.svg">&nbsp; {{bloggerDetails.reviewAmount}} INR Per Review
+        </h5>
       </ion-label>
     </ion-item>
 

@@ -36,12 +36,12 @@ export class BookedComponent implements OnInit {
     this.cancelButtonClick = false;
     this.loginservice.updateBookingStatus({
       id: this.bookingDetails.id,
-      status: 3
+      status: 4
     }).subscribe((res) => {
       if (res.status === 200) {
         this.alertService.presentToast('Reject Booking Request Successfuly' , '#ff0000');
         console.log(res.data);
-        this.bookingDetails.status = 3;
+        this.bookingDetails.status = 4;
       }
     });
   }
@@ -52,7 +52,7 @@ export class BookedComponent implements OnInit {
     }).subscribe((res) => {
       if (res.status === 200) {
         console.log(res.data);
-        this.bookingDetails.status = 3;
+        this.bookingDetails.status = 5;
         this.alertService.presentToast('Accept Booking Request Successfuly');
 
       }

@@ -36,9 +36,9 @@ export class BookPage implements OnInit {
     this.loginservice.getAllBooking().subscribe((res) => {
       if (res.status === 200) {
         this.bookingList = res.data;
-        this.bookingList[0].toDate = new Date(this.bookingList[0].toDate);
+        // this.bookingList[0].toDate = new Date(this.bookingList[0].toDate);
         // this.bookingList[0].onTime = this.bookingList[0].onTime.getTime();
-
+        this.bookingListCopy = res.data;
       }
     });
   }
@@ -56,19 +56,30 @@ export class BookPage implements OnInit {
 
 
   filterBookingByCurrentDate(val) {
-    this.bookingListCopy = this.bookingList;
-    if (val === 'past') {
-      this.pastBooking = this.bookingListCopy.filter((el) => {
-        return el.date < new Date();
+    // this.bookingListCopy = this.bookingList;
+    if (val === 'cancel') {
+      this.bookingList = this.bookingListCopy.filter((el) => {
+        console.log(el.status);
+
+        return (el.status === 4) || (el.status === 2);
       });
 
     }
     if (val === 'next') {
-      this.upcomingBooking = this.bookingListCopy.filter((el) => {
-        return el.date >= new Date();
+      this.bookingList = this.bookingListCopy.filter((el) => {
+        return (el.status === 5);
       });
 
     }
+
+    if (val === 'opend') {
+      this.bookingList = this.bookingListCopy.filter((el) => {
+        return (el.status === 1);
+      });
+
+    }
+    console.log(this.bookingList);
+
   }
 
   goToDashboard() {
@@ -90,18 +101,14 @@ export class BookPage implements OnInit {
   filterResponse(val) {
     this.filterBy = val;
     if (this.filterBy === 'all') {
-      this.bookingListCopy = this.bookingList;
-
+      this.bookingList = this.bookingListCopy;
+      return;
     }
-    if (this.filterBy === 'next') {
 
-      this.filterBookingByCurrentDate('next');
-    }
-    if (this.filterBy === 'past') {
-      this.filterBookingByCurrentDate('past');
+    this.filterBookingByCurrentDate(val);
 
-    }
   }
+
 
 
 }
