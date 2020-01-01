@@ -10,6 +10,7 @@ import { BookedComponent } from '../comman/booked/booked.component';
 import { InviteddetailsComponent } from '../comman/inviteddetails/inviteddetails.component';
 import { SendInvitationComponent } from '../comman/sendInvitation/sendInvitation.component';
 import { AlertService } from 'src/app/service/alert.service';
+import { BlockSlotsComponent } from '../comman/block-slots/block-slots.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -35,7 +36,9 @@ export class DashboardPage implements OnInit {
     @Inject(AlertService) private alertService: AlertService,
 
   ) {
+    this.loginservice.masterApi().subscribe((res) => {
 
+    });
 
     this.userPhoneNO = this.storageService.getData('mobile');
     this.loginservice.getUserDetails(this.userPhoneNO).subscribe((res) => {
@@ -49,7 +52,7 @@ export class DashboardPage implements OnInit {
   }
   async presentBloggerSearchModal() {
     const modal = await this.modalController.create({
-      component: SearchComponent,
+      component: BlockSlotsComponent,
       componentProps: {
 
         bloggerList: this.listOfBlogger,

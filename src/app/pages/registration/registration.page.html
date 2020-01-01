@@ -3103,53 +3103,53 @@
 
       <p class="bold ion-text-left">OTP recived on</p>
       <ion-grid>
-      <ion-row>
-        <ion-col>
-          <ion-text class="block btn-color"><span class="ion-float-left"> {{restaurantDetail.email}}</span>
-            <span style="float: right;" class="link-btn" (click)="editDetails(11)">Change</span></ion-text>
-        </ion-col>
-      </ion-row>
-      <br>
+        <ion-row>
+          <ion-col>
+            <ion-text class="block btn-color"><span class="ion-float-left"> {{restaurantDetail.email}}</span>
+              <span style="float: right;" class="link-btn" (click)="editDetails(11)">Change</span></ion-text>
+          </ion-col>
+        </ion-row>
+        <br>
 
-      <ion-row>
-        <ion-col class="email-varify">
-
-
-          <img src="assets/otp.svg" class="img-logo" style="width: auto;">
+        <ion-row>
+          <ion-col class="email-varify">
 
 
-
-        </ion-col>
-      </ion-row>
-</ion-grid>
-<ion-grid  class="letsgodown">
-
-    <ion-row >
-        <ion-col>
+            <img src="assets/otp.svg" class="img-logo" style="width: auto;">
 
 
 
-          <p class="ion-text-center bold">Please Verify Your Email ID</p>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-grid class="letsgodown">
 
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col>
-          <ion-item class="stylist-input" lines="none" color="undefine">
-            <ion-label *ngIf="seconds !=0" slot="end"  class="main-light-color">OTP</ion-label>
-            <h6 *ngIf="seconds ==0" slot="end" style="line-height: inherit;
+        <ion-row>
+          <ion-col>
+
+
+
+            <p class="ion-text-center bold">Please Verify Your Email ID</p>
+
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-item class="stylist-input" lines="none" color="undefine">
+              <ion-label *ngIf="seconds !=0" slot="end" class="main-light-color">OTP</ion-label>
+              <h6 *ngIf="seconds ==0" slot="end" style="line-height: inherit;
             margin: 0px;" (click)="resendEmailOTP()" class="main-light-color">Resend OTP</h6>
-            
-            <!-- <ion-label slot="end" style="font-size: 12px;">Code</ion-label> -->
-            <ion-input class="opacity-1" type="text" name="email" [(ngModel)]="restaurantDetail.code">
-            </ion-input>
-          </ion-item>
-        </ion-col>
-        
-      </ion-row>
-      <h6 *ngIf="seconds !=0" id="timer" class=" ion-text-start ">Resend OTP in 1:00 seconds</h6>
 
-    </ion-grid>
+              <!-- <ion-label slot="end" style="font-size: 12px;">Code</ion-label> -->
+              <ion-input class="opacity-1" type="text" name="email" [(ngModel)]="restaurantDetail.code">
+              </ion-input>
+            </ion-item>
+          </ion-col>
+
+        </ion-row>
+        <h6 *ngIf="seconds !=0" id="timer" class=" ion-text-start ">Resend OTP in 1:00 seconds</h6>
+
+      </ion-grid>
       <ion-row>
         <ion-col class="ion-padding">
           <div class="fixed-btn">
@@ -3160,6 +3160,76 @@
         </ion-col>
       </ion-row>
     </ion-slide>
+
+
+    <!-- social profile page -->
+
+    <!-- <ion-slide class="ion-padding " style=" vertical-align:top; overflow: scroll;">
+
+
+     
+
+       
+      
+      <ion-grid class="content-scroll">
+        
+        <ion-text color="none">
+          <h5 class="ion-text-start"> &nbsp; Social Profiles</h5>
+        </ion-text>
+        <ion-row>
+          <ion-col>
+            <img style="height: 30vh;" src="assets/Social_Profile.svg">
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+
+
+            <ion-item class="mb-6">
+              <ion-label class="lable-style" position="stacked">Website</ion-label>
+              <ion-input class="input-style" name="website" [(ngModel)]="restaurantDetail.websiteUrl" type="text"
+                placeholder="website url"></ion-input>
+            </ion-item>
+
+            <ion-item class="mb-6">
+              <ion-label class="lable-style" position="stacked">Facebook</ion-label>
+              <ion-input class="input-style" name="fbProfile" [(ngModel)]="restaurantDetail.fbProfile" type="text"
+                placeholder="fb Profile Username">
+              </ion-input>
+            </ion-item>
+
+            <ion-item class="mb-6">
+              <ion-label class="lable-style" position="stacked">Instagram</ion-label>
+              <ion-input class="input-style" name="instaProfile" [(ngModel)]="restaurantDetail.instaProfile" type="text"
+                placeholder="insta Profile Username"></ion-input>
+            </ion-item>
+
+            <ion-item class="mb-6">
+              <ion-label class="lable-style" position="stacked">Twitter</ion-label>
+              <ion-input class="input-style" name="twitterProfile" [(ngModel)]="restaurantDetail.twitterProfile"
+                type="text" placeholder="twitter Profile Username"></ion-input>
+            </ion-item>
+
+            <ion-item class="mb-6">
+              <ion-label class="lable-style" position="stacked">TripAdvisor</ion-label>
+              <ion-input class="input-style" name="tripAdProfile" [(ngModel)]="restaurantDetail.tripAdProfile"
+                type="text" placeholder="tripAd Profile Username"></ion-input>
+            </ion-item>
+
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-row>
+        <ion-col>
+          <div class="fixed-btn">
+            <ion-button expand="block" color='undefine' (click)="sendEmailVerifycatioLink()"
+              [disabled]="!isValidEmail()" class="full-with-btn-3  mt-20"> NEXT
+            </ion-button>
+
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-slide> -->
 
 
 

@@ -10,6 +10,7 @@ import { SendInvitationComponent } from './sendInvitation/sendInvitation.compone
 import { FormsModule } from '@angular/forms';
 import { InviteddetailsComponent } from './inviteddetails/inviteddetails.component';
 import { AddBloggerComponent } from './add-blogger/add-blogger.component';
+import { BlockSlotsComponent } from './block-slots/block-slots.component';
 
 
 
@@ -20,6 +21,7 @@ import { AddBloggerComponent } from './add-blogger/add-blogger.component';
     ReviewDetailsComponent,
     BloggerDetailsComponent,
     ProfileListComponent,
+    BlockSlotsComponent,
     BookedComponent,
     AddBloggerComponent,
     InviteddetailsComponent],
@@ -36,6 +38,7 @@ import { AddBloggerComponent } from './add-blogger/add-blogger.component';
     BloggerDetailsComponent,
     AddBloggerComponent,
     ProfileListComponent,
+    BlockSlotsComponent,
     BookedComponent,
     InviteddetailsComponent],
   entryComponents: [ReviewDetailsComponent, BloggerDetailsComponent, AddBloggerComponent, SendInvitationComponent],

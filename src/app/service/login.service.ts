@@ -38,7 +38,7 @@ export class LoginService {
   }
 
   masterApi() {
-    return this.Http.post('master/data/get', [1, 2, 3, 4]);
+    return this.Http.post('master/data/get', [1, 2, 3, 4, 7]);
 
   }
 

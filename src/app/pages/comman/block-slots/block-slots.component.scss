@@ -1,0 +1,73 @@
+.ico-box{
+    background: #1966FB;
+    border-radius: 6px;
+    border: 1px solid transparent;
+    padding: 5px;
+    color: #ffffff;
+    font-size: 15px;
+}
+.timing-btn {
+    font-size: 11px;
+    height: 30px;
+    width: 23%;
+    --border-width: 1px;
+}
+.title-heading{
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+.time-slot-box{
+    background: #FBFBFD;
+    border: 0.5px dashed #FFFFFF;
+    box-shadow: 5px 5px 10px rgba(55, 84, 170, 0.1), -5px -5px 10px #FFFFFF, inset 2px 2px 5px rgba(255, 255, 255, 0.5);
+    border-radius: 7px;
+    width: 100%;
+    padding: 7px 15px;
+    margin-top: 22px;
+}
+.list-title{
+    line-height: 27px;
+    font-weight: 400;
+    display: flex;
+}
+.small-content-title {
+    font-style: normal;
+    font-weight: normal !important;
+    font-size: 12px !important;
+    line-height: 20px !important;
+    font-weight: 400 !important;
+    display: flex;
+    align-items: center;
+    color: rgba(0, 0, 0, 0.4) !important;
+    margin-top: 5px !important;
+}
+.content-line{
+    line-height: 24px;
+    font-weight: 400;
+    font-size: 15px;
+    padding-left: 32px;
+}
+.shadow-box{
+    background: #FBFBFD;
+    border: 0.5px dashed #FFFFFF;
+    box-shadow: 5px 5px 10px rgba(55, 84, 170, 0.03), -5px -5px 10px #ffffff57, inset 2px 2px 5px rgba(255, 255, 255, 0.36);
+    border-radius: 10px;
+    padding: 20px;
+}
+.active-time-btn{
+    background: #4285f4;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.deactive-time-btn{
+    background: #e3ebf8;
+    color: #7a7a7d;
+    border-radius: 5px;
+}
+.proceed-button {
+    --border-radius: 5px;
+    font-size: 12px;
+    height: 6vh;
+}

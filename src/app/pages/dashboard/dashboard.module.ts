@@ -13,6 +13,7 @@ import { BloggerDetailsComponent } from '../comman/blogger-details/blogger-detai
 import { BookedComponent } from '../comman/booked/booked.component';
 import { InviteddetailsComponent } from '../comman/inviteddetails/inviteddetails.component';
 import { SendInvitationComponent } from '../comman/sendInvitation/sendInvitation.component';
+import { BlockSlotsComponent } from '../comman/block-slots/block-slots.component';
 
 const routes: Routes = [
   {
@@ -31,7 +32,7 @@ const routes: Routes = [
   ],
   declarations: [DashboardPage],
   entryComponents: [SearchComponent,
-    SendInvitationComponent, InviteddetailsComponent, BloggerDetailsComponent, ProfileListComponent, BookedComponent],
+    SendInvitationComponent, InviteddetailsComponent, BlockSlotsComponent, BloggerDetailsComponent, ProfileListComponent, BookedComponent],
 
 })
 export class DashboardPageModule { }

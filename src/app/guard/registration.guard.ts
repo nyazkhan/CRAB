@@ -18,11 +18,18 @@ export class RegistrationGuard implements CanActivate {
     state: RouterStateSnapshot
   ): Promise<boolean> {
     const stage = this.storageService.getData('stage');
+    console.log(stage + '    567');
 
-    if ((stage < 17) && (3 > stage)) {
+    if ((stage < 17) && (3 < stage)) {
+      console.log(stage + '      [[[[[[[');
+
       return true;
     } else {
+
+      console.log(stage + '  el    [[[[[[[');
+
       if (stage >= 17) {
+        console.log(stage + '  if    [[[[[[[');
 
         this.router.navigateByUrl('/dashboard');
       }
