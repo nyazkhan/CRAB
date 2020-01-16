@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { NavParams, ModalController } from '@ionic/angular';
+import { StorageService } from 'src/app/service/storage.service';
 
 @Component({
   selector: 'app-profile-list',
@@ -14,6 +15,8 @@ export class ProfileListComponent implements OnInit {
     @Inject(Router) private router: Router,
     navParams: NavParams,
     public modalController: ModalController,
+    @Inject(StorageService) private storageService: StorageService
+
   ) {
     this.userDetailsCopy = navParams.get('restaurantDetails');
 
@@ -33,7 +36,9 @@ export class ProfileListComponent implements OnInit {
     });
   }
   LogOut() {
-
+    this.storageService.clearData();
+    this.dismiss();
+    this.router.navigateByUrl('/login');
   }
   // openParofileModel
 }

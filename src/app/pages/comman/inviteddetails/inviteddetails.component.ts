@@ -17,7 +17,9 @@ export class InviteddetailsComponent implements OnInit {
   invitationDetails: any = {};
 
   cancelButtonClick = false;
-
+  presentButtonClick = false;
+  absentButtonClick = false;
+  hideButtons = false;
   constructor(
     navParams: NavParams,
     public modalController: ModalController,
@@ -42,15 +44,48 @@ export class InviteddetailsComponent implements OnInit {
   ngOnInit() { }
 
   cancelInvitaion() {
+    this.hideButtons = false;
     this.cancelButtonClick = false;
     this.loginservice.updateInvitationStatus({
       id: this.invitationDetails.id,
-      status: 2
+      status: 17
     }).subscribe((res) => {
       if (res.status === 200) {
         console.log(res.data);
-        this.invitationDetails.status = 2;
+        this.invitationDetails.status = 17;
         this.alertService.presentToast('Cancel Invitation Successfuly', '#ff0000');
+
+      }
+    });
+  }
+
+  presentBlogger() {
+    this.hideButtons = false;
+    this.presentButtonClick = false;
+    this.loginservice.updateInvitationStatus({
+      id: this.invitationDetails.id,
+      status: 7
+    }).subscribe((res) => {
+      if (res.status === 200) {
+        console.log(res.data);
+        this.invitationDetails.status = 7;
+        this.alertService.presentToast('Status change Successfuly', '#ff0000');
+
+      }
+    });
+  }
+
+  absentBlogger() {
+    this.hideButtons = false;
+    this.absentButtonClick = false;
+    this.loginservice.updateInvitationStatus({
+      id: this.invitationDetails.id,
+      status: 8
+    }).subscribe((res) => {
+      if (res.status === 200) {
+        console.log(res.data);
+        this.invitationDetails.status = 8;
+        this.alertService.presentToast('Status change Successfuly', '#ff0000');
 
       }
     });
@@ -61,7 +96,20 @@ export class InviteddetailsComponent implements OnInit {
       dismissed: true
     });
   }
+  sendReviewRequest() {
+    this.loginservice.sendReviewRequest({
+      invitationId: this.invitationDetails.id,
+      to: this.invitationDetails.userDetails.id,
+      reviewType: this.invitationDetails.userDetails.reviewType
+    }).subscribe((res) => {
+      if (res.status === 200) {
+        console.log(res.data);
+        this.invitationDetails.status = 9;
+        this.alertService.presentToast('Review Request Sent Successfuly', '#ff0000');
 
+      }
+    });
+  }
 
 
 

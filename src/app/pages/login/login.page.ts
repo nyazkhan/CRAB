@@ -1,9 +1,11 @@
 import { Component, OnInit, Inject, ViewChild } from '@angular/core';
 import { AlertService } from 'src/app/service/alert.service';
 import { Router } from '@angular/router';
-import { IonSlides } from '@ionic/angular';
+import { IonSlides, ModalController } from '@ionic/angular';
 import { LoginService } from 'src/app/service/login.service';
 import { StorageService } from 'src/app/service/storage.service';
+import { AfterLoginComponent } from './after-login/after-login.component';
+import { OtpComponent } from './otp/otp.component';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +13,7 @@ import { StorageService } from 'src/app/service/storage.service';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-
+  loginPage = false;
   phoneNo = '';
   // public PASSWORD_REGEX = '[789][0-9]{9}';
 
@@ -24,11 +26,25 @@ export class LoginPage implements OnInit {
     @Inject(AlertService) private alertService: AlertService,
     @Inject(Router) private router: Router,
     private loginservice: LoginService,
-    // private storage: Storage,
+    public modalController: ModalController,
     private storageService: StorageService
 
   ) {
   }
+
+
+  async presentOTPModal() {
+    const modal = await this.modalController.create({
+      component: OtpComponent,
+      componentProps: {
+
+        phone: { phone: this.phoneNo }
+      }
+    });
+    return await modal.present();
+  }
+
+
 
   next() {
     this.slides.lockSwipes(false);
@@ -43,7 +59,9 @@ export class LoginPage implements OnInit {
   }
 
 
-
+  logOut() {
+    this.storageService.clearData();
+  }
 
   isValidPhone() {
     const reg = /^\d{10}$/;
@@ -71,8 +89,8 @@ export class LoginPage implements OnInit {
     this.alertService.showLoader('OTP sending..');
     this.loginservice.signUp(this.phoneNo).subscribe((res) => {
       if (res.status === 200) {
-        this.next();
-        this.resendOtp();
+        this.presentOTPModal();
+        // this.resendOtp();
       }
       this.alertService.closeLoader();
 
@@ -92,7 +110,7 @@ export class LoginPage implements OnInit {
         for (const key of Object.keys(res.data)) {
           this.storageService.storeData(key, res.data[key]);
         }
-        this.next();
+        this.loginPage = true;
       }
       this.alertService.closeLoader();
 
@@ -113,11 +131,14 @@ export class LoginPage implements OnInit {
   }
 
   ngOnInit() {
+    if (this.loginPage) {
+      this.slides.slideTo(0, 10);
 
+    }
   }
   goToMap() {
 
-    this.slides.slideTo(0, 1000);
+    this.slides.slideTo(0, 10);
     this.router.navigateByUrl('/map');
 
   }

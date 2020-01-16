@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, Inject } from '@angular/core';
 import { IonSlides, ActionSheetController } from '@ionic/angular';
 import { AlertService } from 'src/app/service/alert.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { LoginService } from 'src/app/service/login.service';
 import { Storage } from '@ionic/storage';
 import { CameraService } from 'src/app/service/camera.service';
@@ -189,6 +189,7 @@ export class RegistrationPage implements OnInit {
     @Inject(ActivatedRoute) private activatedRoute: ActivatedRoute,
     @Inject(AlertService) private alertService: AlertService,
     public actionSheetController: ActionSheetController,
+    @Inject(Router) private router: Router,
     private loginservice: LoginService,
     private storageService: StorageService,
     public cameraService: CameraService
@@ -275,6 +276,7 @@ export class RegistrationPage implements OnInit {
     if (id === 12) {
       this.resendOtp();
     }
+
     this.slides.slideTo(id, 10);
 
   }
@@ -562,7 +564,8 @@ export class RegistrationPage implements OnInit {
       weekOpenDays: this.restaurantDetail.weekOpenDays
     }).subscribe((res) => {
       if (res.status === 200) {
-        this.updateObject(res.data);
+        // this.updateObject(res.data);
+        this.next();
         this.selectedDayTime = days[0];
         // this.next();
       } else {
@@ -694,7 +697,26 @@ export class RegistrationPage implements OnInit {
 
   }
 
+  saveSocialProfile() {
+    this.loginservice.updateRestaurantDetails({
+      mobile: this.restaurantDetail.mobile,
+      stage: 17,
+      fbProfile: this.restaurantDetail.fbProfile,
+      instaProfile: this.restaurantDetail.instaProfile,
+      twitterProfile: this.restaurantDetail.twitterProfile,
+      tripAdProfile: this.restaurantDetail.tripAdProfile,
+      website: this.restaurantDetail.website
+    }).subscribe((res) => {
+      if (res.status === 200) {
+        this.updateObject(res.data);
+        // this.next();
+      } else {
+        this.alertService.showErrorAlert(res.message);
+      }
 
+    });
+
+  }
 
   async presentActionSheetForCamera(val) {
     const actionSheet = await this.actionSheetController.create({
@@ -751,5 +773,10 @@ export class RegistrationPage implements OnInit {
 
       }
     });
+  }
+
+
+  gotoDashboard() {
+    this.router.navigateByUrl('/dashboard');
   }
 }

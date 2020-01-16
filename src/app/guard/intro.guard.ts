@@ -15,6 +15,7 @@ export class IntroGuard implements CanActivate {
     console.log(isComplete);
 
     if (isComplete) {
+      console.log('naviget to login');
 
       this.router.navigateByUrl('/login');
     }

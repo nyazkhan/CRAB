@@ -38,7 +38,7 @@ export class LoginService {
   }
 
   masterApi() {
-    return this.Http.post('master/data/get', [1, 2, 3, 4, 7]);
+    return this.Http.post('master/data/get', [1, 2, 3, 4, 7, 8, 9, 10, 11, 12, 13]);
 
   }
 
@@ -106,6 +106,17 @@ export class LoginService {
 
   sendInvitaionToBlogger(invitaionDetails) {
     return this.Http.post('connect/invitation/save', invitaionDetails);
+
+  }
+
+  upcomingAppointment() {
+    return this.Http.post('connect/invitation/save', {});
+
+  }
+
+
+  sendReviewRequest(reviewDetails) {
+    return this.Http.post('connect/reviewRequest/save', reviewDetails);
 
   }
 

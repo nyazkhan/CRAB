@@ -9,24 +9,38 @@
         </div>
 
         <ion-item lines="none">
-          <ion-label class="time-heading">{{invitationDetails.toDate  | date:'  d MMM ,  y'}} , {{invitationDetails.onTime}}</ion-label>
+          <ion-label class="time-heading">{{invitationDetails.toDate  | date:'  d MMM ,  y'}} ,
+            {{invitationDetails.onTime}}</ion-label>
         </ion-item>
 
         <p *ngIf="invitationDetails.status == 1" class="ico-list orange">
           <img class="ico-small" src="assets/toy-orange.svg">&nbsp; Waiting for confirmation
         </p>
+        <p *ngIf="invitationDetails.status == 8" class="ico-list pink">
 
-        <p *ngIf="invitationDetails.status == 2" class="ico-list danger">
-
-          <img class="ico-small" src="assets/cross.svg">&nbsp; Invitation Canceled
+          <img class="ico-small" src="assets/cross.svg">&nbsp; Blogger Miss  the Invitation 
         </p>
+        <p *ngIf="invitationDetails.status == 7" class="ico-list primary">
 
-        <p *ngIf="invitationDetails.status == 4" class="ico-list danger">
-
-          <img class="ico-small" src="assets/cross.svg">&nbsp; Invitation Cancel By Blogger
+          <img class="ico-small" src="assets/tik.svg">&nbsp; Blogger Enjoy the Invitation 
         </p>
-        <p *ngIf="invitationDetails.status==5" class="ico-list success">
+        <p *ngIf="invitationDetails.status == 3" class="ico-list danger">
+
+          <img class="ico-small" src="assets/cross.svg">&nbsp; Invitation Canceled  By Blogger
+        </p>
+        <p *ngIf="invitationDetails.status == 16" class="ico-list danger">
+
+          <img class="ico-small" src="assets/cross.svg">&nbsp; Invitation Expired
+        </p>
+        <p *ngIf="invitationDetails.status == 17" class="ico-list danger">
+
+          <img class="ico-small" src="assets/cross.svg">&nbsp; Invitation Cancel
+        </p>
+        <p *ngIf="invitationDetails.status==10" class="ico-list success">
           <img class="ico-small" src="assets/tik.svg">&nbsp; Invitation confirmed
+        </p>
+        <p *ngIf="invitationDetails.status==9" class="ico-list success">
+          <img class="ico-small" src="assets/tik.svg">&nbsp; Review Request Sent
         </p>
 
         <p class="ico-list mb-25">
@@ -43,9 +57,8 @@
           <ion-label>
             <h4 class="blo-name">{{invitationDetails.userDetails.name}} <span *ngIf="invitationDetails.status == 4"
                 class="ion-float-right danger">Rejected</span>
-                <span *ngIf="invitationDetails.status == 5"
-                class="ion-float-right success">Accepted</span>
-              </h4>
+              <span *ngIf="invitationDetails.status == 5" class="ion-float-right success">Accepted</span>
+            </h4>
             <p class="small-content">{{invitationDetails.userDetails.address?.locality}},
               {{invitationDetails.userDetails.address?.city}}<br>
               40.2+ Followers</p>
@@ -79,7 +92,7 @@
   </ion-grid>
 
 
-  <div *ngIf="cancelButtonClick" class="panel-card fixed-bottom-Cancel-div cancel-transition fixed-back-white">
+  <!-- <div *ngIf="cancelButtonClick" class="panel-card fixed-bottom-Cancel-div cancel-transition fixed-back-white">
     <h5 class="panel-heading ion-margin-bottom">Cancel Invitation</h5>
     <p class="small-content ion-margin-bottom">Are you sure you want to cancel the invitation</p>
     <ion-button color="light" size="large" (click)="cancelButtonClick=false"
@@ -92,7 +105,8 @@
   <ion-grid *ngIf="!cancelButtonClick" class="fixed-bottom-button">
     <ion-row>
       <ion-col>
-        <ion-button *ngIf="((invitationDetails.status==1)||(invitationDetails.status==5))" (click)="cancelButtonClick = true" size="large" color="undefine"
+        <ion-button *ngIf="((invitationDetails.status==1)||(invitationDetails.status==10))"
+          (click)="cancelButtonClick = true" size="large" color="undefine"
           class="proceed-button cancel-button ion-margin-top" expand="block">CANCEL</ion-button>
 
         <div class="crab-bootm-vector">
@@ -100,5 +114,74 @@
         </div>
       </ion-col>
     </ion-row>
+  </ion-grid> -->
+
+  <!-- cancel -->
+
+  <div *ngIf="cancelButtonClick" class="panel-card fixed-bottom-Cancel-div cancel-transition fixed-back-white">
+    <h5 class="panel-heading ion-margin-bottom">Cancel Invitation</h5>
+    <p class="small-content ion-margin-bottom">Are you sure you want to cancel the invitation</p>
+    <ion-button color="light" size="large" (click)="cancelButtonClick=false ; hideButtons =false"
+      class="cancel-button proceed-button ion-margin-top" expand="block">No, Please
+      Don’t Cancel </ion-button>
+    <ion-button color="danger" (click)="cancelInvitaion();" size="large"
+      class="cancel-button proceed-button ion-margin-top" expand="block">Yes, Cancel My invitation </ion-button>
+
+  </div>
+
+  <!-- present -->
+
+  <div *ngIf="presentButtonClick" class="panel-card fixed-bottom-Cancel-div cancel-transition fixed-back-white">
+    <h5 class="panel-heading ion-margin-bottom">Blogger has Arrived</h5>
+    <p class="small-content ion-margin-bottom">Are you sure Blogger has Arrived</p>
+    <ion-button color="light" size="large" (click)="presentButtonClick = false ; hideButtons =false"
+      class="cancel-button proceed-button ion-margin-top" expand="block">No,
+      Don’t Arrived </ion-button>
+    <ion-button color="danger" (click)="presentBlogger();" size="large"
+      class="cancel-button proceed-button ion-margin-top" expand="block">Yes, Blogger has Arrived </ion-button>
+
+  </div>
+
+
+  <!-- absent -->
+
+  <div *ngIf="absentButtonClick" class="panel-card fixed-bottom-Cancel-div cancel-transition fixed-back-white">
+    <h5 class="panel-heading ion-margin-bottom">Blogger hasn't Arrived</h5>
+    <p class="small-content ion-margin-bottom">Are you sure Blogger is not comming</p>
+    <ion-button color="light" size="large" (click)="absentButtonClick=false ; hideButtons =false"
+      class="cancel-button proceed-button ion-margin-top" expand="block">No,
+      Don’t Sure </ion-button>
+    <ion-button color="danger" (click)="absentBlogger();" size="large"
+      class="cancel-button proceed-button ion-margin-top" expand="block">Yes, I'm Sure </ion-button>
+
+  </div>
+
+
+  <ion-grid *ngIf="!hideButtons" class="fixed-bottom-button">
+    <ion-row>
+      <ion-col>
+        <ion-button
+          *ngIf="(((invitationDetails.status==1)||(invitationDetails.status==10)) && !invitationDetails.isToday) "
+          (click)="cancelButtonClick = true ; hideButtons = true" size="large" color="undefine"
+          class="proceed-button cancel-button ion-margin-top" expand="block">CANCEL</ion-button>
+        <ion-button
+          *ngIf="((invitationDetails.isToday) && (invitationDetails.status !== 7)  && (invitationDetails.status == 10) && (invitationDetails.status !== 8))"
+          (click)="presentButtonClick = true ; hideButtons = true" size="large" color="undefine"
+          class="proceed-button cancel-button ion-margin-top" expand="block">Blogger Present</ion-button>
+        <ion-button
+          *ngIf="((invitationDetails.isToday) && (invitationDetails.status !== 7) && (invitationDetails.status == 10) && (invitationDetails.status !== 8))"
+          (click)="absentButtonClick = true ; hideButtons = true" size="large" color="undefine"
+          class="proceed-button cancel-button ion-margin-top" expand="block">Blogger Absent</ion-button>
+        <ion-button *ngIf="(invitationDetails.status == 7)" size="large" color="undefine"
+          class="proceed-button cancel-button ion-margin-top" (click)="sendReviewRequest()"  expand="block">Request a Review</ion-button>
+        <div class="crab-bootm-vector">
+          <img src="assets/CRAB_Vector.svg">
+        </div>
+      </ion-col>
+    </ion-row>
   </ion-grid>
+
+
+
+
 </ion-content>

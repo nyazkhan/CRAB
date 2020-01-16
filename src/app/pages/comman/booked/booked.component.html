@@ -15,18 +15,28 @@
         <p *ngIf="bookingDetails.status == 1" class="ico-list orange">
           <img class="ico-small" src="assets/toy-orange.svg">&nbsp; Waiting for confirmation
         </p>
+        <p *ngIf="bookingDetails.status == 8" class="ico-list pink">
 
-        <p *ngIf="bookingDetails.status == 2" class="ico-list success">
-
-          <img class="ico-small" src="assets/cross.svg">&nbsp; Booking Canceled By Blogger
+          <img class="ico-small" src="assets/cross.svg">&nbsp; Blogger Miss the booking
         </p>
+        <p *ngIf="bookingDetails.status == 7" class="ico-list primary">
 
-        <p *ngIf="bookingDetails.status == 4" class="ico-list danger">
-
-          <img class="ico-small" src="assets/cross.svg">&nbsp; Booking Cancel 
+          <img class="ico-small" src="assets/tik.svg">&nbsp; Blogger Enjoy the booking
         </p>
-        <p *ngIf="bookingDetails.status==5" class="ico-list success">
-          <img class="ico-small" src="assets/tik.svg">&nbsp; Booking confirmed
+        <p *ngIf="bookingDetails.status == 3" class="ico-list danger">
+
+          <img class="ico-small" src="assets/cross.svg">&nbsp; booking Canceled
+        </p>
+        <p *ngIf="bookingDetails.status == 16" class="ico-list danger">
+
+          <img class="ico-small" src="assets/cross.svg">&nbsp; booking Expired
+        </p>
+        <p *ngIf="bookingDetails.status == 17" class="ico-list danger">
+
+          <img class="ico-small" src="assets/cross.svg">&nbsp; booking Cancel By Blogger
+        </p>
+        <p *ngIf="bookingDetails.status==10" class="ico-list success">
+          <img class="ico-small" src="assets/tik.svg">&nbsp; booking confirmed
         </p>
 
 
@@ -65,7 +75,9 @@
   <ion-grid *ngIf="!cancelButtonClick" class="fixed-bottom-button">
     <ion-row>
       <ion-col>
-        <ion-button *ngIf="bookingDetails.status==5" (click)="cancelButtonClick = true" size="large" color="undefine"
+        <ion-button
+          *ngIf="(((bookingDetails.status==1)||(bookingDetails.status==10)) && !bookingDetails.isToday) "
+          (click)="cancelButtonClick = true" size="large" color="undefine"
           class="proceed-button cancel-button ion-margin-top" expand="block">CANCEL</ion-button>
         <ion-button *ngIf="bookingDetails.status==1" (click)="acceptBooking()" size="large" color="primary"
           class="proceed-button  ion-margin-top" expand="block">ACCEPT BOOKING</ion-button>

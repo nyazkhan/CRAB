@@ -52,7 +52,7 @@ export class DashboardPage implements OnInit {
   }
   async presentBloggerSearchModal() {
     const modal = await this.modalController.create({
-      component: BlockSlotsComponent,
+      component: SearchComponent,
       componentProps: {
 
         bloggerList: this.listOfBlogger,

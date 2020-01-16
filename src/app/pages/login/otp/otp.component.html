@@ -1,0 +1,62 @@
+<ion-content>
+  <ion-slide class="ion-padding " style=" vertical-align:top">
+    <ion-row class="login-screen">
+      <div class="ion-padding login-screen-content">
+        <p class="bold ion-text-left" (click)="logOut()">OTP recived on</p>
+        <ion-row>
+          <ion-col>
+            <ion-text class="block btn-color"><span class="ion-float-left">+91 {{phoneNo}}</span>
+              <span style="float: right;" class="link-btn" (click)="dismiss(); seconds = 60 ">Change</span></ion-text>
+          </ion-col>
+        </ion-row>
+
+        <br>
+        <br>
+
+
+        <ion-row>
+          <ion-col class="all-content-center">
+            <img src="assets/otp.svg" class="img-logo" style="height: 75%;">
+          </ion-col>
+        </ion-row>
+
+        <br>
+
+
+        <p class="ion-text-center bold">Enter 6 Digit OTP Received</p>
+
+        <br>
+
+
+
+        <ion-item class="stylist-input" lines="none" color="undefine">
+          <ion-label *ngIf="seconds !=0" slot="end"  class="main-light-color">OTP</ion-label>
+          <h6 *ngIf="seconds ==0" slot="end" style="line-height: inherit;
+          margin: 0px;" (click)="resendOTP()" class="main-light-color">Resend OTP</h6>
+          <ion-input class="opacity-1" [(ngModel)]="otp" name="otp" placeholder="- - - - - -"></ion-input>
+        </ion-item>
+
+        <h6 *ngIf="seconds !=0" id="timer" class=" text1 ion-text-start ">OTP will expire in {{seconds.toString()}} seconds</h6>
+        <!-- <h6 *ngIf="seconds ==0" (click)="resendOTP()" class=" ion-text-start ">Resend OTP</h6> -->
+
+        <ion-row>
+          <ion-col>
+            <ion-button expand="block" (click)="otpSummit()" color='undefine' class="full-with-btn  mt-20 transition">
+              Verify OTP</ion-button>
+          </ion-col>
+        </ion-row>
+
+        <br>
+        <!-- <ion-row>
+          <ion-col>
+              <p *ngIf="seconds !=0" id="timer" class="text ion-text-start mb-25">OTP will expire in 1:00 seconds</p>
+              <p *ngIf="seconds ==0" (click)="resendOTP()" class="text ion-text-start mb-25">Resend Otp</p>
+  
+            <ion-text class="block btn-color"><span class="ion-float-left" (click)="resendOTP()">resend OTP</span>
+            </ion-text>
+          </ion-col>
+        </ion-row> -->
+      </div>
+    </ion-row>
+  </ion-slide>
+</ion-content>
