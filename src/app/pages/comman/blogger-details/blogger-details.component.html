@@ -10,7 +10,8 @@
       <img class="profimg" src="assets/b1.svg">
       <h5 *ngIf="bloggerDetails.name">{{bloggerDetails.name}}</h5>
       <p *ngIf="bloggerDetails.address" class="text ion-text-center" style="margin:0;">
-        {{bloggerDetails.address?.locality}},
+        {{  (bloggerDetails.address?.locality.length>20)? (bloggerDetails.address?.locality | slice:0:20)+'..':(bloggerDetails.address?.locality)}},
+
         {{bloggerDetails.address?.city}}</p>
 
       <div class="socia-part ion-margin-top">

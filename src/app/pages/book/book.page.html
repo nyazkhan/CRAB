@@ -14,15 +14,21 @@
           <h6 [ngClass]="{'active': (filterBy ==='opend')}" (click)="filterResponse('opend')">Open</h6>
           <!-- <h6 [ngClass]="{'active': (filterBy ==='past')}" (click)="filterResponse('past')">Closed</h6> -->
           <h6 [ngClass]="{'active': (filterBy ==='cancel')}" (click)="filterResponse('cancel')">Cancel</h6>
-          <!-- <h6 [ngClass]="{'active': (filterBy ==='past')}" (click)="filterResponse('past')">Past</h6> -->
+          <h6 [ngClass]="{'active': (filterBy ==='past')}" (click)="filterResponse('past')">Past</h6>
         </div>
 
         <ion-item *ngFor="let book of bookingList; let i = index" class="ion-margin-bottom"
           (click)="presentBookingModal(i)">
           <ion-label>
             <h5   [ngClass]="((book.status ==3)|| (book.status ==2))?'invi-date danger':'invi-date primary'">{{book.toDate | date:'EEE,  d MMM ,  y'}}</h5>
+            <span class="right-table-part danger" *ngIf="((book.status ==3)|| (book.status ==17))"> Cancel </span>
+            <span class="right-table-part orange" *ngIf="book.status ==1"> Waiting </span>
+            <span class="right-table-part danger" *ngIf="book.status ==16"> Expired </span>
+            <span class="right-table-part primary" *ngIf="book.status ==10"> Accepted </span>
+            <span class="right-table-part primary" *ngIf="book.status ==7"> Completed </span>
+            <span class="right-table-part primary" *ngIf="book.status ==8"> Absent </span>
             <p class="small-content">Booking | {{book.userDetails.name}} </p>
-            <span class="right-table-part"> Table for {{book.persons}} </span>
+            <span class="right-table-part" style="color: rgba(0, 0, 0, 0.4);"> Table for {{book.persons}} </span>
           </ion-label>
         </ion-item>
 

@@ -89,13 +89,13 @@ export class InvitationPage implements OnInit {
       this.invitaionList = this.invitaionListCopy.filter((el) => {
         console.log(el.status);
 
-        return (el.status === 4) || (el.status === 2);
+        return (el.status === 3) || (el.status === 17);
       });
 
     }
     if (val === 'next') {
       this.invitaionList = this.invitaionListCopy.filter((el) => {
-        return (el.status === 5);
+        return (el.status === 10);
       });
 
     }
@@ -103,6 +103,14 @@ export class InvitationPage implements OnInit {
     if (val === 'opend') {
       this.invitaionList = this.invitaionListCopy.filter((el) => {
         return (el.status === 1);
+      });
+
+    }
+
+    if (val === 'past') {
+      this.invitaionList = this.invitaionListCopy.filter((el) => {
+
+        return (el.status === 16) || (el.status === 13);
       });
 
     }

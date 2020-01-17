@@ -2,25 +2,28 @@
 
   <ion-list>
     <ion-toolbar>
-      <ion-searchbar  name="searchInput" (ionInput)="test($event)"  placeholder="Search Restaurent"></ion-searchbar>
+      <ion-searchbar name="searchInput" (ionInput)="test($event)" placeholder="Search Restaurent"></ion-searchbar>
       <!-- <ion-title>Modal Content</ion-title> -->
       <ion-buttons slot="end">
         <ion-button (click)="dismiss()">Close</ion-button>
       </ion-buttons>
     </ion-toolbar>
 
-   
-    <ion-item (click)="presentBloggerDetailsModal(blogger.mobile)" lines="none" *ngFor="let blogger of bloggerListCopy" class="rest_address_item mb-15">
+
+    <ion-item (click)="presentBloggerDetailsModal(blogger.mobile)" lines="none" *ngFor="let blogger of bloggerListCopy"
+      class="rest_address_item mb-15">
       <div slot="start" class="blo-img">
         <img *ngIf="blogger.profilePic" [src]="blogger.profilePic">
         <img *ngIf="!blogger.profilePic" src="assets/b1.svg">
       </div>
       <ion-label>
         <h4 class="rest-heading">{{blogger.name}}</h4>
-       <p> {{blogger.address.locality}}, {{blogger.address.city}}
-        <br>
-        40.2+ Followers
-       </p>
+        <p>
+          {{  (blogger.address?.locality.length>20)? (blogger.address?.locality | slice:0:20)+'..':(blogger.address?.locality)}},
+          {{blogger.address.city}}
+          <br>
+          40.2+ Followers
+        </p>
       </ion-label>
     </ion-item>
   </ion-list>

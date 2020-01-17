@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Inject } from '@angular/core';
-import { ModalController, NavParams } from '@ionic/angular';
+import { ModalController, NavParams, AlertController } from '@ionic/angular';
 import { LoginService } from 'src/app/service/login.service';
 import { Router } from '@angular/router';
 import { BloggerDetailsComponent } from '../blogger-details/blogger-details.component';
@@ -19,6 +19,7 @@ export class InviteddetailsComponent implements OnInit {
   cancelButtonClick = false;
   presentButtonClick = false;
   absentButtonClick = false;
+  reviewButtonClick = false;
   hideButtons = false;
   constructor(
     navParams: NavParams,
@@ -26,7 +27,7 @@ export class InviteddetailsComponent implements OnInit {
     private loginservice: LoginService,
     private router: Router,
     @Inject(AlertService) private alertService: AlertService,
-
+    public alertController: AlertController
 
   ) {
 
@@ -43,64 +44,42 @@ export class InviteddetailsComponent implements OnInit {
 
   ngOnInit() { }
 
-  cancelInvitaion() {
-    this.hideButtons = false;
+
+  changeInvitationStatus(statusId) {
     this.cancelButtonClick = false;
-    this.loginservice.updateInvitationStatus({
-      id: this.invitationDetails.id,
-      status: 17
-    }).subscribe((res) => {
-      if (res.status === 200) {
-        console.log(res.data);
-        this.invitationDetails.status = 17;
-        this.alertService.presentToast('Cancel Invitation Successfuly', '#ff0000');
-
-      }
-    });
-  }
-
-  presentBlogger() {
-    this.hideButtons = false;
     this.presentButtonClick = false;
-    this.loginservice.updateInvitationStatus({
-      id: this.invitationDetails.id,
-      status: 7
-    }).subscribe((res) => {
-      if (res.status === 200) {
-        console.log(res.data);
-        this.invitationDetails.status = 7;
-        this.alertService.presentToast('Status change Successfuly', '#ff0000');
-
-      }
-    });
-  }
-
-  absentBlogger() {
-    this.hideButtons = false;
     this.absentButtonClick = false;
+    this.hideButtons = false;
+    this.reviewButtonClick = false;
     this.loginservice.updateInvitationStatus({
       id: this.invitationDetails.id,
-      status: 8
+      status: statusId
     }).subscribe((res) => {
       if (res.status === 200) {
         console.log(res.data);
-        this.invitationDetails.status = 8;
-        this.alertService.presentToast('Status change Successfuly', '#ff0000');
+        this.invitationDetails.status = statusId;
+        if ((statusId === 7) || (statusId === 8)) {
+
+          this.alertService.presentToast('Status change Successfuly', '#ff0000');
+        }
+        if (statusId === 17) {
+
+          this.alertService.presentToast('Cancel Invitation Successfuly', '#ff0000');
+        }
 
       }
     });
   }
-
   back() {
     this.modalController.dismiss({
       dismissed: true
     });
   }
-  sendReviewRequest() {
+  sendReviewRequest(paidUnPaid) {
     this.loginservice.sendReviewRequest({
       invitationId: this.invitationDetails.id,
       to: this.invitationDetails.userDetails.id,
-      reviewType: this.invitationDetails.userDetails.reviewType
+      reviewType: paidUnPaid
     }).subscribe((res) => {
       if (res.status === 200) {
         console.log(res.data);
@@ -129,5 +108,15 @@ export class InviteddetailsComponent implements OnInit {
   }
 
 
+  checkPaidUnPaid() {
 
+
+    if (this.invitationDetails.userDetails.reviewType === 3) {
+      this.reviewButtonClick = true;
+      this.hideButtons = true;
+      return;
+    }
+    this.sendReviewRequest(this.invitationDetails.userDetails.reviewType);
+
+  }
 }

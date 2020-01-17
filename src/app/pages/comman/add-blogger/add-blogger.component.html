@@ -23,7 +23,8 @@
           </div>
           <ion-label>
             <h4 class="rest-heading">{{blogger.name}}</h4>
-            <p> {{blogger.address.locality}}, {{blogger.address.city}}
+            <p>               {{  (blogger.address?.locality.length>20)? (blogger.address?.locality | slice:0:20)+'..':(blogger.address?.locality)}},
+               {{blogger.address.city}}
               <br>
               40.2+ Followers
             </p>

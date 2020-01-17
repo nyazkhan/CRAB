@@ -18,7 +18,10 @@
             <ion-label>
               <h4 class="blo-name" *ngIf="bloggerDetailsCopy.name">{{bloggerDetailsCopy.name}}</h4>
 
-              <p class="small-content" *ngIf="bloggerDetailsCopy.address">{{bloggerDetailsCopy.address?.locality}},
+              <p class="small-content" *ngIf="bloggerDetailsCopy.address">
+                {{  (bloggerDetailsCopy.address?.locality.length>20)? (bloggerDetailsCopy.address?.locality | slice:0:20)+'..':(bloggerDetailsCopy.address?.locality)}},
+  
+                
                 {{bloggerDetailsCopy.address?.city}}<br>
                 40.2+ Followers</p>
             </ion-label>

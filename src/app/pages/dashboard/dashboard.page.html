@@ -7,7 +7,9 @@
       <span *ngIf="restaurantDetails.name" class="profile-icon">{{restaurantDetails.name.slice(0,1) | uppercase}}</span>
       <ion-label>
         <h2>{{restaurantDetails.name}}</h2>
-        <p *ngIf="restaurantDetails.address" class="blo-address">{{restaurantDetails.address?.locality}},
+        <p *ngIf="restaurantDetails.address" class="blo-address">
+         
+          {{  (restaurantDetails.address?.locality.length>20)? (restaurantDetails.address?.locality | slice:0:20)+'..':(restaurantDetails.address?.locality)}},
           {{restaurantDetails.address?.city}}</p>
       </ion-label>
     </ion-item>
@@ -82,7 +84,11 @@
           </div>
           <ion-label>
             <h4 class="rest-heading">{{blogger.name}}</h4>
-            <p> {{blogger.address.locality}}, {{blogger.address.city}}
+            <p>
+              {{  (blogger.address?.locality.length>20)? (blogger.address?.locality | slice:0:20)+'..':(blogger.address?.locality)}},
+
+              
+              {{blogger.address.city}}
               <br>
               40.2+ Followers
             </p>

@@ -119,5 +119,8 @@ export class LoginService {
     return this.Http.post('connect/reviewRequest/save', reviewDetails);
 
   }
+  getDashboardCount(typeOfCount) {
+    return this.Http.post('connect/counts', typeOfCount);
 
+  }
 }
