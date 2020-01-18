@@ -4,7 +4,7 @@
       <ion-col>
         <div class="backbar">
           <h5 class="page-heading">
-            <ion-icon name="arrow-back" (click)="goBack()"></ion-icon> &nbsp; Manage Review
+            <ion-icon name="arrow-back" (click)="goBack()"></ion-icon> &nbsp;  Review
           </h5>
         </div>
       </ion-col>
@@ -13,67 +13,98 @@
     <ion-row>
       <ion-col>
 
-          <ion-item lines="none" class="rest_address_item mtb-15">
-              <div slot="start" class="rest-img">
-                <img src="assets/restaurent.png">
+        <ion-item *ngIf="reviewDetail.userDetails" lines="none" class="rest_address_item">
+          <div *ngIf="((reviewDetail.userDetails.list) && (reviewDetail.userDetails.list[0].data.length > 0))" slot="start" class="rest-img">
+            <img [src]="reviewDetail.userDetails.list[0].data[0].storagePath">
+          </div>
+          <div *ngIf="!((reviewDetail.userDetails.list) && (reviewDetail.userDetails.list[0].data.length > 0))" slot="start" class="rest-img">
+            <img src="assets/b2.svg">
+          </div>
+          <ion-label>
+            <h4 class="rest-heading">{{reviewDetail.userDetails.name}}</h4>
+            <p class="small-content">
+
+              <ng-container *ngIf="reviewDetail.userDetails.foodType==1">
+                Veg
+              </ng-container>
+              <ng-container *ngIf="reviewDetail.userDetails.foodType==2">
+                Nonveg
+              </ng-container>
+              <ng-container *ngIf="reviewDetail.userDetails.foodType==3">
+
+                Veg & Nonveg
+              </ng-container>
+              <ng-container *ngIf="reviewDetail.userDetails.restaurantType==1">
+                Cafe
+              </ng-container>
+              <ng-container *ngIf="reviewDetail.userDetails.restaurantType==2">
+                Restaurent
+              </ng-container>
+              <ng-container *ngIf="reviewDetail.userDetails.restaurantType==3">
+
+                Cafe & Restaurent
+              </ng-container>
+
+
+              <br>
+              <ng-container *ngIf="reviewDetail.userDetails.address">
+                {{  (reviewDetail.userDetails.address?.locality.length>20)? (reviewDetail.userDetails.address?.locality | slice:0:20)+'..':(reviewDetail.userDetails.address?.locality)}},
+
+                {{reviewDetail.userDetails.address.city}}
+              </ng-container>
+            </p>
+          </ion-label>
+        </ion-item>
+
+        <div class="mtb-10 emogy-btn-list">
+          <ion-button size="small" color="light" class="imogy-btn"><img src="assets/imogy-1.svg">&nbsp; Food
+          </ion-button>
+          <ion-button size="small" color="light" class="imogy-btn"><img src="assets/imogy-2.svg">&nbsp; Ambiance
+          </ion-button>
+          <ion-button size="small" color="light" class="imogy-btn"><img src="assets/imogy-3.svg">&nbsp; Service
+          </ion-button>
+          <ion-button size="small" color="light" class="imogy-btn"><img src="assets/imogy-3.svg">&nbsp; Value for money
+          </ion-button>
+        </div>
+
+        <p class="dark-text ion-text-start">{{reviewDetail.description}}</p>
+
+        <ion-row *ngIf="reviewDetail.list">
+          <ion-col>
+            <!-- <div class="slider-restaurant" *ngFor="let review of reviewDetail.list;let i=index">
+
+              <img class="rest-slide-img" [src]="review.storagePath">
+            </div> -->
+            <div class="slide-image-box">
+
+              <div class="img-part" *ngFor="let review of reviewDetail.list;let i=index">
+                <img class="gal-img" style="width: 100% !important; border-radius: 7px;" [src]="review.storagePath" />
               </div>
-              <ion-label>
-                <h4 class="rest-heading">Chai Sutta Bar</h4>
-                <p class="small-content">Veg, Cafe & restaurent <br>
-                  Navrangpura, Ahmedabad</p>
-                <span class="km-part"> 3.2km &nbsp; <img src="assets/km-arrorw.svg"> </span>
-              </ion-label>
-            </ion-item>
-            
-            <div class="mtb-10 emogy-btn-list">
-                <ion-button size="small" color="light" class="imogy-btn"><img src="assets/imogy-1.svg">&nbsp; Food</ion-button>
-                <ion-button size="small" color="light" class="imogy-btn"><img src="assets/imogy-2.svg">&nbsp; Ambiance</ion-button>
-                <ion-button size="small" color="light" class="imogy-btn"><img src="assets/imogy-3.svg">&nbsp; Service</ion-button>
-                <ion-button size="small" color="light" class="imogy-btn"><img src="assets/imogy-3.svg">&nbsp; Value for money</ion-button>
-              </div>      
 
-              <ion-row>
-                  <ion-col>  
-                      <img class="rest-slide-img" src="assets/restaurent.png">
-                  </ion-col>
-                  <ion-col>
-                      <img class="rest-slide-img" src="assets/restaurent.png">
-                  </ion-col>
-                  <ion-col>
-                      <img class="rest-slide-img" src="assets/restaurent.png">
-                  </ion-col>
-                  <ion-col>
-                      <img class="rest-slide-img" src="assets/restaurent.png">
-                    </ion-col>
-                </ion-row>
-                
-
-        <p class="dark-text ion-text-start">I started Deliciously Ella back in 2012 whilst I was still at university. In
-          2011, I had been diagnosed with a condition called Postural Tachycardia Syndrome, as well as Ehlers-Danlos and
-          Mast Cell Activation Disorder, following four months in and out of hospital. The condition</p>
-
-        <ion-row class="mt-15 ion-float-right">
-            <ion-button expand="block" shape="round" fill="outline" color="primary" class="border-btn">
-              <img class="ico-small" src="assets/edit.svg">&nbsp; Edit
-            </ion-button>
-
-            <ion-button expand="block" shape="round" fill="outline" color="danger" class="border-btn ml-10">
-              <img class="ico-small" src="assets/remove.svg">&nbsp; Delete
-            </ion-button>
+            </div>
+          </ion-col>
         </ion-row>
+        <!-- <ion-row class="mt-15 ion-float-right">
+          <ion-button expand="block" shape="round" fill="outline" color="primary" class="border-btn">
+            <img class="ico-small" src="assets/edit.svg">&nbsp; Edit
+          </ion-button>
+
+          <ion-button expand="block" shape="round" fill="outline" color="danger" class="border-btn ml-10">
+            <img class="ico-small" src="assets/remove.svg">&nbsp; Delete
+          </ion-button>
+        </ion-row> -->
       </ion-col>
     </ion-row>
   </ion-grid>
 
   <ion-grid class="fixed-bottom-button">
-      <ion-row>
-        <ion-col>
-          
-          <div class="crab-bootm-vector">
-              <img src="assets/CRAB_Vector.svg">
-            </div>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-</ion-content>
+    <ion-row>
+      <ion-col>
 
+        <div class="crab-bootm-vector">
+          <img src="assets/CRAB_Vector.svg">
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

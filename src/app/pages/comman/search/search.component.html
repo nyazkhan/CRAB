@@ -12,9 +12,11 @@
 
     <ion-item (click)="presentBloggerDetailsModal(blogger.mobile)" lines="none" *ngFor="let blogger of bloggerListCopy"
       class="rest_address_item mb-15">
-      <div slot="start" class="blo-img">
-        <img *ngIf="blogger.profilePic" [src]="blogger.profilePic">
-        <img *ngIf="!blogger.profilePic" src="assets/b1.svg">
+      <div slot="start" class="blo-img" *ngIf="((blogger.list) && (blogger.list[0].data))">
+        <img  [src]="blogger.list[0].data[0].storagePath">
+      </div>
+      <div slot="start" class="blo-img" *ngIf="!((blogger.list) && (blogger.list[0].data))">
+        <img  src="assets/b1.svg">
       </div>
       <ion-label>
         <h4 class="rest-heading">{{blogger.name}}</h4>

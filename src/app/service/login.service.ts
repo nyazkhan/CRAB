@@ -123,4 +123,22 @@ export class LoginService {
     return this.Http.post('connect/counts', typeOfCount);
 
   }
+
+  upCommingAppointents(type) {
+    return this.Http.post('connect/bookInv/upcoming', type);
+
+  }
+
+  getReviewList() {
+    return this.Http.get('connect/reviewRequest/get');
+
+
+  }
+
+
+
+  getReviewById(id) {
+    return this.Http.post('connect/review/byReviewRequest/get', id);
+
+  }
 }

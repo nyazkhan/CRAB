@@ -31,7 +31,11 @@
             <span class="right-table-part" style="color: rgba(0, 0, 0, 0.4);"> Table for {{book.persons}} </span>
           </ion-label>
         </ion-item>
-
+        <ion-item class="ion-margin-bottom" *ngIf="!(bookingList.length > 0)">
+          <ion-label>
+            No Booking Found
+          </ion-label>
+        </ion-item>
         <!-- <ion-item class="ion-margin-bottom">
           <ion-label>
             <h5 class="invi-date primary">02 Dec, 02:30 PM</h5>

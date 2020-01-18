@@ -13,6 +13,7 @@ export class ProfileListComponent implements OnInit {
   @Input() restaurantDetails: object;
   userDetailsCopy: any;
   dashBoardCount: any = {};
+  dashBoardReviwCount: any = {};
   constructor(
     @Inject(Router) private router: Router,
     navParams: NavParams,
@@ -36,6 +37,15 @@ export class ProfileListComponent implements OnInit {
       if (res.status === 200) {
         this.dashBoardCount = JSON.parse(res.data);
         console.log(this.dashBoardCount);
+
+      }
+    });
+    this.loginservice.getDashboardCount({
+      searchType: 5,
+      status: 13
+    }).subscribe((res) => {
+      if (res.status === 200) {
+        this.dashBoardReviwCount = JSON.parse(res.data);
 
       }
     });

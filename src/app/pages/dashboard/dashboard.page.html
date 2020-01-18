@@ -8,7 +8,7 @@
       <ion-label>
         <h2>{{restaurantDetails.name}}</h2>
         <p *ngIf="restaurantDetails.address" class="blo-address">
-         
+
           {{  (restaurantDetails.address?.locality.length>20)? (restaurantDetails.address?.locality | slice:0:20)+'..':(restaurantDetails.address?.locality)}},
           {{restaurantDetails.address?.city}}</p>
       </ion-label>
@@ -32,33 +32,51 @@
     <ion-row>
       <ion-col>
         <h5 class="title-heading">Upcoming Appointments</h5>
-        <div class="slider-appointment">
+        <div class="slider-appointment" *ngIf="commingAppointments.length > 0">
           <!-- (click)="goToAppointment('invitation')"  -->
-          <div routerLink="/invitation" class="colorfull-card ion-margin-bottom card-blue">
-            <h6 class="ion-text-start sllide-box-heading white">Today</h6>
-            <p class="small-content white mb-30">04:00 pm</p>
-            <p class="ico-with-title white"><img src="assets/pass-white.svg">&nbsp; Invitation </p>
-            <p class="ico-with-title white"><img src="assets/user-white.svg">&nbsp; Alisha Malhotra </p>
+          <div (click)="goToAppointment(Appointment)" *ngFor="let Appointment of commingAppointments; let i = index;"
+            [ngClass]="(Appointment.persons)?' colorfull-card ion-margin-bottom day-active card-pink': 'colorfull-card ion-margin-bottom card-blue'">
+            <h6 class="ion-text-start sllide-box-heading white">{{Appointment.toDate | date:'  d MMM y'}}</h6>
+            <p class="small-content white mb-30">{{Appointment.onTime}}</p>
+            <p class="ico-with-title white"><img src="assets/pass-white.svg">&nbsp;
+              <ng-container *ngIf="Appointment.persons">
+                Booking
+              </ng-container>
+              <ng-container *ngIf="!Appointment.persons">
+                Invitation
+              </ng-container>
+            </p>
+            <p class="ico-with-title white"><img src="assets/user-white.svg">&nbsp; <ng-container
+                *ngIf="Appointment.persons">
+                {{Appointment.persons}} people
+              </ng-container>
+              <ng-container *ngIf="!Appointment.persons">
+                {{Appointment.userDetails.name}}
+              </ng-container>
+            </p>
           </div>
           <!-- (click)="goToAppointment('booked')" -->
-          <div routerLink="/book" class="colorfull-card ion-margin-bottom card-pink">
+          <!-- <div routerLink="/book" class="colorfull-card ion-margin-bottom card-pink">
             <h6 class="ion-text-start sllide-box-heading white">02 Dec</h6>
             <p class="small-content white mb-30">02:30 pm</p>
             <p class="ico-with-title white"><img src="assets/white-calendar.svg">&nbsp; Booking </p>
             <p class="ico-with-title white"><img src="assets/user-white.svg">&nbsp; 6 people </p>
-          </div>
+          </div> -->
           <!-- (click)="goToAppointment('invitation')" -->
-          <div  routerLink="/invitation" class="colorfull-card ion-margin-bottom card-blue">
+          <!-- <div routerLink="/invitation" class="colorfull-card ion-margin-bottom card-blue">
             <h6 class="ion-text-start sllide-box-heading white">Today</h6>
             <p class="small-content white mb-30">04:00 pm</p>
             <p class="ico-with-title white"><img src="assets/pass-white.svg">&nbsp; Invitation </p>
             <p class="ico-with-title white"><img src="assets/user-white.svg">&nbsp; Alisha Malhotra </p>
-          </div>
+          </div> -->
 
-          <div class="colorfull-card-view-more ion-margin-bottom" routerLink="/book">
-            <h6 class="ion-text-center primary">View All ></h6>
-          </div>
 
+        </div>
+        <div class=" card-blue colorfull-card ion-margin-bottom" *ngIf="!(commingAppointments.length > 0)">
+          <h6 class="ion-text-center white">No Upcomming Appointments
+
+            <!-- <ion-badge class="ion-text-center" color="light">Book a Table</ion-badge> -->
+          </h6>
         </div>
       </ion-col>
     </ion-row>
@@ -67,7 +85,7 @@
   <ion-grid class="section-pedding" style="padding-top: 0;">
     <ion-toolbar>
       <ion-searchbar (click)="presentBloggerSearchModal()" placeholder="Search Restaurent"></ion-searchbar>
-    
+
       <ion-buttons slot="end">
         <ion-button class="filter-btn" color="none"><img src="assets/filter.svg">&nbsp; Filter</ion-button>
       </ion-buttons>
@@ -78,19 +96,21 @@
 
         <ion-item (click)="presentBloggerDetailsModal(blogger.mobile)" lines="none"
           *ngFor="let blogger of listOfBlogger" class="rest_address_item mb-15">
-          <div slot="start" class="blo-img">
-            <img *ngIf="blogger.profilePic" [src]="blogger.profilePic">
-            <img *ngIf="!blogger.profilePic" src="assets/b1.svg">
+          <div slot="start" class="blo-img" *ngIf="((blogger.list) && (blogger.list[0].data.length > 0))">
+            <img  [src]="blogger.list[0].data[0].storagePath">
+          </div>
+          <div slot="start" class="blo-img" *ngIf="!((blogger.list) && (blogger.list[0].data.length > 0))">
+            <img  src="assets/b1.svg">
           </div>
           <ion-label>
             <h4 class="rest-heading">{{blogger.name}}</h4>
             <p>
               {{  (blogger.address?.locality.length>20)? (blogger.address?.locality | slice:0:20)+'..':(blogger.address?.locality)}},
 
-              
+
               {{blogger.address.city}}
               <br>
-              40.2+ Followers
+              <!-- 40.2+ Followers -->
             </p>
           </ion-label>
         </ion-item>

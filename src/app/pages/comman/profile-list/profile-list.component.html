@@ -14,8 +14,9 @@
     <ion-row>
       <ion-col size="6" style="margin-top: 10px;">
         <div class="review-list">
-          <h4>22</h4>
-          <span>Invites</span>
+          <h4>                    {{ dashBoardReviwCount.reviews}}
+          </h4>
+          <span>Review</span>
         </div>
       </ion-col>
       <ion-col size="6">
@@ -41,11 +42,9 @@
         <ion-item (click)="navigateTo('/book')" class="rest_address_item">
           <ion-label class="ion-padding-top ion-padding-bottom">
             <h5><img class="ico-small" src="assets/booking.svg">&nbsp; Bookings <span class="ion-float-right">
-                <span class="blue-round">
-                  <ng-container *ngIf=" dashBoardCount.bookings>0">
+                <span *ngIf=" dashBoardCount.bookings>0" class="blue-round">
                     {{ dashBoardCount.bookings}}
   
-                  </ng-container>
                 </span>
 
                 &nbsp; <ion-icon class="arrow-forword" name="arrow-forward"></ion-icon>

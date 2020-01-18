@@ -33,11 +33,15 @@
             <span class="right-table-part primary" *ngIf="invite.status ==9"> Review Requested </span>
           </ion-label>
         </ion-item>
+        <ion-item class="ion-margin-bottom" *ngIf="!(invitaionList.length > 0)">
+          <ion-label>
+            No Invitation Found
+          </ion-label>
+        </ion-item>
 
-    
 
       </ion-col>
-     
+
     </ion-row>
   </ion-grid>
 

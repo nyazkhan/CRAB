@@ -7,6 +7,9 @@
 .light-grey{
     background: #f3f2f4
 }
+.mb-20 {
+    margin-bottom: 20px !important;
+}
 .panel-card{
     border-radius: 21px 21px 0px 0px;
     padding: 20px;
@@ -92,4 +95,17 @@ ion-avatar img {
     align-items: center;
     color: rgba(0, 0, 0, 0.4) !important;
     margin-top: 5px !important;
+}
+
+
+
+
+ion-slide{
+    min-height: 35vh
+ }
+ .proceed-button{
+    --border-radius: 5px;
+    height: 7vh;
+    font-size: 14px;
+  
 }

@@ -46,16 +46,18 @@
 
         <ion-item lines="none" class="ion-margin-bottom" (click)="openBloggerDetailsModel()">
           <div slot="start" class="blo-img">
-            <img *ngIf="bookingDetails.userDetails.profilePic" [src]="bookingDetails.userDetails.profilePic">
-            <img *ngIf="!bookingDetails.userDetails.profilePic" src="assets/b2.svg">
+            <img *ngIf=" ((bookingDetails.userDetails.list) && (bookingDetails.userDetails.list[0].data.length > 0))" [src]="bookingDetails.userDetails.list[0].data[0].storagePath">
+            <img *ngIf="!((bookingDetails.userDetails.list) && (bookingDetails.userDetails.list[0].data.length > 0))" src="assets/b2.svg">
           </div>
           <ion-label>
             <h4 class="blo-name">{{bookingDetails.userDetails.name}}</h4>
             <p class="small-content">
-              {{  (bookingDetails.address?.locality.length>20)? (bookingDetails.address?.locality | slice:0:20)+'..':(bookingDetails.address?.locality)}},
+              {{  (bookingDetails.userDetails.address?.locality.length>20)? (bookingDetails.userDetails.address?.locality | slice:0 : 20)+'..' : (bookingDetails.userDetails.address?.locality)}},
 
               {{bookingDetails.userDetails.address?.city}}<br>
-              40.2+ Followers</p>
+              <!-- 40.2+ Followers -->
+            
+            </p>
           </ion-label>
         </ion-item>
       </ion-col>

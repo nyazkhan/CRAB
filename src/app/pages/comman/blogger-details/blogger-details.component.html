@@ -7,7 +7,16 @@
 
   <div class="panel-card back-white">
     <div class="profile-part">
-      <img class="profimg" src="assets/b1.svg">
+      <!-- <img class="profimg" src="assets/b1.svg"> -->
+
+
+      <ng-container *ngIf="((bloggerDetails.list) && (bloggerDetails.list[0].data.length > 0))">
+        <img class="profimg" [src]="bloggerDetails.list[0].data[0].storagePath">
+      </ng-container>
+      <ng-container *ngIf="!((bloggerDetails.list) && (bloggerDetails.list[0].data.length > 0))">
+        <img class="profimg" src="assets/b1.svg">
+      </ng-container>
+
       <h5 *ngIf="bloggerDetails.name">{{bloggerDetails.name}}</h5>
       <p *ngIf="bloggerDetails.address" class="text ion-text-center" style="margin:0;">
         {{  (bloggerDetails.address?.locality.length>20)? (bloggerDetails.address?.locality | slice:0:20)+'..':(bloggerDetails.address?.locality)}},
@@ -15,15 +24,36 @@
         {{bloggerDetails.address?.city}}</p>
 
       <div class="socia-part ion-margin-top">
-        <p><a href="https://www.facebook.com/skuyadav">
+        <p>
+          <a href="https://www.facebook.com/{{bloggerDetails.fbProfile}}">
 
             <img src="assets/facebook.svg">
           </a>
 
-          <br> 40.2k </p>
-        <p><img src="assets/instagram.svg"><br> 20.1k </p>
-        <p><img src="assets/Twitter.svg"><br> 1200 </p>
-        <p><img src="assets/tripadvertising.svg"><br> 203 </p>
+          <br>
+           <!-- 40.2k  -->
+          </p>
+        <p>
+          <a href="https://www.instagram.com/{{bloggerDetails.instaProfile}}">
+            <img src="assets/instagram.svg">
+            </a>
+            <br> 
+          <!-- 20.1k  -->
+        </p>
+        <p>
+          <a href="https://twitter.com/{{bloggerDetails.twitterProfile}}">
+            <img src="assets/Twitter.svg">
+          </a>
+          <br> 
+          <!-- 1200  -->
+        </p>
+        <p>
+          <a href="https://www.tripadvisor.in/Profile/{{bloggerDetails.fbProfile}}">
+          <img src="assets/tripadvertising.svg">
+          </a>
+          <br>
+           <!-- 203  -->
+          </p>
       </div>
     </div>
   </div>
@@ -117,7 +147,7 @@
 
   </div>
 
-  <div class="panel-card light-green">
+  <!-- <div class="panel-card light-green">
     <h5 class="panel-heading dark ion-margin-bottom">Reviews</h5>
 
     <ion-item (click)="presentReviewgModal()" lines="none" class="ion-margin-top">
@@ -133,7 +163,7 @@
       2011, I had been diagnosed with a condition called Postural Tachycardia Syndrome, as well as Ehlers-Danlos and
       Mast Cell Activation Disorder, following four months in and out of hospital. The condition</p>
 
-  </div>
+  </div> -->
 
   <div class="panel-card fixed-back-white">
     <ion-button size="large" class="proceed-button ion-margin-top" (click)="sendInvitationModel()" expand="block">INVITE

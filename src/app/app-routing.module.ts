@@ -12,7 +12,10 @@ const routes: Routes = [
   // { path: 'home', loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)},
   // { path: 'auth', loadChildren: './pages/auth/auth.module#AuthPageModule', canActivate: [LoginGuard] },
   // tslint:disable-next-line: max-line-length
-  { path: 'registration', loadChildren: './pages/registration/registration.module#RegistrationPageModule', canActivate: [RegistrationGuard] },
+  {
+    path: 'registration', loadChildren: './pages/registration/registration.module#RegistrationPageModule',
+    canActivate: [RegistrationGuard]
+  },
   { path: 'dashboard', loadChildren: './pages/dashboard/dashboard.module#DashboardPageModule' },
   { path: 'profile', loadChildren: './pages/profile/profile.module#ProfilePageModule' },
   { path: 'map', loadChildren: './pages/map/map.module#MapPageModule', canActivate: [MapGuard] },

@@ -777,6 +777,20 @@ export class RegistrationPage implements OnInit {
 
 
   gotoDashboard() {
-    this.router.navigateByUrl('/dashboard');
+
+    if (this.restaurantDetail.status === 5) {
+
+      this.router.navigateByUrl('/dashboard');
+    }
+
+    if (this.restaurantDetail.status === 2) {
+      this.alertService.showInfoAlert( 'On Hold Becouse ..   ' + this.restaurantDetail.reason);
+    }
+    if (this.restaurantDetail.status === 4) {
+      this.alertService.showInfoAlert( 'Please change The mention Contant..   ' + this.restaurantDetail.reason);
+    }
+    if (this.restaurantDetail.status === 3) {
+      this.alertService.showInfoAlert('Rejected Becouse ..   ' + this.restaurantDetail.reason);
+    }
   }
 }
