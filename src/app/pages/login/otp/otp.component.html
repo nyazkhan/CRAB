@@ -1,0 +1,57 @@
+<ion-content>
+
+  <ion-row class="part-1">
+    <ion-col size="12">
+      <span class="top-center-heading bold f-18" >ENTER OTP</span>
+    </ion-col>
+
+  </ion-row>
+  <ion-row class="part-2">
+    <ion-col class="ion-no-padding">
+
+      <img src="assets/otp.svg">
+
+
+    </ion-col>
+
+  </ion-row>
+  <ion-row class="part-3">
+    <!-- <ion-col size="12"> -->
+
+    <!-- </ion-col> -->
+    <ion-col size="12">
+      <h6 style="font-size: 16px !important;" class="ion-text-left bold">Enter 6 Digit OTP Shared</h6>
+      <ion-item class="stylist-input" lines="none" color="undefine">
+        <ion-label *ngIf="seconds !=0" slot="end" class="main-light-color">OTP</ion-label>
+        <h6 *ngIf="seconds ==0" slot="end" style="line-height: inherit;
+        margin: 0px;" (click)="resendOTP()" class="main-light-color">Resend OTP</h6>
+        <ion-input class="opacity-1" [(ngModel)]="otp" name="otp" placeholder="- - - - - -"></ion-input>
+      </ion-item>
+
+      <h6 *ngIf="seconds !=0" id="timer" class=" text1 ion-text-start  f-12">OTP will expire in {{seconds.toString()}}
+        seconds</h6>
+      <ion-row>
+        <ion-col class="ion-no-padding">
+          <ion-text class="block btn-color"><span  class="ion-float-left f-10">CHANGE MOBILE
+              NUMBER</span>
+            <span  class="link-btn ion-float-right f-10" (click)="dismiss(); seconds = 60 ">+91
+              {{phoneNo}}</span></ion-text>
+        </ion-col>
+      </ion-row>
+
+    </ion-col>
+
+  </ion-row>
+
+  <ion-row class="part-4">
+    <ion-col size="12">
+      <div class="button-list ion-no-padding">
+        <ion-button *ngIf="false" class="mybutton" color="primary">Primary</ion-button>
+        <ion-button color="mybutton" color="primary" (click)="otpSummit()">VARIFY OTP</ion-button>
+        <ion-button *ngIf="false" color="mybutton" color="primary">Primary</ion-button>
+      </div>
+    </ion-col>
+
+  </ion-row>
+
+</ion-content>

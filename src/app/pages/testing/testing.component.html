@@ -1,12 +1,17 @@
-<ion-content>
+<ion-content class="ion-no-padding">
+  <!-- <ion-row class="part-1">
+    <ion-col size="12">
+      <span class="top-center-heading bold">Welcome To CRAB</span>
+    </ion-col>
 
+  </ion-row> -->
   <ion-row class="part-2">
     <ion-col class="ion-no-padding">
       <ion-slides [options]="slideOptions" pager="true" #slider (ionSlidesDidLoad)="slidesDidLoad(slider)">
         <ion-slide  style=" vertical-align:top">
           <ion-row>
             <ion-col size="12">
-              <span class="top-center-heading bold f-18" >INVITE INFLUENCER</span>
+              <span class="top-center-heading bold">INVITE INFLUENCER</span>
             </ion-col>
             <ion-col class="ion-no-padding" size="12">
               <img src="assets/intro2.png">
@@ -16,7 +21,7 @@
         <ion-slide  style=" vertical-align:top">
           <ion-row>
             <ion-col  size="12">
-              <span class="top-center-heading bold f-18" >GET RATED</span>
+              <span class="top-center-heading bold">GET RATED</span>
             </ion-col>
             <ion-col class="ion-no-padding" size="12">
               <img src="assets/intro11.png">
@@ -27,7 +32,7 @@
         <ion-slide  style=" vertical-align:top">
           <ion-row>
             <ion-col  size="12">
-              <span class="top-center-heading bold f-18" >GET CUSTOMER</span>
+              <span class="top-center-heading bold">GET CUSTOMER</span>
             </ion-col>
             <ion-col class="ion-no-padding" size="12">
               <img src="assets/intro3.png">
@@ -37,7 +42,7 @@
         <ion-slide style=" vertical-align:top">
           <ion-row>
             <ion-col  size="12">
-              <span class="top-center-heading bold f-18" >LET'S START</span>
+              <span class="top-center-heading bold">LET'S START</span>
             </ion-col>
             <ion-col class="ion-no-padding" size="12">
               <img src="assets/intro4.png">
@@ -78,7 +83,7 @@
     <ion-col size="12">
       <div class="button-list ion-no-padding">
         <ion-button *ngIf="false" class="mybutton" color="primary">Primary</ion-button>
-        <ion-button color="mybutton" color="primary" (click)="onSignInSubmit()">GET OTP</ion-button>
+        <ion-button color="mybutton" color="primary">GET OTP</ion-button>
         <ion-button *ngIf="false" color="mybutton" color="primary">Primary</ion-button>
       </div>
     </ion-col>

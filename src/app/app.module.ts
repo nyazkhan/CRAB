@@ -12,13 +12,16 @@ import { AppIntroComponent } from './app-intro/app-intro.component';
 import { HttpClientModule } from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage';
 import { Camera } from '@ionic-native/camera/ngx';
+import { TestingComponent } from './pages/testing/testing.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [AppComponent, AppIntroComponent],
+  declarations: [AppComponent, TestingComponent, AppIntroComponent],
   entryComponents: [],
   imports: [
     BrowserModule,
     HttpClientModule,
+    FormsModule,
     IonicModule.forRoot(),
     AppRoutingModule,
     IonicStorageModule.forRoot(),

@@ -1,19 +1,17 @@
 import { Component, OnInit, Inject, ViewChild } from '@angular/core';
 import { AlertService } from 'src/app/service/alert.service';
+import { IonSlides } from '@ionic/angular';
 import { Router } from '@angular/router';
-import { IonSlides, ModalController } from '@ionic/angular';
 import { LoginService } from 'src/app/service/login.service';
 import { StorageService } from 'src/app/service/storage.service';
-import { AfterLoginComponent } from './after-login/after-login.component';
-import { OtpComponent } from './otp/otp.component';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.page.html',
-  styleUrls: ['./login.page.scss'],
+  selector: 'app-testing',
+  templateUrl: './testing.component.html',
+  styleUrls: ['./testing.component.scss'],
 })
-export class LoginPage implements OnInit {
-  loginPage = false;
+export class TestingComponent implements OnInit {
+
   phoneNo = '';
   // public PASSWORD_REGEX = '[789][0-9]{9}';
 
@@ -21,33 +19,29 @@ export class LoginPage implements OnInit {
   otp: string;
   timer: any;
   @ViewChild(IonSlides, { static: false }) slides: IonSlides;
+  slideOptions = {
+    initialSlide: 0,
+    slidesPerView: 1,
+    autoplay: true,
+    speed: 200,
 
+  };
+
+  slideNo = 1;
   constructor(
     @Inject(AlertService) private alertService: AlertService,
     @Inject(Router) private router: Router,
     private loginservice: LoginService,
-    public modalController: ModalController,
+    // private storage: Storage,
     private storageService: StorageService
 
   ) {
+
+    this.slidesSpeed();
   }
   slidesDidLoad(slides: IonSlides) {
     slides.startAutoplay();
   }
-
-  async presentOTPModal() {
-    const modal = await this.modalController.create({
-      component: OtpComponent,
-      componentProps: {
-
-        phone: { phone: this.phoneNo }
-      }
-    });
-    return await modal.present();
-  }
-
-
-
   next() {
     this.slides.lockSwipes(false);
     this.slides.slideNext();
@@ -61,10 +55,20 @@ export class LoginPage implements OnInit {
   }
 
 
-  logOut() {
-    this.storageService.clearData();
-  }
+  slidesSpeed() {
+    // setInterval(() => {
+    //   if (this.slideNo === 3) {
+    //     this.slides.slideTo(0, 10);
+    //     this.slideNo = 1;
+    //   } else {
 
+    //     this.next();
+    //   }
+    //   console.log(this.slideNo);
+
+    //   this.slideNo++;
+    // }, 20);
+  }
   isValidPhone() {
     const reg = /^\d{10}$/;
 
@@ -91,8 +95,8 @@ export class LoginPage implements OnInit {
     this.alertService.showLoader('OTP sending..');
     this.loginservice.signUp(this.phoneNo).subscribe((res) => {
       if (res.status === 200) {
-        this.presentOTPModal();
-        // this.resendOtp();
+        this.next();
+        this.resendOtp();
       }
       this.alertService.closeLoader();
 
@@ -112,7 +116,7 @@ export class LoginPage implements OnInit {
         for (const key of Object.keys(res.data)) {
           this.storageService.storeData(key, res.data[key]);
         }
-        this.loginPage = true;
+        this.next();
       }
       this.alertService.closeLoader();
 
@@ -133,14 +137,11 @@ export class LoginPage implements OnInit {
   }
 
   ngOnInit() {
-    if (this.loginPage) {
-      this.slides.slideTo(0, 10);
 
-    }
   }
   goToMap() {
 
-    this.slides.slideTo(0, 10);
+    this.slides.slideTo(0, 1000);
     this.router.navigateByUrl('/map');
 
   }

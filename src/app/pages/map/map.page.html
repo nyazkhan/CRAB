@@ -2,7 +2,7 @@
 
 <ion-content>
   <div id="locationField">
-    <input id="autocomplete" (focus)="changeMapHieght('100vh') ; addressForm.reset()" clearInput clear-input="true"
+    <input id="autocomplete" (focus)="changeMapHieght('100vh') ;" name="searchName"  [(ngModel)]="searchName" clearInput clear-input="true"
       placeholder="Search and set location of your restaurant" type="text" />
   </div>
   <div #map id="map"></div>

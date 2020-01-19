@@ -37,7 +37,7 @@ export class MapPage implements OnInit {
     latitude: null,
     pincode: null,
   };
-
+  searchName: string;
   markers: any = [];
   componentForm = {
     street_number: 'long_name',
@@ -62,10 +62,11 @@ export class MapPage implements OnInit {
 
   ) {
     this.userPhoneNo = this.storageService.getData('mobile');
-
   }
 
   ngOnInit() {
+    this.searchName = this.storageService.getData('NAME');
+    document.getElementById('autocomplete').focus();
   }
   // tslint:disable-next-line: use-lifecycle-interface
   async ngAfterViewInit() {

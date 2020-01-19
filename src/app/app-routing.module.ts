@@ -5,10 +5,12 @@ import { IntroGuard } from './guard/intro.guard';
 import { LoginGuard } from './guard/login.guard';
 import { MapGuard } from './guard/map.guard';
 import { RegistrationGuard } from './guard/registration.guard';
+import { TestingComponent } from './pages/testing/testing.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'intro', pathMatch: 'full' },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'intro', component: AppIntroComponent, canActivate: [IntroGuard] },
+  // { path: 'test', component: TestingComponent },
   // { path: 'home', loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)},
   // { path: 'auth', loadChildren: './pages/auth/auth.module#AuthPageModule', canActivate: [LoginGuard] },
   // tslint:disable-next-line: max-line-length

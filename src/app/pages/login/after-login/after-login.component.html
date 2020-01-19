@@ -1,0 +1,48 @@
+<ion-content>
+
+  <ion-row class="part-1">
+    <ion-col size="12">
+      <span class="top-center-heading bold f-18" (click)="presentAfterloginModal()">NAME</span>
+    </ion-col>
+
+  </ion-row>
+  <ion-row class="part-2">
+    <ion-col class="ion-no-padding">
+
+      <img src="assets/tik.svg">
+
+
+    </ion-col>
+
+  </ion-row>
+  <ion-row class="part-3">
+    <!-- <ion-col size="12"> -->
+
+    <!-- </ion-col> -->
+    <ion-col size="12">
+      <h6 style="font-size: 16px !important;" class="ion-text-left bold">Enter Name Of Your Business</h6>
+      <ion-item class="stylist-input" lines="none" color="undefine">
+        <ion-label slot="end" style="font-size: 12px;" class="main-light-color">Enter Name</ion-label>
+        <ion-input class="opacity-1" type="text" name="name" [(ngModel)]="name">
+        </ion-input>
+
+      </ion-item>
+
+   
+
+    </ion-col>
+
+  </ion-row>
+
+  <ion-row class="part-4">
+    <ion-col size="12">
+      <div class="button-list ion-no-padding">
+        <ion-button *ngIf="false" class="mybutton" color="primary">Primary</ion-button>
+        <ion-button color="mybutton"  color="primary" (click)="goToMap()">SUBMIT</ion-button>
+        <ion-button *ngIf="false" color="mybutton" color="primary">Primary</ion-button>
+      </div>
+    </ion-col>
+
+  </ion-row>
+
+</ion-content>
