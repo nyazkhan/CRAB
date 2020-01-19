@@ -6,7 +6,8 @@
         <ion-icon class="white" name="arrow-back" (click)="goBack()"></ion-icon>&nbsp;
       </h5>
     </div> -->
-  <ion-slides [options]="slideOptsOne" #slideWithNav (ionSlideDidChange)="SlideDidChange(sliderOne,slideWithNav)">
+  <ion-slides  [options]="slideOptsOne" #slideWithNav
+    (ionSlideDidChange)="SlideDidChange(sliderOne,slideWithNav)">
     <ng-container *ngFor="let s of sliderOne.slidesItems">
 
 
@@ -18,11 +19,11 @@
       </ion-slide>
     </ng-container>
   </ion-slides>
-  <div class="panel-card back-white" style="margin:0;border-radius:0;">
+  <div class="panel-card back-white" style="margin:0;border-radius:0; min-height: 20vh;">
     <ion-item color="none" lines="none" class="ion-margin-bottom">
       <ion-label>
         <h5 class="panel-heading dark">{{restaurantDetail.name}}<span class="ion-float-right right-review"
-            color="dark">23
+            color="dark">{{restaurantReviewList.length}}
             Reviews</span> </h5>
         <p *ngIf="restaurantDetail.address" class="small-content">
           {{restaurantDetail.address.premisesNo}}
@@ -37,10 +38,13 @@
 
   </div>
 
-  <div class="panel-card back-orange">
-    <h5 class="panel-heading dark">About Restaurent</h5>
+  <div class="panel-card back-orange" style="min-height: 11vh;">
+    <h5 class="panel-heading dark mb-20" (click)="detailsShow = !detailsShow"> Restaurent Details <span> &nbsp;
+        <ion-icon *ngIf="!detailsShow" name="arrow-dropdown"></ion-icon>
+        <ion-icon *ngIf="detailsShow" name="arrow-dropup"></ion-icon>
+      </span></h5>
 
-    <ion-item>
+    <ion-item *ngIf="detailsShow">
 
       <ion-label class="ion-padding-top ion-padding-bottom">
         <h5>
@@ -61,7 +65,7 @@
 
     </ion-item>
 
-    <ion-item>
+    <ion-item *ngIf="detailsShow">
 
       <ion-label class="ion-padding-top ion-padding-bottom">
         <h5>
@@ -87,7 +91,7 @@
 
     </ion-item>
 
-    <ion-item>
+    <ion-item *ngIf="detailsShow">
 
       <ion-label class="ion-padding-top ion-padding-bottom">
         <h5>
@@ -102,7 +106,7 @@
 
     </ion-item>
 
-    <ion-item>
+    <ion-item *ngIf="detailsShow">
 
       <ion-label class="ion-padding-top ion-padding-bottom">
         <h5>
@@ -130,7 +134,7 @@
     </ion-item>
 
 
-    <ion-item>
+    <ion-item *ngIf="detailsShow">
 
       <ion-label class="ion-padding-top ion-padding-bottom">
         <h5>
@@ -145,7 +149,7 @@
 
     </ion-item>
 
-    <ion-item>
+    <ion-item *ngIf="detailsShow">
 
       <ion-label class="ion-padding-top ion-padding-bottom">
         <h5>
@@ -169,7 +173,7 @@
 
     </ion-item>
 
-    <ion-item>
+    <ion-item *ngIf="detailsShow">
 
       <ion-label class="ion-padding-top ion-padding-bottom">
         <h5>
@@ -185,7 +189,7 @@
 
     </ion-item>
 
-    <ion-item>
+    <ion-item *ngIf="detailsShow">
 
       <ion-label class="ion-padding-top ion-padding-bottom">
         <h5>
@@ -200,58 +204,76 @@
 
 
     </ion-item>
-    <ion-item>
+    <ion-item *ngIf="detailsShow">
 
       <ion-label class="ion-padding-top ion-padding-bottom">
         <h5>
           <img class="ico-small" src="assets/call_gray.svg">&nbsp;
 
-    
-        +91 {{restaurantDetail.mobile}}
 
-</h5>
+          +91 {{restaurantDetail.mobile}}
+
+        </h5>
       </ion-label>
 
     </ion-item>
   </div>
 
-  <div class="panel-card light-green">
+  <div class="panel-card light-green" style="min-height: 11vh;">
     <!-- <h5 class="panel-heading dark">About</h5> -->
     <ion-item color="none" lines="none">
 
-      <ion-label class="panel-heading dark">
+      <ion-label (click)="aboutShow = !aboutShow" class="panel-heading dark">
         About
-
+        <span> &nbsp; <ion-icon *ngIf="!aboutShow" name="arrow-dropdown"></ion-icon>
+          <ion-icon *ngIf="aboutShow" name="arrow-dropup"></ion-icon>
+        </span>
       </ion-label>
 
 
     </ion-item>
-    <div class="review-part">
+    <div class="review-part" *ngIf="aboutShow">
       <h6 class="dark-text ion-text-start">{{restaurantDetail.description}}</h6>
     </div>
   </div>
-  <div class="panel-card light-grey">
-    <h5 class="panel-heading dark">reviews</h5>
+  <div class="panel-card light-grey" style="min-height: 11vh;">
+    <h5 class="panel-heading dark mb-20" (click)="reviewShow = !reviewShow">reviews
+      <span> &nbsp; <ion-icon *ngIf="!reviewShow" name="arrow-dropdown"></ion-icon>
+        <ion-icon *ngIf="reviewShow" name="arrow-dropup"></ion-icon>
+      </span>
 
-    <div class="review-part">
-      <ion-item lines="none" >
+    </h5>
+
+    <div class="review-part" *ngIf="reviewShow">
+    <ng-container *ngFor="let review of restaurantReviewList; let k = index">
+      
+      <ion-item lines="none" (click)="presentReviewModal(review.id)">
         <ion-thumbnail class="ion-thumbnail-2" slot="start">
-          <img src="assets/reviewer.svg">
+        
+          <ng-container *ngIf="((review.userDetails.list) && (review.userDetails.list[0].data.length > 0))">
+            <img  [src]="review.userDetails.list[0].data[0].storagePath">
+          </ng-container>
+          <ng-container *ngIf="!((review.userDetails.list) && (review.userDetails.list[0].data.length > 0))">
+            <img  src="assets/reviewer.svg">
+          </ng-container>
+          <!-- <img src="assets/reviewer.svg"> -->
         </ion-thumbnail>
         <ion-label>
-          <h3>Nyaz Khan</h3>
-          <p>2 Days Ago</p>
+          <h3>{{review.userDetails.name}}</h3>
+          <p>{{review.modifiedDate | date: 'd MMM y'}}</p>
         </ion-label>
       </ion-item>
 
-      <p class="dark-text ion-text-start">I started Deliciously Ella back in 2012 whilst I was still at university. In
+      <!-- <p class="dark-text ion-text-start">I started Deliciously Ella back in 2012 whilst I was still at university. In
         2011, I had been diagnosed with a condition called Postural Tachycardia Syndrome, as well as Ehlers-Danlos and
-        Mast Cell Activation Disorder, following four months in and out of hospital. The condition</p>
+        Mast Cell Activation Disorder, following four months in and out of hospital. The condition</p> -->
+      </ng-container>
+
     </div>
   </div>
 
-  <div class="panel-card fixed-back-white">
-    <ion-button class="proceed-button ion-margin-top" expand="block"> EDIT PROFILE </ion-button>
+  <div class="panel-card fixed-back-white" style="min-height: 22vh;">
+    <ion-button class="proceed-button ion-margin-top" routerLink="/registration" expand="block"> EDIT PROFILE </ion-button>
     <div class="crab-bootm-vector">
       <img src="assets/CRAB_Vector.svg">
     </div>

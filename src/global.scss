@@ -62,42 +62,33 @@ p{
   }
 .f-10 {
     font-size: 10px;
-      }
-// ion-content {
-//     --background: #FBFBFD;
-// }
-
-// ion-item{
-//     --padding-start: 0px !important;
-//     --inner-padding-end: 0px !important;
-//     --border-color:rgba(0, 0, 0, 0.1);
-//     --background: transparent;
-// }
-// ion-input{
-//     --placeholder-color: #000000 !important;
-//     --placeholder-font-weight: 500 !important;
-//     --placeholder-opacity: 1 !important;
-// }
-// ion-label{
-//     margin: 0;
-// }
+    line-height: 12px;
+    color: rgba(0, 0, 0, 0.4);
+}
+.km-part img{
+    height: 14px;
+    width: auto;
+}
 
 
-// .km-part{
-//     justify-content: start;
-//     display: flex;
-//     font-size: 11px;
-//     float: right;
-//     position: relative;
-//     top: -18px;
-//     color: rgba(0, 0, 0, 0.4);
-// }
-// .km-part ion-icon{
-//     font-size: 10px;
-//     line-height: 12px;
-//     color: rgba(0, 0, 0, 0.4);
-// }
-// .km-part img{
-//     height: 14px;
-//     width: auto;
-// }
+.primary{
+    color: #1966FB;
+}
+.pink{
+    color: #DD1F91;
+}
+.sky-blue{
+    color:#198FFB;
+}
+.danger{
+    color:#FF4949 !important;
+}
+.orange{
+    color: #FC810F !important;
+}
+.success{
+    color: #0F9D58;
+}
+.white{
+    color: #ffffff;
+}

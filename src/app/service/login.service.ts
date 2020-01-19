@@ -38,7 +38,7 @@ export class LoginService {
   }
 
   masterApi() {
-    return this.Http.post('master/data/get', [1, 2, 3, 4, 7]);
+    return this.Http.post('master/data/get', [1, 2, 3, 4, 7, 8, 9, 10, 11, 12, 13]);
 
   }
 
@@ -109,4 +109,36 @@ export class LoginService {
 
   }
 
+  upcomingAppointment() {
+    return this.Http.post('connect/invitation/save', {});
+
+  }
+
+
+  sendReviewRequest(reviewDetails) {
+    return this.Http.post('connect/reviewRequest/save', reviewDetails);
+
+  }
+  getDashboardCount(typeOfCount) {
+    return this.Http.post('connect/counts', typeOfCount);
+
+  }
+
+  upCommingAppointents(type) {
+    return this.Http.post('connect/bookInv/upcoming', type);
+
+  }
+
+  getReviewList() {
+    return this.Http.get('connect/reviewRequest/get');
+
+
+  }
+
+
+
+  getReviewById(id) {
+    return this.Http.post('connect/review/byReviewRequest/get', id);
+
+  }
 }

@@ -20,16 +20,13 @@ export class RegistrationGuard implements CanActivate {
     const stage = this.storageService.getData('stage');
     console.log(stage + '    567');
 
-    if ((stage < 17) && (3 < stage)) {
-      console.log(stage + '      [[[[[[[');
+    if ((stage < 18) && (3 < stage)) {
 
       return true;
     } else {
 
-      console.log(stage + '  el    [[[[[[[');
 
-      if (stage >= 17) {
-        console.log(stage + '  if    [[[[[[[');
+      if (stage >= 18) {
 
         this.router.navigateByUrl('/dashboard');
       }

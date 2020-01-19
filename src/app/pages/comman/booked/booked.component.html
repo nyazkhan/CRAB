@@ -15,35 +15,49 @@
         <p *ngIf="bookingDetails.status == 1" class="ico-list orange">
           <img class="ico-small" src="assets/toy-orange.svg">&nbsp; Waiting for confirmation
         </p>
+        <p *ngIf="bookingDetails.status == 8" class="ico-list pink">
 
-        <p *ngIf="bookingDetails.status == 2" class="ico-list success">
+          <img class="ico-small" src="assets/cross.svg">&nbsp; Blogger Miss the booking
+        </p>
+        <p *ngIf="bookingDetails.status == 7" class="ico-list primary">
 
-          <img class="ico-small" src="assets/cross.svg">&nbsp; Booking Canceled By Blogger
+          <img class="ico-small" src="assets/tik.svg">&nbsp; Blogger Enjoy the booking
+        </p>
+        <p *ngIf="bookingDetails.status == 3" class="ico-list danger">
+
+          <img class="ico-small" src="assets/cross.svg">&nbsp; booking Canceled
+        </p>
+        <p *ngIf="bookingDetails.status == 16" class="ico-list danger">
+
+          <img class="ico-small" src="assets/cross.svg">&nbsp; booking Expired
+        </p>
+        <p *ngIf="bookingDetails.status == 17" class="ico-list danger">
+
+          <img class="ico-small" src="assets/cross.svg">&nbsp; booking Cancel By Blogger
+        </p>
+        <p *ngIf="bookingDetails.status==10" class="ico-list success">
+          <img class="ico-small" src="assets/tik.svg">&nbsp; booking confirmed
         </p>
 
-        <p *ngIf="bookingDetails.status == 4" class="ico-list danger">
 
-          <img class="ico-small" src="assets/cross.svg">&nbsp; Booking Cancel 
-        </p>
-        <p *ngIf="bookingDetails.status==5" class="ico-list success">
-          <img class="ico-small" src="assets/tik.svg">&nbsp; Booking confirmed
-        </p>
-
-
-        <p class="ico-list mb-25">
+        <p class="ico-list mb-25" style="color: rgba(0, 0, 0, 0.4);">
           <img class="ico-small" src="assets/chair.svg">&nbsp; Table for {{bookingDetails.persons}}
         </p>
 
         <ion-item lines="none" class="ion-margin-bottom" (click)="openBloggerDetailsModel()">
           <div slot="start" class="blo-img">
-            <img *ngIf="bookingDetails.userDetails.profilePic" [src]="bookingDetails.userDetails.profilePic">
-            <img *ngIf="!bookingDetails.userDetails.profilePic" src="assets/b2.svg">
+            <img *ngIf=" ((bookingDetails.userDetails.list) && (bookingDetails.userDetails.list[0].data.length > 0))" [src]="bookingDetails.userDetails.list[0].data[0].storagePath">
+            <img *ngIf="!((bookingDetails.userDetails.list) && (bookingDetails.userDetails.list[0].data.length > 0))" src="assets/b2.svg">
           </div>
           <ion-label>
             <h4 class="blo-name">{{bookingDetails.userDetails.name}}</h4>
-            <p class="small-content">{{bookingDetails.userDetails.address?.locality}},
+            <p class="small-content">
+              {{  (bookingDetails.userDetails.address?.locality.length>20)? (bookingDetails.userDetails.address?.locality | slice:0 : 20)+'..' : (bookingDetails.userDetails.address?.locality)}},
+
               {{bookingDetails.userDetails.address?.city}}<br>
-              40.2+ Followers</p>
+              <!-- 40.2+ Followers -->
+            
+            </p>
           </ion-label>
         </ion-item>
       </ion-col>
@@ -53,24 +67,65 @@
 
 
   <div *ngIf="cancelButtonClick" class="panel-card fixed-bottom-Cancel-div cancel-transition fixed-back-white">
-    <h5 class="panel-heading ion-margin-bottom">Cancel Invitation</h5>
-    <p class="small-content ion-margin-bottom">Are you sure you want to cancel the invitation</p>
-    <ion-button color="light" size="large" (click)="cancelButtonClick=false"
+    <h5 class="panel-heading ion-margin-bottom">Cancel Booking</h5>
+    <p class="small-content ion-margin-bottom">Are you sure you want to cancel the Booking</p>
+    <ion-button color="light" size="large" (click)="cancelButtonClick = false; hideButtons = false"
       class="cancel-button proceed-button ion-margin-top" expand="block">No, Please
       Don’t Cancel </ion-button>
-    <ion-button color="danger" (click)="cancelBooking();" size="large"
-      class="cancel-button proceed-button ion-margin-top" expand="block">Yes, Cancel My Appointment </ion-button>
+    <ion-button color="danger" (click)="changeBookingStatus(3)" size="large"
+      class="cancel-button proceed-button ion-margin-top" expand="block">Yes, Cancel Booking </ion-button>
 
   </div>
-  <ion-grid *ngIf="!cancelButtonClick" class="fixed-bottom-button">
+
+
+  <!-- present -->
+
+  <div *ngIf="presentButtonClick" class="panel-card fixed-bottom-Cancel-div cancel-transition fixed-back-white">
+    <h5 class="panel-heading ion-margin-bottom">Blogger has Arrived</h5>
+    <p class="small-content ion-margin-bottom">Are you sure Blogger has Arrived</p>
+    <ion-button color="light" size="large" (click)="presentButtonClick = false ; hideButtons =false"
+      class="cancel-button proceed-button ion-margin-top" expand="block">No,
+      Don’t Arrived </ion-button>
+    <ion-button color="danger" (click)="changeBookingStatus(7);" size="large"
+      class="cancel-button proceed-button ion-margin-top" expand="block">Yes, Blogger has Arrived </ion-button>
+
+  </div>
+
+
+  <!-- absent -->
+
+  <div *ngIf="absentButtonClick" class="panel-card fixed-bottom-Cancel-div cancel-transition fixed-back-white">
+    <h5 class="panel-heading ion-margin-bottom">Blogger hasn't Arrived</h5>
+    <p class="small-content ion-margin-bottom">Are you sure Blogger is not comming</p>
+    <ion-button color="light" size="large" (click)="absentButtonClick=false ; hideButtons =false"
+      class="cancel-button proceed-button ion-margin-top" expand="block">No,
+      Don’t Sure </ion-button>
+    <ion-button color="danger" (click)="changeBookingStatus(8);" size="large"
+      class="cancel-button proceed-button ion-margin-top" expand="block">Yes, I'm Sure </ion-button>
+
+  </div>
+
+
+
+  <ion-grid *ngIf="!hideButtons" class="fixed-bottom-button">
     <ion-row>
       <ion-col>
-        <ion-button *ngIf="bookingDetails.status==5" (click)="cancelButtonClick = true" size="large" color="undefine"
-          class="proceed-button cancel-button ion-margin-top" expand="block">CANCEL</ion-button>
-        <ion-button *ngIf="bookingDetails.status==1" (click)="acceptBooking()" size="large" color="primary"
+        <ion-button *ngIf="(bookingDetails.status==10) " (click)="cancelButtonClick = true ; hideButtons = true"
+          size="large" color="undefine" class="proceed-button cancel-button ion-margin-top" expand="block">CANCEL
+        </ion-button>
+        <ion-button *ngIf="bookingDetails.status==1" (click)="changeBookingStatus(10)" size="large" color="primary"
           class="proceed-button  ion-margin-top" expand="block">ACCEPT BOOKING</ion-button>
-        <ion-button *ngIf="bookingDetails.status==1" (click)="cancelButtonClick = true" size="large" color="danger"
-          class="proceed-button  ion-margin-top" expand="block">REJECT BOOKING</ion-button>
+        <ion-button *ngIf="bookingDetails.status==1" (click)="cancelButtonClick = true ; hideButtons = true"
+          size="large" color="danger" class="proceed-button  ion-margin-top" expand="block">REJECT BOOKING</ion-button>
+
+        <ion-button
+          *ngIf="((bookingDetails.isToday) && (bookingDetails.status !== 7)  && (bookingDetails.status == 10) && (bookingDetails.status !== 8))"
+          (click)="presentButtonClick = true ; hideButtons = true" size="large" color="success"
+          class="proceed-button cancel-button ion-margin-top" expand="block">Blogger Present</ion-button>
+        <ion-button
+          *ngIf="((bookingDetails.isToday) && (bookingDetails.status !== 7) && (bookingDetails.status == 10) && (bookingDetails.status !== 8))"
+          (click)="absentButtonClick = true ; hideButtons = true" size="large" color="danger"
+          class="proceed-button cancel-button ion-margin-top" expand="block">Blogger Absent</ion-button>
         <div class="crab-bootm-vector">
           <img src="assets/CRAB_Vector.svg">
         </div>

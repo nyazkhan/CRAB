@@ -48,6 +48,20 @@ export class LoginPage implements OnInit {
 
 
 
+
+  async presentOTPModal() {
+    const modal = await this.modalController.create({
+      component: OtpComponent,
+      componentProps: {
+
+        phone: { phone: this.phoneNo }
+      }
+    });
+    return await modal.present();
+  }
+
+
+
   next() {
     this.slides.lockSwipes(false);
     this.slides.slideNext();

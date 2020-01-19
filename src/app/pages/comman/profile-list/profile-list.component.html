@@ -5,15 +5,18 @@
       <ion-label>
 
         <h2>{{userDetailsCopy.name}}</h2>
-        <p *ngIf="userDetailsCopy.address" class="blo-address">{{userDetailsCopy.address?.locality}},
+        <p *ngIf="userDetailsCopy.address" class="blo-address">
+          {{  (userDetailsCopy.address?.locality.length>20)? (userDetailsCopy.address?.locality | slice:0:20)+'..':(userDetailsCopy.address?.locality)}},
+
           {{userDetailsCopy.address?.city}}</p>
       </ion-label>
     </ion-item>
     <ion-row>
       <ion-col size="6" style="margin-top: 10px;">
         <div class="review-list">
-          <h4>22</h4>
-          <span>Invites</span>
+          <h4>                    {{ dashBoardReviwCount.reviews}}
+          </h4>
+          <span>Review</span>
         </div>
       </ion-col>
       <ion-col size="6">
@@ -28,7 +31,7 @@
   <ion-grid class="section-pedding">
     <ion-row>
       <ion-col>
-        <ion-item (click)="navigateTo('/profile')" class="rest_address_item" >
+        <ion-item (click)="navigateTo('/profile')" class="rest_address_item">
           <ion-label class="ion-padding-top ion-padding-bottom">
             <h5><img class="ico-small" src="assets/profile.svg">&nbsp; Profile <span class="ion-float-right">
                 <ion-icon class="arrow-forword" name="arrow-forward"></ion-icon>
@@ -38,9 +41,14 @@
 
         <ion-item (click)="navigateTo('/book')" class="rest_address_item">
           <ion-label class="ion-padding-top ion-padding-bottom">
-            <h5><img class="ico-small" src="assets/booking.svg">&nbsp; Bookings <span class="ion-float-right"><span
-                  class="blue-round">2</span> &nbsp; <ion-icon class="arrow-forword" name="arrow-forward"></ion-icon>
-                </span></h5>
+            <h5><img class="ico-small" src="assets/booking.svg">&nbsp; Bookings <span class="ion-float-right">
+                <span *ngIf=" dashBoardCount.bookings>0" class="blue-round">
+                    {{ dashBoardCount.bookings}}
+  
+                </span>
+
+                &nbsp; <ion-icon class="arrow-forword" name="arrow-forward"></ion-icon>
+              </span></h5>
           </ion-label>
         </ion-item>
 
@@ -61,7 +69,7 @@
       <ion-col>
         <ion-item class="rest_address_item" style="border-top: .5px solid rgba(0, 0, 0, 0.1);" (click)="LogOut()">
           <ion-label class="ion-padding-top ion-padding-bottom">
-            <h5 class="danger"><img class="ico-small" src="assets/logout.svg" >&nbsp; Logout</h5>
+            <h5 class="danger"><img class="ico-small" src="assets/logout.svg">&nbsp; Logout</h5>
           </ion-label>
         </ion-item>
         <div class="crab-bootm-vector">

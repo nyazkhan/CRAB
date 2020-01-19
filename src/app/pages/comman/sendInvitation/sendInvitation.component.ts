@@ -13,8 +13,10 @@ import { AlertService } from 'src/app/service/alert.service';
 export class SendInvitationComponent implements OnInit {
   @Input() bloggerDetails: object;
   bloggerDetailsCopy: any = {};
+  // currentDate = new Date(new Date().getDate() + '-' + ((new Date()).getMonth() + 1) + '-' + (new Date()).getFullYear());
   currentDate = (new Date()).getFullYear() + '-' + ((new Date()).getMonth() + 1) + '-' + (new Date()).getDate();
-  maxDate = ((new Date()).getFullYear() + 1) + '-' + ((new Date()).getMonth() + 1) + '-' + (new Date()).getDate();
+
+  // maxDate = ((new Date()).getFullYear() + 1) + '-' + ((new Date()).getMonth() + 1) + '-' + (new Date()).getDate();
   currentTime = (new Date()).getHours() + ':' + (new Date()).getMinutes();
   invitaionDetails = {
     toDate: this.currentDate,
@@ -29,7 +31,7 @@ export class SendInvitationComponent implements OnInit {
 
     private loginservice: LoginService,
   ) {
-
+    this.invitaionDetails.toDate = this.currentDate;
     this.bloggerDetailsCopy = navParams.get('bloggerDetails');
     console.log(this.currentTime);
 
@@ -69,6 +71,7 @@ export class SendInvitationComponent implements OnInit {
 
     // this.invitaionDetails.onTime = this.currentTime;
     this.invitaionDetails.to = this.bloggerDetailsCopy.id;
+    this.invitaionDetails.toDate = this.invitaionDetails.toDate.toString().slice(0 , 10);
     this.loginservice.sendInvitaionToBlogger(this.invitaionDetails).subscribe((res) => {
       if (res.status === 200) {
         this.back();

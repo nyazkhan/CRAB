@@ -15,6 +15,10 @@ export class BookedComponent implements OnInit {
   @Input() booking: object;
   bookingDetails: any = {};
   cancelButtonClick = false;
+  presentButtonClick = false;
+  absentButtonClick = false;
+  hideButtons = false;
+
   constructor(
     navParams: NavParams,
     public modalController: ModalController,
@@ -27,37 +31,38 @@ export class BookedComponent implements OnInit {
     this.bookingDetails = navParams.get('booking');
   }
 
-  // PENDING(1, "Pending"),
-  // HOLD(2, "Hold"),
-  // REJECTED(3, "Reject"),
-  // REVERTED(4, "Reverted"),
-  // APPROVED(5, "Approved");
-  cancelBooking() {
+  changeBookingStatus(statusId) {
     this.cancelButtonClick = false;
+    this.presentButtonClick = false;
+    this.absentButtonClick = false;
+    this.hideButtons = false;
     this.loginservice.updateBookingStatus({
       id: this.bookingDetails.id,
-      status: 4
-    }).subscribe((res) => {
-      if (res.status === 200) {
-        this.alertService.presentToast('Reject Booking Request Successfuly' , '#ff0000');
-        console.log(res.data);
-        this.bookingDetails.status = 4;
-      }
-    });
-  }
-  acceptBooking() {
-    this.loginservice.updateBookingStatus({
-      id: this.bookingDetails.id,
-      status: 5
+      status: statusId
     }).subscribe((res) => {
       if (res.status === 200) {
         console.log(res.data);
-        this.bookingDetails.status = 5;
-        this.alertService.presentToast('Accept Booking Request Successfuly');
+        this.bookingDetails.status = statusId;
+        if (statusId === 10) {
 
+          this.alertService.presentToast('Accept Booking Request Successfuly');
+        }
+        if (statusId === 3) {
+
+          this.alertService.presentToast('Reject Booking Request Successfuly', '#ff0000');
+        }
+        if (statusId === 7) {
+
+          this.alertService.presentToast(' Booking Status Change Successfuly');
+        }
+        if (statusId === 8) {
+
+          this.alertService.presentToast(' Booking Status Change Successfuly');
+        }
       }
     });
   }
+
   ngOnInit() { }
   back() {
     this.modalController.dismiss({

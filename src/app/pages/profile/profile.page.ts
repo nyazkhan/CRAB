@@ -4,6 +4,7 @@ import { ModalController, NavParams, IonSlides } from '@ionic/angular';
 import { LoginService } from 'src/app/service/login.service';
 import { Router } from '@angular/router';
 import { StorageService } from 'src/app/service/storage.service';
+import { ReviewDetailsComponent } from '../comman/review-details/review-details.component';
 
 @Component({
   selector: 'app-profile',
@@ -20,9 +21,11 @@ export class ProfilePage implements OnInit {
     autoplay: true
   };
 
+  aboutShow = false;
+  detailsShow = false;
+  reviewShow = false;
 
-
-
+  restaurantReviewList: any = {};
 
   restaurantDetail: any = {};
   restauratMoblieNo: any;
@@ -47,7 +50,22 @@ export class ProfilePage implements OnInit {
   ) {
     this.restauratMoblieNo = this.storageService.getData('mobile');
 
+    this.loginservice.getReviewList().subscribe((res) => {
+      if (res.status === 200) {
+        this.restaurantReviewList = res.data.filter((el) => {
+          return (el.status === 13);
+        });
 
+        // this.restaurantReviewList = this.restaurantReviewList.map(element => {
+        //   let t = new Date(1970, 0, 1); // Epoch
+        //   element.modifiedDate = t.setSeconds(element.modifiedDate);
+        //   return element;
+
+        // });
+        console.log(this.restaurantReviewList);
+
+      }
+    });
     // position.coords.latitude, position.coords.longitude
     this.getRestaurantDetails();
 
@@ -145,5 +163,25 @@ export class ProfilePage implements OnInit {
   }
   ngOnInit() {
 
+  }
+
+
+  getReview(id) {
+
+
+    this.loginservice.getReviewById(id).subscribe((res) => {
+
+    });
+  }
+
+  async presentReviewModal(reviewId) {
+    const modal = await this.modalCtrl.create({
+      component: ReviewDetailsComponent,
+      componentProps: {
+
+        reviewId: { id: reviewId },
+      }
+    });
+    return await modal.present();
   }
 }

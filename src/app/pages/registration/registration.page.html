@@ -3162,17 +3162,17 @@
     </ion-slide>
 
 
-    <!-- social profile page -->
+    <!-- social profile page  17 -13 -->
 
-    <!-- <ion-slide class="ion-padding " style=" vertical-align:top; overflow: scroll;">
+    <ion-slide class="ion-padding " style=" vertical-align:top; overflow: scroll;">
 
 
-     
 
-       
-      
+
+
+
       <ion-grid class="content-scroll">
-        
+
         <ion-text color="none">
           <h5 class="ion-text-start"> &nbsp; Social Profiles</h5>
         </ion-text>
@@ -3187,7 +3187,7 @@
 
             <ion-item class="mb-6">
               <ion-label class="lable-style" position="stacked">Website</ion-label>
-              <ion-input class="input-style" name="website" [(ngModel)]="restaurantDetail.websiteUrl" type="text"
+              <ion-input class="input-style" name="website" [(ngModel)]="restaurantDetail.website" type="text"
                 placeholder="website url"></ion-input>
             </ion-item>
 
@@ -3222,18 +3222,18 @@
       <ion-row>
         <ion-col>
           <div class="fixed-btn">
-            <ion-button expand="block" color='undefine' (click)="sendEmailVerifycatioLink()"
-              [disabled]="!isValidEmail()" class="full-with-btn-3  mt-20"> NEXT
+            <ion-button expand="block" color='undefine' (click)="saveSocialProfile()" class="full-with-btn-3  mt-20">
+              NEXT
             </ion-button>
 
           </div>
         </ion-col>
       </ion-row>
-    </ion-slide> -->
+    </ion-slide>
 
 
 
-    <!-- edit profile page 17-13  -->
+    <!-- edit profile page 18-14  -->
     <ion-slide *ngIf="restaurantDetail.list" style=" vertical-align:top; overflow: scroll; padding-top: 0 !important;">
       <div *ngIf="restaurantDetail.list[0].data.length > 0" class="img-top-part"
         [style.background-image]="'url(' + restaurantDetail.list[0].data[0].storagePath + ')'">
@@ -3435,7 +3435,7 @@
     </ion-slide>
 
 
-    <!-- thankyou 18-14 -->
+    <!-- thankyou 19-15 -->
     <ion-slide class="ion-padding thankyou-img " style=" vertical-align:top">
       <ion-row class="letsgodown">
         <ion-col>
@@ -3446,19 +3446,19 @@
 
           <p style="font-size: 18px !important" class="ion-text-center bold">We'll Be Back Soon</p>
           <br>
-          <!-- <p style="font-size: 14px !important" class="ion-text-center bold">What can you expect from us</p> -->
+          <p style="font-size: 14px !important" class="ion-text-center bold">What can you expect from us</p>
 
         </ion-col>
       </ion-row>
 
-      <!-- <ion-row>
+      <ion-row>
         <ion-col class="ion-padding">
           <div class="fixed-btn">
-            <ion-button expand="block" color='undefine' (click)="logOut()" class="full-with-btn  mt-20">Log Out
+            <ion-button expand="block" color='undefine' (click)="gotoDashboard()" class="full-with-btn  mt-20">PROCEED
             </ion-button>
           </div>
         </ion-col>
-      </ion-row> -->
+      </ion-row>
     </ion-slide>
 
 

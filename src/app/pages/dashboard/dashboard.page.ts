@@ -25,7 +25,9 @@ export class DashboardPage implements OnInit {
 
   position: any = {};
 
-
+  commingInvitation: any = [];
+  commingBooking: any = [];
+  commingAppointments: any = [];
 
 
   constructor(
@@ -46,13 +48,51 @@ export class DashboardPage implements OnInit {
         this.restaurantDetails = res.data;
       }
     });
-    this.loginservice.getAllBooking().subscribe((res) => {
+    this.loginservice.getReviewList().subscribe((res) => {
 
     });
+    this.appointments();
   }
+
+
+  appointments() {
+    this.commingBooking = [];
+    this.commingInvitation = [];
+    this.commingAppointments = [];
+    this.loginservice.upCommingAppointents({
+      searchType: 1,
+      status: 10,
+      durationType: 1,
+
+    }).subscribe((res) => {
+      if (res.status === 200) {
+        this.commingInvitation = res.data;
+
+        this.loginservice.upCommingAppointents({
+          searchType: 2,
+          status: 10,
+          durationType: 1,
+
+        }).subscribe((resp) => {
+          if (resp.status === 200) {
+            this.commingBooking = res.data;
+            this.commingAppointments = res.data.concat(resp.data);
+            this.commingAppointments.sort((a , b) => {
+              // Turn your strings into dates, and then subtract them
+              // to get a value that is either negative, positive, or zero.
+              return new Date(a.toDate) - new Date(b.toDate);
+            });
+            console.log(this.commingAppointments);
+
+          }
+        });
+      }
+    });
+  }
+
   async presentBloggerSearchModal() {
     const modal = await this.modalController.create({
-      component: BlockSlotsComponent,
+      component: SearchComponent,
       componentProps: {
 
         bloggerList: this.listOfBlogger,
@@ -85,32 +125,32 @@ export class DashboardPage implements OnInit {
 
 
   goToAppointment(val) {
-    if (val === 'invitation') {
-      this.presentInvitationDetailModal();
+    if (!val.persons) {
+      this.presentInvitationDetailModal(val);
     }
 
-    if (val === 'booked') {
-      this.presentBookingModal();
+    if (val.persons) {
+      this.presentBookingModal(val);
     }
   }
 
-  async presentBookingModal() {
+  async presentBookingModal(val) {
     const modal = await this.modalController.create({
       component: BookedComponent,
       componentProps: {
 
-        // restaurantDetails: this.restaurantDetails,
+        booking: val,
       }
     });
     return await modal.present();
   }
 
-  async presentInvitationDetailModal() {
+  async presentInvitationDetailModal(val) {
     const modal = await this.modalController.create({
       component: InviteddetailsComponent,
       componentProps: {
 
-        // invitation: this.restaurantDetails,
+        invitation: val,
       }
     });
     return await modal.present();
