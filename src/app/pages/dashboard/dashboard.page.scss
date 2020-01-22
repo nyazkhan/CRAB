@@ -121,7 +121,7 @@ ion-toolbar {
     margin-bottom: 0;
 }
 .ico-with-title{
-    justify-content: start;
+    justify-content: flex-start;
     display: flex;
     font-size: 13px;
     line-height: 14px;
@@ -131,7 +131,7 @@ ion-toolbar {
 }
 .blo-address{
     -webkit-box-pack: start;
-    justify-content: start;
+    justify-content: flex-start;
     display: -webkit-box;
     display: flex;
     font-size: 14px;

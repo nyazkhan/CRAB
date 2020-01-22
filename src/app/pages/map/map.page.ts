@@ -320,6 +320,7 @@ export class MapPage implements OnInit {
 
 
           if (response.status === 200) {
+
             this.storageService.storeData('stage', response.data.stage);
             this.router.navigateByUrl('/registration');
           }

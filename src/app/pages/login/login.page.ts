@@ -35,17 +35,6 @@ export class LoginPage implements OnInit {
     slides.startAutoplay();
   }
 
-  async presentOTPModal() {
-    const modal = await this.modalController.create({
-      component: OtpComponent,
-      componentProps: {
-
-        phone: { phone: this.phoneNo }
-      }
-    });
-    return await modal.present();
-  }
-
 
 
 

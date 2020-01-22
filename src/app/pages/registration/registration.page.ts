@@ -3,7 +3,6 @@ import { IonSlides, ActionSheetController } from '@ionic/angular';
 import { AlertService } from 'src/app/service/alert.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LoginService } from 'src/app/service/login.service';
-import { Storage } from '@ionic/storage';
 import { CameraService } from 'src/app/service/camera.service';
 import { StorageService } from 'src/app/service/storage.service';
 
@@ -110,19 +109,85 @@ export class RegistrationPage implements OnInit {
     }
   };
 
-
-
+  socialIndex = 1;
+  imageIndex = 0;
   seconds = 60;
   timer: any;
-
+  aboutShow = false;
+  detailsShow = false;
   restaurantDetail: any = {};
+  sameAllDaysTiming = false;
+  defferentAllDaysTiming = false;
 
+  onTime: any;
   paymentOption = {
     cash: false,
     credit: false,
     paytm: false,
     upi: false,
   };
+  sameForAllDay: number;
+
+  allDays = ['1', '2', '3', '4', '5', '6', '7'];
+
+  closeedDays = [
+
+    {
+      id: 1,
+      day: 'Monday',
+      isOpen: false,
+      open: '',
+      close: ''
+    },
+    {
+      id: 2,
+      day: 'Tuesday',
+      isOpen: false,
+      open: '',
+      close: ''
+    },
+    {
+      id: 3,
+      day: 'Wednesday',
+      isOpen: false,
+      open: '',
+      close: ''
+    },
+    {
+      id: 4,
+      day: 'Thursday',
+      isOpen: false,
+      open: '',
+      close: ''
+    },
+    {
+      id: 5,
+      day: 'Friday',
+      isOpen: false,
+      open: '',
+      close: ''
+    },
+    {
+      id: 6,
+      day: 'Saturday',
+      isOpen: false,
+      open: '',
+      close: ''
+    },
+    {
+      id: 7,
+      day: 'Sunday',
+      isOpen: false,
+      open: '',
+      close: ''
+    },
+  ];
+
+
+
+
+
+
 
 
 
@@ -202,11 +267,23 @@ export class RegistrationPage implements OnInit {
 
     this.userPhoneNO = this.storageService.getData('mobile');
     this.loginservice.getUserDetails(this.userPhoneNO).subscribe((res) => {
-      if (res.data) {
+      if (res.status === 200) {
+        this.restaurantDetail = res.data;
+        this.storageService.storeData('userDetails', res.data);
+        // if ((res.data.stage >= 18) && (res.data.status === 5)) {
+        //   this.router.navigateByUrl('/dashboard');
+        // }
+        if (!res.data.accommodationSize) {
+
+          this.restaurantDetail.accommodationSize = 10;
+        }
+        if (!res.data.accommodationSize) {
+
+          this.restaurantDetail.accommodationSize = 10;
+        }
         this.nxtStage = res.data.stage - 4;
         this.editDetails(res.data.stage - 4);
         // this.next(res.data.stage);
-        this.restaurantDetail = res.data;
         if (res.data.paymentOptions.length > 0) {
           res.data.paymentOptions.forEach(ele => {
             // tslint:disable-next-line: triple-equals
@@ -231,7 +308,13 @@ export class RegistrationPage implements OnInit {
             }
           });
         }
+        if ((res.data.weekOpenDays.length === 7)) {
+          this.sameForAllDay = 1;
 
+        } else {
+          this.sameForAllDay = 2;
+
+        }
         if (res.data.weekOpenDays.length > 0) {
           res.data.weekOpenDays.forEach(ele => {
             this.openOn.forEach(val => {
@@ -240,7 +323,29 @@ export class RegistrationPage implements OnInit {
                 val.isOpen = true;
               }
             });
+
           });
+          this.closeedDays.forEach(val1 => {
+            // tslint:disable-next-line: triple-equals
+
+            res.data.weekOpenDays.forEach(ele => {
+
+
+            });
+          });
+
+          // tslint:disable-next-line: prefer-for-of
+          for (let i = 0; i < this.closeedDays.length; i++) {
+            const user = this.closeedDays[i].id.toString();
+            if (res.data.weekOpenDays.indexOf(user) >= 0) {
+              console.log(user + ' is a good user');
+            } else {
+              this.closeedDays[i].isOpen = true;
+              console.log(user + ' is BAD!!!');
+            }
+          }
+
+
         }
         if (res.data.openTiming.length > 0) {
           res.data.openTiming.forEach(ele => {
@@ -264,6 +369,11 @@ export class RegistrationPage implements OnInit {
     this.restaurantDetail = newObj;
     console.log(this.restaurantDetail);
     this.nxtStage = this.restaurantDetail.stage - 4;
+    this.storageService.storeData('stage', this.restaurantDetail.stage);
+    if (newObj) {
+
+      this.storageService.storeData('userDetails', newObj);
+    }
     this.editDetails(this.nxtStage);
   }
   ngOnInit() {
@@ -276,6 +386,7 @@ export class RegistrationPage implements OnInit {
     if (id === 12) {
       this.resendOtp();
     }
+    console.log('its slide' + id);
 
     this.slides.slideTo(id, 10);
 
@@ -508,7 +619,7 @@ export class RegistrationPage implements OnInit {
 
   changeSeconds() {
     if ((this.seconds < 60) && (this.seconds > 0)) {
-      document.getElementById('timer').innerHTML = 'Resend OTP in ' + this.seconds.toString() + 'seconds';
+      document.getElementById('timer').innerHTML = 'OTP expire in ' + this.seconds.toString() + '  seconds';
     }
     if (this.seconds > 0) {
       this.seconds--;
@@ -575,7 +686,36 @@ export class RegistrationPage implements OnInit {
 
 
   }
+  selectedDays() {
 
+    if (this.sameForAllDay === 2) {
+      this.restaurantDetail.weekOpenDays = [];
+
+      const days = this.closeedDays.filter(element => !element.isOpen);
+      console.log(days);
+
+      days.forEach(element => {
+        if (!element.isOpen) {
+          console.log(element);
+
+          this.restaurantDetail.weekOpenDays.push(element.id);
+        }
+      });
+    }
+    console.log(this.restaurantDetail.weekOpenDays);
+
+    this.loginservice.updateRestaurantDetails({
+      mobile: this.restaurantDetail.mobile,
+      stage: 8,
+      weekOpenDays: this.restaurantDetail.weekOpenDays
+    }).subscribe((res) => {
+      if (res.status === 200) {
+        this.updateObject(res.data);
+      } else {
+        this.alertService.showErrorAlert(res.message);
+      }
+    });
+  }
 
   sendDay(day) {
     delete this.selectedDayTime;
@@ -782,15 +922,17 @@ export class RegistrationPage implements OnInit {
 
       this.router.navigateByUrl('/dashboard');
     }
-
+    if (this.restaurantDetail.status === 1) {
+      this.alertService.showErrorAlert('Restaurant Under Verification Try after sometime ..   ');
+    }
     if (this.restaurantDetail.status === 2) {
-      this.alertService.showInfoAlert( 'On Hold Becouse ..   ' + this.restaurantDetail.reason);
+      this.alertService.showErrorAlert('On Hold Because ..   ' + this.restaurantDetail.reason);
     }
     if (this.restaurantDetail.status === 4) {
-      this.alertService.showInfoAlert( 'Please change The mention Contant..   ' + this.restaurantDetail.reason);
+      this.alertService.showErrorAlert('Please change The mention Contant..   ' + this.restaurantDetail.reason);
     }
     if (this.restaurantDetail.status === 3) {
-      this.alertService.showInfoAlert('Rejected Becouse ..   ' + this.restaurantDetail.reason);
+      this.alertService.showErrorAlert('Rejected Because ..   ' + this.restaurantDetail.reason);
     }
   }
 }

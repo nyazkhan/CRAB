@@ -80,8 +80,9 @@ export class DashboardPage implements OnInit {
             this.commingAppointments.sort((a , b) => {
               // Turn your strings into dates, and then subtract them
               // to get a value that is either negative, positive, or zero.
-              return new Date(a.toDate) - new Date(b.toDate);
-            });
+              const date1 = new Date(a.toDate);
+              const date2 = new Date(b.toDate);
+              return date1 > date2 ? 1 : date1 < date2 ? -1 : 0;            });
             console.log(this.commingAppointments);
 
           }

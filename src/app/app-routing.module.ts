@@ -6,6 +6,7 @@ import { LoginGuard } from './guard/login.guard';
 import { MapGuard } from './guard/map.guard';
 import { RegistrationGuard } from './guard/registration.guard';
 import { TestingComponent } from './pages/testing/testing.component';
+import { DashboardGuard } from './guard/dashboard.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -18,7 +19,9 @@ const routes: Routes = [
     path: 'registration', loadChildren: './pages/registration/registration.module#RegistrationPageModule',
     canActivate: [RegistrationGuard]
   },
-  { path: 'dashboard', loadChildren: './pages/dashboard/dashboard.module#DashboardPageModule' },
+  { path: 'dashboard', loadChildren: './pages/dashboard/dashboard.module#DashboardPageModule',
+  canActivate: [DashboardGuard]
+},
   { path: 'profile', loadChildren: './pages/profile/profile.module#ProfilePageModule' },
   { path: 'map', loadChildren: './pages/map/map.module#MapPageModule', canActivate: [MapGuard] },
   { path: 'login', loadChildren: './pages/login/login.module#LoginPageModule', canActivate: [LoginGuard] },

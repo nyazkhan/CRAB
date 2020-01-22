@@ -59,12 +59,12 @@ export class OtpComponent implements OnInit {
           this.storageService.storeData(key, res.data[key]);
         }
         this.dismiss();
-        if (res.data.stage !== 3) {
+        if (res.data.stage === 3) {
 
           this.presentAfterloginModal();
         } else {
 
-          this.router.navigateByUrl('/dashboard');
+          this.router.navigateByUrl('/registration');
         }
 
       }
