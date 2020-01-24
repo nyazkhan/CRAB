@@ -20,7 +20,9 @@ export class BloggerDetailsComponent implements OnInit {
     autoplay: true
   };
 
-
+  aboutShow = false;
+  detailsShow = false;
+  reviewShow = false;
   inputDetails: any = {};
 
 
@@ -33,7 +35,7 @@ export class BloggerDetailsComponent implements OnInit {
     upi: false,
   };
   position: any = {};
-
+  reviewList: any = [];
   constructor(
     private loginservice: LoginService,
     // private activatedRoute: ActivatedRoute,
@@ -48,12 +50,15 @@ export class BloggerDetailsComponent implements OnInit {
 
     if (this.inputDetails.isData) {
       this.bloggerDetails = this.inputDetails.data;
-
+      this.reviewList = [];
+      this.loginservice.getReviewListForBlogger(this.bloggerDetails.id).subscribe((res) => {
+        this.reviewList = res.data;
+      });
     } else {
       // if (this.inputDetails.mobileNo) {
 
-        this.restauratMoblieNo = this.inputDetails.mobileNo;
-        this.getBloggerDetails();
+      this.restauratMoblieNo = this.inputDetails.mobileNo;
+      this.getBloggerDetails();
 
       // }
 
@@ -76,6 +81,12 @@ export class BloggerDetailsComponent implements OnInit {
     this.loginservice.getBlogerDetails(this.restauratMoblieNo).subscribe((res) => {
       if (res.status === 200) {
         this.bloggerDetails = res.data;
+        this.reviewList = [];
+
+        this.loginservice.getReviewListForBlogger(this.bloggerDetails.id).subscribe((sc) => {
+          this.reviewList = sc.data;
+
+        });
       } else {
         this.goBack();
 
@@ -88,17 +99,16 @@ export class BloggerDetailsComponent implements OnInit {
   }
 
 
-  async presentReviewgModal() {
+  async presentReviewModal(reviewId) {
     const modal = await this.modalCtrl.create({
       component: ReviewDetailsComponent,
       componentProps: {
 
-        // userDetails: this.userDetails,
+        reviewId: { id: reviewId },
       }
     });
     return await modal.present();
   }
-
 
 
 

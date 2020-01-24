@@ -49,7 +49,17 @@ export class ProfilePage implements OnInit {
 
   ) {
     this.restauratMoblieNo = this.storageService.getData('mobile');
+    this.loginservice.getReviewById(2).subscribe((res) => {
 
+    });
+
+    // position.coords.latitude, position.coords.longitude
+    this.getRestaurantDetails();
+    this.getListOfReviews();
+
+  }
+
+  getListOfReviews() {
     this.loginservice.getReviewList().subscribe((res) => {
       if (res.status === 200) {
         this.restaurantReviewList = res.data.filter((el) => {
@@ -66,12 +76,13 @@ export class ProfilePage implements OnInit {
 
       }
     });
-    // position.coords.latitude, position.coords.longitude
-    this.getRestaurantDetails();
-
-
-
   }
+
+
+
+
+
+
 
   slideNext(object, slideView) {
     slideView.slideNext(500).then(() => {
@@ -118,6 +129,8 @@ export class ProfilePage implements OnInit {
           slidesItems: []
         };
         this.restaurantDetail = res.data;
+        // this.getListOfReviews(res.data.id);
+
         console.log(res);
         this.restaurantDetail.list.forEach(element => {
           element.data.forEach(elem => {
@@ -169,9 +182,8 @@ export class ProfilePage implements OnInit {
   getReview(id) {
 
 
-    this.loginservice.getReviewById(id).subscribe((res) => {
 
-    });
+
   }
 
   async presentReviewModal(reviewId) {

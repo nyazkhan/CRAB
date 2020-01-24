@@ -31,7 +31,7 @@
   <ion-grid class="slider-part-padding top-set">
     <ion-row>
       <ion-col>
-        <h5 class="title-heading">Upcoming Appointments</h5>
+        <h5 class="title-heading"  *ngIf="commingAppointments.length > 0">Upcoming Appointments</h5>
         <div class="slider-appointment" *ngIf="commingAppointments.length > 0">
           <!-- (click)="goToAppointment('invitation')"  -->
           <div (click)="goToAppointment(Appointment)" *ngFor="let Appointment of commingAppointments; let i = index;"
@@ -72,11 +72,11 @@
 
 
         </div>
-        <div class=" card-blue colorfull-card ion-margin-bottom" *ngIf="!(commingAppointments.length > 0)">
-          <h6 class="ion-text-center white">No Upcomming Appointments
-
+        <div (click)="presentBloggerSearchModal()" style="margin-top: 20px;" *ngIf="!(commingAppointments.length > 0)">
+          <!-- <h6 class="ion-text-center white">No Upcomming Appointments
+          </h6> -->
+<img src="assets/NoAppointmentNyazBhaiWNOBG.png" >
             <!-- <ion-badge class="ion-text-center" color="light">Book a Table</ion-badge> -->
-          </h6>
         </div>
       </ion-col>
     </ion-row>
@@ -86,9 +86,9 @@
     <ion-toolbar>
       <ion-searchbar (click)="presentBloggerSearchModal()" placeholder="Search Restaurent"></ion-searchbar>
 
-      <ion-buttons slot="end">
+      <!-- <ion-buttons slot="end">
         <ion-button class="filter-btn" color="none"><img src="assets/filter.svg">&nbsp; Filter</ion-button>
-      </ion-buttons>
+      </ion-buttons> -->
     </ion-toolbar>
     <ion-row>
       <ion-col>
@@ -96,10 +96,10 @@
 
         <ion-item (click)="presentBloggerDetailsModal(blogger.mobile)" lines="none"
           *ngFor="let blogger of listOfBlogger" class="rest_address_item mb-15">
-          <div slot="start" class="blo-img" *ngIf="((blogger.list) && (blogger.list[0].data.length > 0))">
-            <img  [src]="blogger.list[0].data[0].storagePath">
+          <div slot="start" class="blo-img" *ngIf="(blogger.profilePic)">
+            <img  [src]="blogger.profilePic">
           </div>
-          <div slot="start" class="blo-img" *ngIf="!((blogger.list) && (blogger.list[0].data.length > 0))">
+          <div slot="start" class="blo-img" *ngIf="!(blogger.profilePic)">
             <img  src="assets/b1.svg">
           </div>
           <ion-label>

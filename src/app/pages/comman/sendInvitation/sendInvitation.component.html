@@ -12,9 +12,14 @@
 
         <ion-list class="set-height">
           <ion-item color="none" lines="none" class="ion-margin-bottom">
-            <div slot="start" class="blo-img">
-              <img src="assets/b2.svg">
+          
+            <div slot="start" class="blo-img" *ngIf="((bloggerDetailsCopy.list) && (bloggerDetailsCopy.list[0].data))">
+              <img  [src]="bloggerDetailsCopy.list[0].data[0].storagePath">
             </div>
+            <div slot="start" class="blo-img" *ngIf="!((bloggerDetailsCopy.list) && (bloggerDetailsCopy.list[0].data))">
+              <img  src="assets/b1.svg">
+            </div>
+
             <ion-label>
               <h4 class="blo-name" *ngIf="bloggerDetailsCopy.name">{{bloggerDetailsCopy.name}}</h4>
 

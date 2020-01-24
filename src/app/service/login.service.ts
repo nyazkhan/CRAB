@@ -136,7 +136,10 @@ export class LoginService {
   }
 
 
+getReviewListForBlogger(id) {
+  return this.Http.post('connect/review/user/get', id);
 
+}
   getReviewById(id) {
     return this.Http.post('connect/review/byReviewRequest/get', id);
 

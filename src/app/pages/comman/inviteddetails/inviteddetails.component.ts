@@ -83,6 +83,8 @@ export class InviteddetailsComponent implements OnInit {
     }).subscribe((res) => {
       if (res.status === 200) {
         console.log(res.data);
+        this.reviewButtonClick = false;
+        this.hideButtons = false;
         this.invitationDetails.status = 9;
         this.alertService.presentToast('Review Request Sent Successfuly', '#ff0000');
 
