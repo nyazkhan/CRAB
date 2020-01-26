@@ -18,24 +18,8 @@ export class RegistrationGuard implements CanActivate {
     state: RouterStateSnapshot
   ): Promise<boolean> {
     const stage = this.storageService.getData('stage');
-    console.log(stage + '    567');
     const userDetails = this.storageService.getData('userDetails');
-
-    // if ((stage < 18) && (3 < stage)) {
-
-    //   return true;
-    // } else {
-
-    //   const userDetails = this.storageService.getData('userDetails');
-
-    //   if (userDetails.status !== 5) {
-    //   }
-    //   if ((stage >= 18)) {
-
-    //     this.router.navigateByUrl('/dashboard');
-    //   }
-    // }
-
+    const edit = this.storageService.getData('edit');
     if (userDetails.status !== 5) {
 
       if ((3 < stage)) {
@@ -46,7 +30,12 @@ export class RegistrationGuard implements CanActivate {
         this.router.navigateByUrl('/map');
       }
     } else {
-      this.router.navigateByUrl('/dashboard');
+      if (edit) {
+
+        return true;
+      } else {
+        this.router.navigateByUrl('/dashboard');
+      }
 
     }
   }

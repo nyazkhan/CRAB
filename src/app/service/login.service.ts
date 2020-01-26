@@ -136,12 +136,26 @@ export class LoginService {
   }
 
 
-getReviewListForBlogger(id) {
-  return this.Http.post('connect/review/user/get', id);
+  getReviewListForBlogger(id) {
+    return this.Http.post('connect/review/user/get', id);
 
-}
+  }
   getReviewById(id) {
     return this.Http.post('connect/review/byReviewRequest/get', id);
 
   }
+
+
+  restaurantTimeSlot(dateAndId) {
+    return this.Http.post('search/rest/timeslot', dateAndId);
+
+  }
+
+
+
+  blockUnBlockSlots(timingAndId) {
+    return this.Http.post('config/bookInv/save', timingAndId);
+
+  }
+
 }

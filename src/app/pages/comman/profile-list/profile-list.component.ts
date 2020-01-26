@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { NavParams, ModalController } from '@ionic/angular';
 import { StorageService } from 'src/app/service/storage.service';
 import { LoginService } from 'src/app/service/login.service';
+import { BlockSlotsComponent } from '../block-slots/block-slots.component';
 
 @Component({
   selector: 'app-profile-list',
@@ -67,4 +68,14 @@ export class ProfileListComponent implements OnInit {
     this.router.navigateByUrl('/login');
   }
   // openParofileModel
+
+
+  async presentManageSlotModal() {
+    const modal = await this.modalController.create({
+      component: BlockSlotsComponent,
+      componentProps: {
+      }
+    });
+    return await modal.present();
+  }
 }

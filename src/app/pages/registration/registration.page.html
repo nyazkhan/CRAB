@@ -13,47 +13,47 @@
     <ion-slide class="ion-padding " style=" vertical-align:top">
       <ion-row class="part-1">
         <ion-col size="12">
-          <span class="top-center-heading bold f-18" >NAME</span>
+          <span class="top-center-heading bold f-18">NAME</span>
         </ion-col>
-    
+
       </ion-row>
       <ion-row class="part-2">
         <ion-col style="align-items: center; justify-content: center; display: flex;" class="ion-no-padding">
-    
+
           <img src="assets/website.png">
-    
-    
+
+
         </ion-col>
-    
+
       </ion-row>
       <ion-row class="part-3">
-    
+
         <ion-col size="12">
           <h6 style="font-size: 16px !important;" class="ion-text-left bold">Enter Name Of Your Business</h6>
           <ion-item class="stylist-input" lines="none" color="undefine">
             <ion-label slot="end" style="font-size: 12px;" class="main-light-color">Enter Name</ion-label>
             <ion-input class="opacity-1" type="text" name="name" id="nameOfRest" [(ngModel)]="restaurantDetail.name">
             </ion-input>
-    
+
           </ion-item>
-    
-       
-    
+
+
+
         </ion-col>
-    
+
       </ion-row>
-    
+
       <ion-row class="part-4">
         <ion-col size="12">
           <div class="button-list ion-no-padding">
             <ion-button *ngIf="false" class="mybutton" color="primary">Primary</ion-button>
-            <ion-button class="mybutton"  color="primary" (click)="saveRestName()">NEXT</ion-button>
+            <ion-button class="mybutton" color="primary" (click)="saveRestName()">NEXT</ion-button>
             <ion-button *ngIf="false" class="mybutton" color="primary">Primary</ion-button>
           </div>
         </ion-col>
-    
+
       </ion-row>
-      
+
 
     </ion-slide>
 
@@ -2418,18 +2418,20 @@
 
       </ion-row>
       <ion-row class="part-3">
-        <ion-col class="ion-padding"  style="padding-bottom: 0;" size="12">
+        <ion-col class="ion-padding" style="padding-bottom: 0;" size="12">
 
           <h6 class="ion-text-left bold main-color ml-10" style="width: 100%; margin-top: 0; margin-bottom: 0;">All 7
             days a week ?</h6>
           <ion-row>
             <ion-col size="4">
-              <ion-button expand='block' [fill]="(sameForAllDay == 1)?  'solid': 'outline'" (click)="sameForAllDay = 1; restaurantDetail.weekOpenDays = allDays">
+              <ion-button expand='block' [fill]="(sameForAllDay == 1)?  'solid': 'outline'"
+                (click)="sameForAllDay = 1; restaurantDetail.weekOpenDays = allDays">
                 Yes
               </ion-button>
             </ion-col>
             <ion-col size="4">
-              <ion-button expand='block' [fill]="(sameForAllDay == 2)?  'solid': 'outline'" (click)="sameForAllDay = 2; restaurantDetail.weekOpenDays = []">
+              <ion-button expand='block' [fill]="(sameForAllDay == 2)?  'solid': 'outline'"
+                (click)="sameForAllDay = 2; restaurantDetail.weekOpenDays = []">
                 No
               </ion-button>
             </ion-col>
@@ -2482,7 +2484,7 @@
     <!-- Restaurant timing 9-5 -->
 
     <ion-slide class="ion-padding " style=" vertical-align:top">
-   
+
       <!-- <h6 class="ion-text-center bold main-color  ion-margin-bottom">Restaurant timing</h6>
 
       <div style="display:flex" class=" ion-padding all-content-center">
@@ -2538,22 +2540,22 @@
 
       <ion-row class="part-1">
         <ion-col size="12">
-          <span class="top-center-heading bold f-18" >Timings</span>
+          <span class="top-center-heading bold f-18">Timings</span>
         </ion-col>
-    
+
       </ion-row>
       <ion-row class="part-2">
-        <ion-col  class="ion-padding">
-    
+        <ion-col class="ion-padding">
+
           <img src="assets/Timings.png">
-    
-    
+
+
         </ion-col>
-    
+
       </ion-row>
       <ion-row class="part-3">
-    
-        <ion-col class="ion-padding" size="12">
+
+        <!-- <ion-col class="ion-padding" size="12">
           <div *ngIf="defferentAllDaysTiming !==true" class="text-with-right-toggle ">
             <ion-label class="ion-float-left toggle-lable ">Same for all days?</ion-label>
             <ion-toggle class="ion-float-right" name="sameAllDaysTiming" [(ngModel)]="sameAllDaysTiming" slot="end"
@@ -2565,14 +2567,11 @@
               name="apple" color="primary" checked></ion-toggle>
           </div>
     
-        </ion-col>
-        <ion-col class="ion-no-padding" size="12">
+        </ion-col> -->
+        <!-- <ion-col class="ion-no-padding" size="12">
           <ion-row>
             <ion-col size="5">
-              <!-- <ion-label class="panel-heading dark" >Opening Time</ion-label>
-
-              <ion-datetime displayFormat="h:mm A"  color="primary" [(ngModel)]="onTime" minuteValues="0,30"></ion-datetime> -->
-            
+   
               <ion-item>
                 <ion-label class="f-18" position="floating">Opening Time</ion-label>
                 <ion-datetime color="primary" displayFormat="h:mm a"></ion-datetime>
@@ -2581,55 +2580,82 @@
             <ion-col size="2">
             </ion-col>
             <ion-col size="5">
-              <!-- <ion-label class="panel-heading dark">Opening Time</ion-label>
-
-              <ion-datetime displayFormat="h:mm A" color="primary" [(ngModel)]="onTime" minuteValues="0,30"></ion-datetime> -->
-              <ion-item>
+                <ion-item>
                 <ion-label class="f-18" position="stacked">Closing Time</ion-label>
                 <ion-datetime displayFormat="h:mm a"></ion-datetime>
               </ion-item>
             </ion-col>
           </ion-row>
-        </ion-col>
+        </ion-col> -->
         <ion-col class="ion-no-padding" size="12">
-          <ion-row>
-            <ion-col size="5">
-              <!-- <ion-label class="panel-heading dark" >Opening Time</ion-label>
+          <ng-container *ngFor="let time of openOn; let d = index">
+            <ion-row *ngIf="( timingstartIndex == d )">
 
-              <ion-datetime displayFormat="h:mm A"  color="primary" [(ngModel)]="onTime" minuteValues="0,30"></ion-datetime> -->
-            
-              <ion-item>
-                <ion-label class="f-18" position="floating">Opening Time</ion-label>
-                <ion-datetime color="primary" displayFormat="h:mm a"></ion-datetime>
-              </ion-item>
-            </ion-col>
-            <ion-col size="2">
-            </ion-col>
-            <ion-col size="5">
-              <!-- <ion-label class="panel-heading dark">Opening Time</ion-label>
+              <h6 class="ion-text-left bold main-color ml-10" style="width: 100%; margin-top: 0; margin-bottom: 0;">
+                {{time.day}}
+              </h6>
+              <ion-col size="5" class="ion-padding">
 
-              <ion-datetime displayFormat="h:mm A" color="primary" [(ngModel)]="onTime" minuteValues="0,30"></ion-datetime> -->
-              <ion-item>
-                <ion-label class="f-18" position="stacked">Closing Time</ion-label>
-                <ion-datetime displayFormat="h:mm a"></ion-datetime>
-              </ion-item>
-            </ion-col>
-          </ion-row>
+                <ion-item>
+                  <ion-label color="primary" class="f-18" position="floating">Opening Time</ion-label>
+                  <ion-datetime name="{{d}}" [(ngModel)]="time.open" minuteValues="0,30" displayFormat="h:mm a">
+                  </ion-datetime>
+                </ion-item>
+              </ion-col>
+              <ion-col size="2">
+
+              </ion-col>
+              <ion-col size="5" class="ion-padding">
+                <ion-item>
+                  <ion-label color="primary" class="f-18" position="floating">Closing Time</ion-label>
+                  <ion-datetime name="aa{{d}}" [(ngModel)]="time.close" minuteValues="0,30" displayFormat="h:mm a">
+                  </ion-datetime>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="12" *ngIf="(timingstartIndex == d)">
+
+                <ion-item lines="none" color="undefine">
+                  <ion-button size="large" slot="end" (click)="timingstartIndex = d + 1" *ngIf="openOn.length != d+1">
+                    <ion-icon name="arrow-round-forward"></ion-icon> f
+                  </ion-button>
+                  <ion-button size="large" slot="start" (click)="timingstartIndex = d - 1" *ngIf="d !==0" >
+                    <ion-icon name="arrow-round-back"></ion-icon> b
+                  </ion-button>
+
+                </ion-item>
+              </ion-col>
+            </ion-row>
+          </ng-container>
         </ion-col>
-    
+        <!-- <ion-col size="12">
+
+          <ion-item lines="none" color="undefine">
+            <ion-button size="large" slot="end" (click)="timingEndIndex = timingEndIndex - 1"
+              *ngIf="!(timingEndIndex == 1)">
+              <ion-icon name="arrow-round-forward"></ion-icon>
+            </ion-button>
+            <ion-button size="large" slot="start" (click)="timingEndIndex = timingEndIndex + 1"
+              *ngIf="!(timingEndIndex == timingstartIndex)">
+              <ion-icon name="arrow-round-back"></ion-icon>
+            </ion-button>
+
+          </ion-item>
+        </ion-col> -->
       </ion-row>
-    
+
       <ion-row class="part-4">
         <ion-col size="12">
           <div class="button-list ion-no-padding">
             <ion-button *ngIf="false" class="mybutton" color="primary">Primary</ion-button>
-            <ion-button class="mybutton"  color="primary" (click)="next()">NEXT</ion-button>
+            <ion-button class="mybutton" color="primary" (click)="checkForRequiredFieldOnDay()">NEXT</ion-button>
             <ion-button *ngIf="false" class="mybutton" color="primary">Primary</ion-button>
           </div>
         </ion-col>
-    
+
       </ion-row>
-    
+
 
     </ion-slide>
 
@@ -3251,7 +3277,7 @@
 
       <ion-row class="part-2 ">
         <ion-col class="ion-no-padding">
-          <img  src="assets/About.png">
+          <img src="assets/About.png">
 
         </ion-col>
       </ion-row>
@@ -3260,7 +3286,7 @@
           <h6 class="ion-text-left bold f-16 main-color "> Tell us about your Place.... Let say food you serve and
             ambience you provide etc</h6>
 
-            <div style=" overflow: scroll; border: 1px solid lightgrey; border-radius: 8px;">
+          <div style=" overflow: scroll; border: 1px solid lightgrey; border-radius: 8px;">
 
             <ion-textarea style="line-height: 26px; padding: 0 !important" [(ngModel)]="restaurantDetail.description"
               name="aboutRestaurant" class="main-color ion-text-left" autofocus auto-grow="false"
@@ -3356,7 +3382,7 @@
             <h6 *ngIf="seconds ==0" slot="end" style="line-height: inherit;
         margin: 0px;" (click)="resendEmailOTP()" class="main-light-color">Resend OTP</h6>
 
-            <ion-input class="opacity-1" type="text" name="email" [(ngModel)]="restaurantDetail.code">
+            <ion-input class="opacity-1" type="number" name="email" [(ngModel)]="restaurantDetail.code">
             </ion-input>
           </ion-item>
           <h6 *ngIf="seconds !=0" id="timer" class=" ion-text-start ">OTP expire in 1:00 seconds</h6>
@@ -3510,9 +3536,9 @@
 
       <div class="panel-card back-orange">
         <h5 class="panel-heading dark mb-20" (click)="detailsShow = !detailsShow"> Restaurent Details <span> &nbsp;
-          <ion-icon *ngIf="!detailsShow" name="arrow-dropdown"></ion-icon>
-          <ion-icon *ngIf="detailsShow" name="arrow-dropup"></ion-icon>
-        </span></h5>
+            <ion-icon *ngIf="!detailsShow" name="arrow-dropdown"></ion-icon>
+            <ion-icon *ngIf="detailsShow" name="arrow-dropup"></ion-icon>
+          </span></h5>
 
         <ion-item color="none" *ngIf="detailsShow" lines="full">
           <ion-avatar slot="start">
@@ -3598,9 +3624,18 @@
             <img src="assets/watch.svg">
           </ion-avatar>
           <ion-label>
-            Mon-Fri 08:30AM - 09:30 PM
+            <!-- Mon-Fri 08:30AM - 09:30 PM -->
 
+            <ng-container *ngFor="let day of restaurantDetail.weekOpenDays; let s = index;">
+              <span *ngIf="day ==1"> Mon - </span>
+              <span *ngIf="day ==2"> Tue - </span>
+              <span *ngIf="day ==3"> Wed - </span>
+              <span *ngIf="day ==4"> Thu - </span>
+              <span *ngIf="day ==5"> Fri - </span>
+              <span *ngIf="day ==6"> Sat - </span>
+              <span *ngIf="day ==7"> Sun </span>
 
+            </ng-container>
           </ion-label>
           <ion-icon name="create" size="small" (click)="editDetails(4)" slot="end"></ion-icon>
 
@@ -3681,7 +3716,8 @@
         </div>
       </div>
       <div class="panel-card fixed-back-white">
-        <ion-button size="large" class="proceed-button ion-margin-top" (click)="next()" expand="block">PROCEED
+        <ion-button size="large" class="proceed-button ion-margin-top" (click)="checkStatusAndthenGoToDashboard()"
+          expand="block">PROCEED
         </ion-button>
 
       </div>
@@ -3691,7 +3727,7 @@
 
 
     <!-- thankyou 19-15 -->
-    <ion-slide class="ion-padding  " style=" vertical-align:top">
+    <ion-slide class="ion-padding  " *ngIf="!edit" style=" vertical-align:top">
 
 
 

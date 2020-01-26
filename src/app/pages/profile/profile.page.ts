@@ -21,9 +21,9 @@ export class ProfilePage implements OnInit {
     autoplay: true
   };
 
-  aboutShow = false;
-  detailsShow = false;
-  reviewShow = false;
+  aboutShow = true;
+  detailsShow = true;
+  reviewShow = true;
 
   restaurantReviewList: any = {};
 
@@ -185,6 +185,13 @@ export class ProfilePage implements OnInit {
 
 
   }
+
+  goToEditProfile() {
+
+    this.storageService.storeData('edit', true);
+    this.router.navigateByUrl('/registration');
+  }
+
 
   async presentReviewModal(reviewId) {
     const modal = await this.modalCtrl.create({

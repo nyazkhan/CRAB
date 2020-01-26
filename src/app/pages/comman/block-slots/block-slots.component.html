@@ -21,28 +21,27 @@
             <ion-label>
               <h5 class="list-title">
                 <img class="ico-img" src="assets/calender.svg">&nbsp; Booking on
-  
+
                 <!-- <span class="ion-float-right primary"> &nbsp; Select Date </span> -->
               </h5>
             </ion-label>
-            <ion-datetime [min]="currentDate" [max]="maxDate" displayFormat="DD MMM YYYY"
-              [(ngModel)]="bookingDetails.toDate" style="font-size: 14px;
+            <ion-datetime displayFormat="DD MMM YYYY" [(ngModel)]="slotTimeAndDate.toDate" (ionChange)="slotsStatus()"
+              style="font-size: 14px;
               color: #4285f4;">
             </ion-datetime>
           </ion-item>
-  
+
           <ion-item lines="none">
             <ion-label class="ion-padding-top ion-padding-bottom">
               <h5 class="list-title ion-margin-bottom">
                 <img class="ico-img" src="assets/watch.svg">&nbsp; Select Timeslot
               </h5>
-  
+
             </ion-label>
-  
+
           </ion-item>
-          <ion-item lines="none" class="ion-margin-bottom">
+          <!-- <ion-item lines="none" class="ion-margin-bottom">
             <ion-label>
-              <p class="small-content-title"><img class="icon-small" src="assets/sun.svg"> &nbsp; Afternoon</p>
   
               <ion-button class="timing-btn active-time-btn" size="small" fill="outline" color="undefine">10:00 am</ion-button>
               <ion-button class="timing-btn deactive-time-btn" size="small" fill="undefine"  color="undefine">10:30 am</ion-button>
@@ -55,34 +54,43 @@
               <ion-button class="timing-btn" size="small" fill="outline" color="primary">01:30 am</ion-button>
             </ion-label>
   
-          </ion-item>
+          </ion-item> -->
           <ion-item lines="none">
-            <ion-label>
-  
-              <p class="small-content-title"><img class="icon-small" src="assets/evening.svg"> &nbsp; Evening</p>
-              <ion-button class="timing-btn" size="small" fill="outline" color="primary">10:00 am</ion-button>
-              <ion-button class="timing-btn" size="small" fill="outline" color="primary">10:00 am</ion-button>
-              <ion-button class="timing-btn" size="small" fill="outline" color="primary">10:00 am</ion-button>
-              <ion-button class="timing-btn" size="small" fill="outline" color="primary">10:00 am</ion-button>
-            </ion-label>
+            <div style="overflow: scroll; height: 40vh;">
+
+              <ion-row>
+                <ng-container *ngFor="let slot of slotsOfRestaurant; let i = index">
+
+                  <ion-col *ngIf="!(slot.type ==1)" size="3" (click)=" lockUnlock(i)">
+
+                    <ion-button class="timing-btn" [fill]="(slot.isDisable)?  'solid': 'outline'" color="primary">
+                      {{slot.timeSlot}}
+                    </ion-button>
+                  </ion-col>
+                </ng-container>
+
+              </ion-row>
+            </div>
           </ion-item>
         </div>
       </ion-col>
     </ion-row>
   </ion-grid>
 
-  <ion-grid class="section-pedding">
+  <!-- <ion-grid class="section-pedding">
     <ion-row>
       <ion-col size="6">
         <ion-button class="proceed-button ion-margin-top" color="danger" expand="block" size="large">
-            <ion-icon slot="icon-only" name="lock"></ion-icon>
-          Lock Slots </ion-button>
+          <ion-icon slot="icon-only" name="lock"></ion-icon>
+          Lock Slots
+        </ion-button>
       </ion-col>
       <ion-col size="6">
         <ion-button class="proceed-button ion-margin-top" expand="block" size="large">
           <ion-icon slot="icon-only" name="unlock"></ion-icon>
-          Unlock Slots </ion-button>
+          Unlock Slots
+        </ion-button>
       </ion-col>
     </ion-row>
-  </ion-grid>
+  </ion-grid> -->
 </ion-content>

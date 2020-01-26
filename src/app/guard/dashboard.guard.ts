@@ -17,16 +17,31 @@ export class DashboardGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+
+
+    const stage = this.storageService.getData('stage');
     const userDetails = this.storageService.getData('userDetails');
-
+    const edit = this.storageService.getData('edit');
     if (userDetails.status !== 5) {
-      this.router.navigateByUrl('/registration');
 
+      if ((3 < stage)) {
+        this.router.navigateByUrl('/registration');
+      }
+      if (stage === 3) {
+
+        this.router.navigateByUrl('/map');
+      }
     } else {
-      return true;
+      if (edit) {
+
+        this.router.navigateByUrl('/registration');
+      } else {
+        return true;
+      }
 
     }
   }
+
 
 }
 

@@ -13,30 +13,30 @@
           </ion-label>
         </ion-item>
         <p *ngIf="bookingDetails.status == 1" class="ico-list orange">
-          <img class="ico-small" src="assets/toy-orange.svg">&nbsp; Waiting for confirmation
+          <img class="ico-small" src="assets/toy-orange.svg">&nbsp; Waiting For Confirmation
         </p>
         <p *ngIf="bookingDetails.status == 8" class="ico-list pink">
 
-          <img class="ico-small" src="assets/cross.svg">&nbsp; Blogger Miss the booking
+          <img class="ico-small" src="assets/cross.svg">&nbsp; Blogger Missed The booking
         </p>
         <p *ngIf="bookingDetails.status == 7" class="ico-list primary">
 
-          <img class="ico-small" src="assets/tik.svg">&nbsp; Blogger Enjoy the booking
+          <img class="ico-small" src="assets/tik.svg">&nbsp; Appointment Completed
         </p>
         <p *ngIf="bookingDetails.status == 3" class="ico-list danger">
 
-          <img class="ico-small" src="assets/cross.svg">&nbsp; booking Canceled
+          <img class="ico-small" src="assets/cross.svg">&nbsp; Booking Cancelled By You 
         </p>
         <p *ngIf="bookingDetails.status == 16" class="ico-list danger">
 
-          <img class="ico-small" src="assets/cross.svg">&nbsp; booking Expired
+          <img class="ico-small" src="assets/cross.svg">&nbsp; Booking Expired
         </p>
         <p *ngIf="bookingDetails.status == 17" class="ico-list danger">
 
-          <img class="ico-small" src="assets/cross.svg">&nbsp; booking Cancel By Blogger
+          <img class="ico-small" src="assets/cross.svg">&nbsp; Booking Cancelled By Blogger
         </p>
         <p *ngIf="bookingDetails.status==10" class="ico-list success">
-          <img class="ico-small" src="assets/tik.svg">&nbsp; booking confirmed
+          <img class="ico-small" src="assets/tik.svg">&nbsp; Booking Confirmed
         </p>
 
 
@@ -126,9 +126,9 @@
           *ngIf="((bookingDetails.isToday) && (bookingDetails.status !== 7) && (bookingDetails.status == 10) && (bookingDetails.status !== 8))"
           (click)="absentButtonClick = true ; hideButtons = true" size="large" color="danger"
           class="proceed-button cancel-button ion-margin-top" expand="block">Blogger Absent</ion-button>
-        <div class="crab-bootm-vector">
+        <!-- <div class="crab-bootm-vector">
           <img src="assets/CRAB_Vector.svg">
-        </div>
+        </div> -->
       </ion-col>
     </ion-row>
   </ion-grid>

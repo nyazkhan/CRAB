@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Inject } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy, Inject, AfterViewInit } from '@angular/core';
 import { IonSlides, ActionSheetController } from '@ionic/angular';
 import { AlertService } from 'src/app/service/alert.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -11,7 +11,7 @@ import { StorageService } from 'src/app/service/storage.service';
   templateUrl: './registration.page.html',
   styleUrls: ['./registration.page.scss'],
 })
-export class RegistrationPage implements OnInit {
+export class RegistrationPage implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild(IonSlides, { static: false }) slides: IonSlides;
   sameTimeForAll: boolean;
   curentDay = 0;
@@ -184,13 +184,63 @@ export class RegistrationPage implements OnInit {
   ];
 
 
+  timingOfRestaurant = [
+    {
+      id: 1,
+      day: 'Monday',
+      isOpen: false,
+      open: '',
+      close: ''
+    },
+    {
+      id: 2,
+      day: 'Tuesday',
+      isOpen: false,
+      open: '',
+      close: ''
+    },
+    {
+      id: 3,
+      day: 'Wednesday',
+      isOpen: false,
+      open: '',
+      close: ''
+    },
+    {
+      id: 4,
+      day: 'Thursday',
+      isOpen: false,
+      open: '',
+      close: ''
+    },
+    {
+      id: 5,
+      day: 'Friday',
+      isOpen: false,
+      open: '',
+      close: ''
+    },
+    {
+      id: 6,
+      day: 'Saturday',
+      isOpen: false,
+      open: '',
+      close: ''
+    },
+    {
+      id: 7,
+      day: 'Sunday',
+      isOpen: false,
+      open: '',
+      close: ''
+    },
+  ];
+
+  timingstartIndex = 0;
+  timingEndIndex: number;
 
 
-
-
-
-
-
+  tempTiming: any = [];
   openOn = [
 
     {
@@ -243,13 +293,65 @@ export class RegistrationPage implements OnInit {
       close: ''
     },
   ];
+  openOn1 = [
 
+    {
+      id: 1,
+      day: 'Monday',
+      isOpen: false,
+      open: '',
+      close: ''
+    },
+    {
+      id: 2,
+      day: 'Tuesday',
+      isOpen: false,
+      open: '',
+      close: ''
+    },
+    {
+      id: 3,
+      day: 'Wednesday',
+      isOpen: false,
+      open: '',
+      close: ''
+    },
+    {
+      id: 4,
+      day: 'Thursday',
+      isOpen: false,
+      open: '',
+      close: ''
+    },
+    {
+      id: 5,
+      day: 'Friday',
+      isOpen: false,
+      open: '',
+      close: ''
+    },
+    {
+      id: 6,
+      day: 'Saturday',
+      isOpen: false,
+      open: '',
+      close: ''
+    },
+    {
+      id: 7,
+      day: 'Sunday',
+      isOpen: false,
+      open: '',
+      close: ''
+    },
+  ];
 
   active: any;
   userPhoneNO = null;
   // openOn: any;
   selectedDayTime: any = {};
   nxtStage: any;
+  edit: any;
   constructor(
     @Inject(ActivatedRoute) private activatedRoute: ActivatedRoute,
     @Inject(AlertService) private alertService: AlertService,
@@ -264,26 +366,22 @@ export class RegistrationPage implements OnInit {
     this.loginservice.masterApi().subscribe((res) => {
 
     });
+    this.edit = this.storageService.getData('edit');
 
     this.userPhoneNO = this.storageService.getData('mobile');
     this.loginservice.getUserDetails(this.userPhoneNO).subscribe((res) => {
       if (res.status === 200) {
         this.restaurantDetail = res.data;
         this.storageService.storeData('userDetails', res.data);
-        // if ((res.data.stage >= 18) && (res.data.status === 5)) {
-        //   this.router.navigateByUrl('/dashboard');
-        // }
+        delete this.openOn;
+        this.openOn = JSON.parse(JSON.stringify(this.openOn1));
         if (!res.data.accommodationSize) {
 
           this.restaurantDetail.accommodationSize = 10;
         }
-        if (!res.data.accommodationSize) {
 
-          this.restaurantDetail.accommodationSize = 10;
-        }
         this.nxtStage = res.data.stage - 4;
-        this.editDetails(res.data.stage - 4);
-        // this.next(res.data.stage);
+        this.editDetails(5);
         if (res.data.paymentOptions.length > 0) {
           res.data.paymentOptions.forEach(ele => {
             // tslint:disable-next-line: triple-equals
@@ -316,23 +414,16 @@ export class RegistrationPage implements OnInit {
 
         }
         if (res.data.weekOpenDays.length > 0) {
-          res.data.weekOpenDays.forEach(ele => {
-            this.openOn.forEach(val => {
-              // tslint:disable-next-line: triple-equals
-              if (val.id == ele) {
-                val.isOpen = true;
-              }
-            });
+          // res.data.weekOpenDays.forEach(ele => {
+          //   this.openOn.forEach(val => {
+          //     // tslint:disable-next-line: triple-equals
+          //     if (val.id == ele) {
+          //       val.isOpen = true;
+          //     }
+          //   });
 
-          });
-          this.closeedDays.forEach(val1 => {
-            // tslint:disable-next-line: triple-equals
+          // });
 
-            res.data.weekOpenDays.forEach(ele => {
-
-
-            });
-          });
 
           // tslint:disable-next-line: prefer-for-of
           for (let i = 0; i < this.closeedDays.length; i++) {
@@ -348,16 +439,73 @@ export class RegistrationPage implements OnInit {
 
         }
         if (res.data.openTiming.length > 0) {
-          res.data.openTiming.forEach(ele => {
+
+          this.timingEndIndex = res.data.openTiming.length;
+          // this.timingstartIndex = res.data.openTiming.length;
+
+          // tslint:disable-next-line: prefer-for-of
+          for (let i = 0; i < res.data.openTiming.length; i++) {
+            const user = res.data.openTiming[i].otherId.toString();
+            if (res.data.weekOpenDays.indexOf(user) >= 0) {
+              console.log(user + ' is a good shubham');
+              this.tempTiming.push(res.data.openTiming[i]);
+            } else {
+              // this.closeedDays[i].isOpen = true;
+              console.log(user + ' nikhiliya is BAD!!!');
+            }
+          }
+          console.log(this.tempTiming);
+          this.openOn.forEach(val => {
+            val.isOpen = false;
+          });
+          this.tempTiming.forEach(ele => {
             this.openOn.forEach(val => {
-              const times = ele.value.split('-');
               // tslint:disable-next-line: triple-equals
-              if (val.id == ele.otherId) {
-                val.open = times[0];
-                val.close = times[1];
+              if ((val.id == ele.otherId) && (ele.isActive)) {
+                val.isOpen = true;
+                console.log(val.isOpen + '   match id');
+
+                const times = ele.value.split('-');
+                console.log(times);
+              
+                
+                val.open = new Date('01/01/2012 ' + times[0]).toString();
+                val.close = new Date('01/01/2012 ' + times[1]).toString();
+                // val.open = Date.parse('01/01/2012 ' + times[0]).toString();
+                // val.close = Date.parse('01/01/2012' + times[1]).toString();
+                console.log(val);
+
+                // tslint:disable-next-line: triple-equals
+                // if (val.id == ele.otherId) {
+                // const APMP = times[0].split(':');
+                // const APMP2 = times[1].split(':');
+                // console.log(APMP + '   1');
+                // console.log(APMP2 + '  2');
+
+                // // val.open = new Date(times[0]).toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
+                // // val.close = new Date(times[1]).toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
+                // val.open = new Date().setHours(APMP[0]).toString();
+                // val.open = new Date().setMinutes(APMP[1]).toString();
+
+                // console.log(new Date().setHours(APMP[0]).toString() + '  date value');
+
+                // val.close = new Date().setHours(APMP2[0].slice(0, 2)).toString();
+                // val.close = new Date().setMinutes(APMP2[1].slice(0, 2)).toString();
+                // }
+
               }
+
             });
           });
+          console.log(this.openOn);
+
+          console.log('kkkkkkkkkkkkkk');
+          this.openOn = this.openOn.filter((response) => {
+            return response.isOpen;
+          });
+          console.log(this.openOn);
+          console.log('kkkkkkkkkkkkkk');
+
         }
       }
     });
@@ -369,8 +517,126 @@ export class RegistrationPage implements OnInit {
     this.restaurantDetail = newObj;
     console.log(this.restaurantDetail);
     this.nxtStage = this.restaurantDetail.stage - 4;
+
+
+
+
+
+
     this.storageService.storeData('stage', this.restaurantDetail.stage);
     if (newObj) {
+      this.tempTiming = [];
+
+      if (!newObj.accommodationSize) {
+
+        this.restaurantDetail.accommodationSize = 10;
+      }
+      delete this.openOn;
+      this.openOn = JSON.parse(JSON.stringify(this.openOn1));
+      this.nxtStage = newObj.stage - 4;
+      this.editDetails(newObj.stage - 4);
+      if (newObj.paymentOptions.length > 0) {
+        newObj.paymentOptions.forEach(ele => {
+          // tslint:disable-next-line: triple-equals
+          if (ele == 1) {
+            this.paymentOption.cash = true;
+
+          }
+          // tslint:disable-next-line: triple-equals
+          if (ele == 2) {
+            this.paymentOption.paytm = true;
+
+          }
+          // tslint:disable-next-line: triple-equals
+          if (ele == 3) {
+            this.paymentOption.upi = true;
+
+          }
+          // tslint:disable-next-line: triple-equals
+          if (ele == 4) {
+            this.paymentOption.credit = true;
+
+          }
+        });
+      }
+      if ((newObj.weekOpenDays.length === 7)) {
+        this.sameForAllDay = 1;
+
+      } else {
+        this.sameForAllDay = 2;
+
+      }
+      if (newObj.weekOpenDays.length > 0) {
+        // newObj.weekOpenDays.forEach(ele => {
+        //   this.openOn.forEach(val => {
+        //     // tslint:disable-next-line: triple-equals
+        //     if (val.id == ele) {
+        //       val.isOpen = true;
+        //     }
+        //   });
+
+        // });
+
+
+        // tslint:disable-next-line: prefer-for-of
+        for (let i = 0; i < this.closeedDays.length; i++) {
+          const user = this.closeedDays[i].id.toString();
+          if (newObj.weekOpenDays.indexOf(user) >= 0) {
+            console.log(user + ' is a good user');
+          } else {
+            this.closeedDays[i].isOpen = true;
+            console.log(user + ' is BAD!!!');
+          }
+        }
+
+
+      }
+      if (newObj.openTiming.length > 0) {
+        this.timingEndIndex = newObj.openTiming.length;
+        // this.timingstartIndex = newObj.openTiming.length;
+
+        // tslint:disable-next-line: prefer-for-of
+        for (let i = 0; i < newObj.openTiming.length; i++) {
+          const user = newObj.openTiming[i].otherId.toString();
+          if (newObj.weekOpenDays.indexOf(user) >= 0) {
+            console.log(user + ' is a good shubham');
+            this.tempTiming.push(newObj.openTiming[i]);
+          } else {
+            // this.closeedDays[i].isOpen = true;
+            console.log(user + ' nikhiliya is BAD!!!');
+          }
+        }
+        console.log(this.tempTiming);
+
+        this.tempTiming.forEach(ele => {
+          this.openOn.forEach(val => {
+            // tslint:disable-next-line: triple-equals
+            if ((val.id == ele.otherId) && (ele.isActive)) {
+              val.isOpen = true;
+              console.log(val.isOpen + '   match id');
+
+              const times = ele.value.split('-');
+              console.log(times);
+
+              val.open = new Date('01/01/2012 ' + times[0]).toString();
+              val.close = new Date('01/01/2012 ' + times[1]).toString();
+              console.log(val);
+
+
+            }
+
+          });
+        });
+        console.log(this.openOn);
+
+        console.log('kkkkkkkkkkkkkk');
+        this.openOn = this.openOn.filter((response) => {
+          return response.isOpen;
+        });
+        console.log(this.openOn);
+        console.log('kkkkkkkkkkkkkk');
+
+      }
 
       this.storageService.storeData('userDetails', newObj);
     }
@@ -380,6 +646,13 @@ export class RegistrationPage implements OnInit {
     // this.photoService.loadSaved();
 
     // this.slides.lockSwipes(true);
+  }
+  async ngAfterViewInit() {
+
+    if (this.edit) {
+      this.slides.slideTo(14, 10);
+
+    }
   }
   editDetails(id) {
     console.log(id);
@@ -749,10 +1022,12 @@ export class RegistrationPage implements OnInit {
         this.restaurantDetail.openTiming.push({
           otherId: element.id,
           // tslint:disable-next-line: max-line-length
-          value: new Date(this.openOn[0].open).toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true }) + ' - ' + new Date(this.openOn[0].close).toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
+          value: new Date(element.open).toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true }) + ' - ' + new Date(element.close).toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
         });
       }
     });
+
+    console.log(this.restaurantDetail.openTiming);
 
     this.loginservice.updateRestaurantDetails({
       mobile: this.restaurantDetail.mobile,
@@ -920,7 +1195,9 @@ export class RegistrationPage implements OnInit {
 
     if (this.restaurantDetail.status === 5) {
 
+      this.storageService.storeData('edit', false);
       this.router.navigateByUrl('/dashboard');
+
     }
     if (this.restaurantDetail.status === 1) {
       this.alertService.showErrorAlert('Restaurant Under Verification Try after sometime ..   ');
@@ -934,5 +1211,23 @@ export class RegistrationPage implements OnInit {
     if (this.restaurantDetail.status === 3) {
       this.alertService.showErrorAlert('Rejected Because ..   ' + this.restaurantDetail.reason);
     }
+  }
+
+  checkStatusAndthenGoToDashboard() {
+    if (this.restaurantDetail.status === 5) {
+
+      this.storageService.storeData('edit', false);
+      this.router.navigateByUrl('/dashboard');
+
+    } else {
+      this.next();
+    }
+  }
+
+
+
+  ngOnDestroy() {
+    this.slides.slideTo(14, 10);
+
   }
 }
