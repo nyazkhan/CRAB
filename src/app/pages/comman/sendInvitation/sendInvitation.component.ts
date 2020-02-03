@@ -71,7 +71,9 @@ export class SendInvitationComponent implements OnInit {
 
     // this.invitaionDetails.onTime = this.currentTime;
     this.invitaionDetails.to = this.bloggerDetailsCopy.id;
-    this.invitaionDetails.toDate = this.invitaionDetails.toDate.toString().slice(0 , 10);
+    this.invitaionDetails.toDate = this.invitaionDetails.toDate.toString().slice(0, 10);
+    // tslint:disable-next-line: max-line-length
+    this.invitaionDetails.onTime = new Date(this.invitaionDetails.onTime).toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: false });
     this.loginservice.sendInvitaionToBlogger(this.invitaionDetails).subscribe((res) => {
       if (res.status === 200) {
         this.back();

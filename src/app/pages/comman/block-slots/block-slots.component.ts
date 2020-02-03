@@ -39,22 +39,24 @@ export class BlockSlotsComponent implements OnInit {
 
   slotsStatus() {
     this.slotsOfRestaurant = [];
-    this.alertService.showLoader();
+    // this.alertService.showLoader();
     this.loginservice.restaurantTimeSlot({
       restaurantId: this.userId,
       date: this.slotTimeAndDate.toDate.toString().slice(0, 10)
     }).subscribe((res) => {
-      this.alertService.closeLoader();
+      // this.alertService.closeLoader();
       if (res.status === 200) {
 
         this.slotsOfRestaurant = res.data;
+        console.log(this.slotsOfRestaurant);
+
       }
     });
   }
   lockUnlock(id) {
     console.log(this.slotsOfRestaurant[id]);
     console.log(this.slotTimeAndDate.toDate.toString().slice(0, 10));
-    this.alertService.showLoader();
+    // this.alertService.showLoader();
     const TimeTo = this.slotsOfRestaurant[id].timeSlot.split('-');
     this.loginservice.blockUnBlockSlots({
 
@@ -64,7 +66,7 @@ export class BlockSlotsComponent implements OnInit {
       toTime: TimeTo[1],
       type: 1
     }).subscribe((res) => {
-      this.alertService.closeLoader();
+      // this.alertService.closeLoader();
       this.slotsOfRestaurant[id].isDisable = !this.slotsOfRestaurant[id].isDisable;
     });
   }

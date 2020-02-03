@@ -381,7 +381,7 @@ export class RegistrationPage implements OnInit, AfterViewInit, OnDestroy {
         }
 
         this.nxtStage = res.data.stage - 4;
-        this.editDetails(5);
+        this.editDetails(res.data.stage - 4);
         if (res.data.paymentOptions.length > 0) {
           res.data.paymentOptions.forEach(ele => {
             // tslint:disable-next-line: triple-equals
@@ -467,8 +467,8 @@ export class RegistrationPage implements OnInit, AfterViewInit, OnDestroy {
 
                 const times = ele.value.split('-');
                 console.log(times);
-              
-                
+
+
                 val.open = new Date('01/01/2012 ' + times[0]).toString();
                 val.close = new Date('01/01/2012 ' + times[1]).toString();
                 // val.open = Date.parse('01/01/2012 ' + times[0]).toString();
